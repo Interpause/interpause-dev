@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+export function Home() {
   return (
     <div className={styles.container}>
       <Head>
@@ -60,6 +60,19 @@ export default function Home() {
           <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
         </a>
       </footer>
+    </div>
+  )
+}
+
+export default function Index(){
+  return (
+    <div style={{height:"100vh", width:"100vw", backgroundColor:"black", textAlign:"center", position:"fixed", top:"0", left:"0"}}>
+      <h1 style={{color:"white"}}>UNDER CONSTRUCTION</h1>
+      <h3 style={{color:"white"}}>
+        <a style={{margin:"1vw"}} href="https://github.com/Interpause/interpause-dev">Repository</a>
+        <a style={{margin:"1vw"}} href="https://github.com/Interpause">Github</a>
+        <a style={{margin:"1vw"}} href="https://linkedin.com/in/interpause">LinkedIn</a>
+      </h3>
     </div>
   )
 }

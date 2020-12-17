@@ -8,9 +8,12 @@
     "start": "next start"
   },
   "dependencies": {
+    "autoprefixer": "latest",
     "next": "10.0.3",
+    "postcss": "latest",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "tailwindcss": "latest"
   },
   "devDependencies": {
     "@types/node": "^14.14.14",

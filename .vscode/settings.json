@@ -6,5 +6,8 @@
   "eslint.packageManager": "yarn",
   "npm.packageManager": "yarn",
   "typescript.tsdk": ".yarn/sdks/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "editor.quickSuggestions": {
+    "strings": true
+  }
 }

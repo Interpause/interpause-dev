@@ -2,8 +2,8 @@ import Head from "next/head";
 import "tailwindcss/tailwind.css";
 
 import Counter from "../components/Counter";
-import Grid, {CardData} from "../components/Grid";
-import DarkToggle from "../components/DarkToggle";
+import CardFlex, {CardData} from "../components/Card";
+import { DarkThemeWrapper, DarkToggle } from "../components/DarkTheme";
 
 function Home(){
 	let cards:CardData[] = [
@@ -44,7 +44,7 @@ function Home(){
 					Get started by editing{' '}
 					<code className={`bg-gray-100 rounded text-xl p-1 font-mono`}>pages/index.js</code>
 				</p>
-				<Grid cards={cards}/>
+				<CardFlex cards={cards}/>
 				
 			</main>
 
@@ -88,15 +88,25 @@ function Index(){
 	];
 	return (
 		<div className={`h-screen w-screen bg-white dark:bg-black text-center text-black dark:text-white transition-colors fixed top-0 left-0`}>
-			<h1 className={`text-5xl my-4 font-bold font-serif`}>UNDER CONSTRUCTION</h1>
-			<div className={`flex justify-center`}>
-				<Grid cards={cards}/>
-			</div>
+			<h1 className={`text-5xl my-4 font-bold`} style={{fontFamily:"Comic Sans MS, Comic Sans, cursive"}}>UNDER CONSTRUCTION</h1>
+			<DarkThemeWrapper>
+				<div className={`flex justify-center font-mono`}>
+					<CardFlex cards={cards}/>
+				</div>
+				<DarkToggle/>
+			</DarkThemeWrapper>
 			<Counter/>
-			<DarkToggle/>
+			
 		</div>
 	)
 }
 
-export {Home, Grid};
+export {Home};
 export default Index;
+
+/*
+ * TODO: turn Grid into Card.tsx with Card and CardGrid. Make link optional property. Font should be inherited if possible.
+ * TODO: Build as production debug build and add text to site instructing viewers to download the react inspector to see more
+ * TODO: Visit other .dev sites to get inspiration (much later)
+ * TODO: make Under construction rainbow and comic sans and marquee
+ */

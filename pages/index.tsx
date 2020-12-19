@@ -4,6 +4,7 @@ import "tailwindcss/tailwind.css";
 import Counter from "../components/Counter";
 import CardFlex, {CardData} from "../components/Card";
 import { DarkThemeWrapper, DarkToggle } from "../components/DarkTheme";
+import { useContext } from "react";
 
 function Home(){
 	let cards:CardData[] = [
@@ -86,17 +87,26 @@ function Index(){
 			body:"Don't watch my Youtube channel. TODO: add stream scheldule to site."
 		}
 	];
+
 	return (
-		<div className={`h-screen w-screen bg-white dark:bg-black text-center text-black dark:text-white transition-colors fixed top-0 left-0`}>
+		<div className={`h-screen w-screen text-center transition-colors fixed top-0 left-0 dark:bg-black dark:text-white bg-white text-black`}>
 			<h1 className={`text-5xl my-4 font-bold`} style={{fontFamily:"Comic Sans MS, Comic Sans, cursive"}}>UNDER CONSTRUCTION</h1>
-			<DarkThemeWrapper>
+				<DarkToggle/>
 				<div className={`flex justify-center font-mono`}>
 					<CardFlex cards={cards}/>
 				</div>
-				<DarkToggle/>
-			</DarkThemeWrapper>
+				<DarkThemeWrapper>
+					<div className={`border-gray-400 border-t-2 dark:bg-black dark:text-white bg-white text-black`}>
+						<h4 className={`text-lg`}>View the React code using{' '}
+							<a
+								className={`no-underline hover:underline text-blue-400`}
+								href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi"
+							>React's Official Extension!</a>
+						</h4>
+						<span>TailwindCSS unfortunately doesn't multi-theme so I guess this localised theming toggle doesn't work: <DarkToggle/></span>
+					</div>
+				</DarkThemeWrapper>
 			<Counter/>
-			
 		</div>
 	)
 }
@@ -105,7 +115,6 @@ export {Home};
 export default Index;
 
 /*
- * TODO: turn Grid into Card.tsx with Card and CardGrid. Make link optional property. Font should be inherited if possible.
  * TODO: Build as production debug build and add text to site instructing viewers to download the react inspector to see more
  * TODO: Visit other .dev sites to get inspiration (much later)
  * TODO: make Under construction rainbow and comic sans and marquee

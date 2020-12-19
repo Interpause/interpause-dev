@@ -1,34 +1,12 @@
 import Head from "next/head";
 import "tailwindcss/tailwind.css";
 
-/*
-interface CardData = {
-	link:string;
-	title:string;
-	body:string;
-}
-prop:{cards:CardData[]}
-*/
+import Counter from "../components/Counter";
+import Grid, {CardData} from "../components/Grid";
+import DarkToggle from "../components/DarkToggle";
 
-export function Grid({cards}:{cards:{link:string,title:string,body:string}[]}){
-	return (
-		<div className={`flex items-center justify-center flex-wrap sm:max-w-screen-md flex-col sm:flex-row`}>
-			{cards.map((card,i) => 
-				<a 
-					className={`flex-auto w-11/12 sm:w-5/12 m-4 p-6 text-left no-underline text-current border-black border-2 rounded transition-colors hover:text-blue-500 hover:border-blue-500`}
-					href={card.link}
-					key={i}
-				>
-					<h3 className={`m-0 mb-4 text-2xl text-blue-500`}>{card.title}</h3>
-					<p className={`m-0 text-xl`}>{card.body}</p>
-				</a>
-			)}
-		</div>
-	);
-}
-
-export function Home(){
-	let cards = [
+function Home(){
+	let cards:CardData[] = [
 		{
 			link:"https://nextjs.org/docs",
 			title:"Documentation →",
@@ -85,15 +63,40 @@ export function Home(){
 	)
 }
 
-export default function Index(){
+function Index(){
+	let cards:CardData[] = [
+		{
+			link:"https://github.com/Interpause/interpause-dev",
+			title:"Repository →",
+			body:"See the code for this website by clicking on this card."
+		},
+		{
+			link:"https://github.com/Interpause",
+			title:"Github →",
+			body:"Look at my crappy past projects here."
+		},
+		{
+			link:"https://linkedin.com/in/interpause",
+			title:"LinkedIn →",
+			body:"Please do not follow me on LinkedIn."
+		},
+		{
+			link:"https://youtube.com/c/Interpause",
+			title:"Youtube →",
+			body:"Don't watch my Youtube channel. TODO: add stream scheldule to site."
+		}
+	];
 	return (
-		<div className={`h-screen w-screen bg-black text-center text-white fixed top-0 left-0`}>
+		<div className={`h-screen w-screen bg-white dark:bg-black text-center text-black dark:text-white transition-colors fixed top-0 left-0`}>
 			<h1 className={`text-5xl my-4 font-bold font-serif`}>UNDER CONSTRUCTION</h1>
-			<h3 className={`text-3xl font-mono`}>
-				<a className={`m-6`} href="https://github.com/Interpause/interpause-dev">Repository</a>
-				<a className={`m-6`} href="https://github.com/Interpause">Github</a>
-				<a className={`m-6`} href="https://linkedin.com/in/interpause">LinkedIn</a>
-			</h3>
+			<div className={`flex justify-center`}>
+				<Grid cards={cards}/>
+			</div>
+			<Counter/>
+			<DarkToggle/>
 		</div>
 	)
 }
+
+export {Home, Grid};
+export default Index;

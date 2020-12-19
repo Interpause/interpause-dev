@@ -9,7 +9,7 @@
  * should be done similar to above rather than in code
  */
 module.exports = {
-  purge: ['./pages/**/*.tsx'],
+  purge: ['./pages/**/*.tsx','./components/**/*.tsx'],
   darkMode: 'class', // false or 'media' or 'class'
   theme: {
     extend: {},

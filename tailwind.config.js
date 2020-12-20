@@ -15,6 +15,9 @@ module.exports = {
     extend: {
       boxShadow: {
         'inner-btn': 'inset 0 0 0.5em 0 rgba(0, 0, 0, 0.2)'
+      },
+      zIndex: {
+        '-10': '-10',
       }
     },
   },

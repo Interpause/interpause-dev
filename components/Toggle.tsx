@@ -65,7 +65,7 @@ export default function Toggle({toggleHook:[isOn,setOn],label,height=2,customSty
 	let c = mergeStyles(customStyle)[isOn?"on":"off"];
 
 	return (
-		<label className={`group cursor-pointer select-none`} style={s.label}>
+		<label className={`group select-none`} style={s.label}>
 			<span className={`align-middle`}>{label??""} </span>
 			<input className={`opacity-0 h-0 w-0`} type="checkbox" checked={isOn} onClick={() => setOn(!isOn)} readOnly></input>
 			<div className={`relative inline-block transition-colors align-middle`} style={s.wrapper}>

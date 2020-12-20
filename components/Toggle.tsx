@@ -1,3 +1,7 @@
+/**
+ * @file ReactJS + TailwindCSS customizable toggle.
+ * @author John-Henry Lim <interpause@interpause.dev>
+ */
 import "tailwindcss/tailwind.css";
 import { Dispatch, SetStateAction, CSSProperties } from "react";
 import { DefaultLayeredConfig, LayeredConfig, mergeConfigs } from "./LayeredConfig";
@@ -49,10 +53,13 @@ export type ToggleProps = {
 	label?:string;
 	/** height of component in rem used for scaling */
 	height?:number;
-	/** custom style classes to apply to toggle */
+	/** custom style classes to apply to toggle. 
+	 * @example {bg:"bg-gray-400",slider:{on:"bg-green-400"}} 
+	 */
 	customStyle?:ToggleStyle;
 }
 
+/** Creates an inline customisable toggle. */
 export default function Toggle({toggleHook:[isOn,setOn],label,height=2,customStyle={}}:ToggleProps){
 	let s = calculateSizes(height);
 	let c = mergeStyles(customStyle)[isOn?"on":"off"];

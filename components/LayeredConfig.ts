@@ -1,3 +1,7 @@
+/**
+ * @file Suffering with typescript and breaking the tslinter a few times.
+ * @author John-Henry Lim <interpause@interpause.dev>
+ */
 /** K2 are the keys for the inner config. */
 export type InnerConfig<K2 extends keyof any> = Partial<Record<K2,string>>|string;
 /** K1 are the keys for the outer config, K2 are the keys for the inner config. */

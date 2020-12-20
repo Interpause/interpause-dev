@@ -1,13 +1,19 @@
+/**
+ * @file Primitive card components.
+ * @author John-Henry Lim <interpause@interpause.dev>
+ */
 import "tailwindcss/tailwind.css";
 
 export interface CardData{
+	/** title of card */
 	title:string;
+	/** text in card */
 	body:string;
+	/** link to redirect to when card is clicked */
 	link?:string;
 }
 
-// TODO get flex to attempt to make cards uniform height too at md breakpoint
-
+/** Creates a flex card. */
 export function Card({data}:{data:CardData}){
 	return (
 		<a 
@@ -20,6 +26,7 @@ export function Card({data}:{data:CardData}){
 	);
 }
 
+/** Populates a list of flex cards. */
 export default function CardFlex({cards}:{cards:CardData[]}){
 	return (
 		<div className={`flex items-center justify-center flex-wrap sm:max-w-screen-md flex-col sm:flex-row`}>

@@ -1,5 +1,9 @@
-import {useContext, useState, createContext, ReactNode, Dispatch, SetStateAction} from 'react';
+/**
+ * @file Localized Dark Theme using Context API
+ * @author John-Henry Lim <interpause@interpause.dev>
+ */
 import "tailwindcss/tailwind.css";
+import {useContext, useState, createContext, ReactNode, Dispatch, SetStateAction} from 'react';
 
 import Toggle from "./Toggle";
 
@@ -17,13 +21,18 @@ interface darkHook {
 
 export const DarkThemeContext = createContext({} as darkHook);
 
+/** Wrap this around element tree to localize dark theme. */
 export function DarkThemeWrapper({children,darkDefault}:{children:ReactNode,darkDefault?:boolean}){
 	const [isDark,setDark] = useState(darkDefault??false);
-	return <DarkThemeContext.Provider value={{isDark,setDark,children}}><span className={`${isDark?"dark":"light"}`}>{children}</span></DarkThemeContext.Provider>;
+	return (
+		<DarkThemeContext.Provider value={{isDark,setDark,children}}>
+			<span className={`${isDark?"dark":"light"}`}>{children}</span>
+		</DarkThemeContext.Provider>
+	);
 }
 
+/** Place this as descendant to DarkThemeWrapper to toggle localized dark theme. */
 export function DarkToggle(){
-
 	const {isDark,setDark} = useContext(DarkThemeContext);
 	if(isDark == undefined){
 		console.error("DarkThemeWrapper missing as ancestor to DarkToggle!");

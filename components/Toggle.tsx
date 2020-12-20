@@ -1,51 +1,29 @@
 import { Dispatch, SetStateAction, CSSProperties } from "react";
 import "tailwindcss/tailwind.css";
+import {DefaultLayeredConfig, LayeredConfig, mergeConfigs} from './LayeredConfig';
 
-export interface ToggleStyle{
-	slider?:{
-		on?:string;
-		off?:string;
-	}|string;
-	bg?:{
-		on?:string;
-		off?:string;
-	}|string;
-	others?:{
-		on?:string;
-		off?:string;
-	}|string;
-}
-
-const defaultStyle = { // cant't be typed as ToggleStyle else typescript complains about undefined even when this is a const
-	slider:{
-		on:"bg-white",
-		off:"bg-white"
+export type StyleKeys = "slider"|"bg"|"others";
+export type StateKeys = "on"|"off";
+export type ToggleStyle = LayeredConfig<StyleKeys,StateKeys>;
+export const defaultStyle:DefaultLayeredConfig<StyleKeys,StateKeys> = {
+	on:{
+		slider:"bg-white",
+		bg:"bg-blue-400",
+		others:"rounded"
 	},
-	bg:{
-		on:"bg-blue-400",
-		off:"bg-gray-400"
-	},
-	others:{
-		on:"rounded",
-		off:"rounded"
+	off:{
+		slider:"bg-white",
+		bg:"bg-gray-400",
+		others:"rounded"
 	}
 }
 
-function mergeStyles(customStyle:ToggleStyle){
-	return {
-		on: {
-			slider: typeof customStyle.slider==="string"?customStyle.slider:customStyle.slider?.on??defaultStyle.slider.on,
-			bg: typeof customStyle.bg==="string"?customStyle.bg:customStyle.bg?.on??defaultStyle.bg.on,
-			others: typeof customStyle.others==="string"?customStyle.others:customStyle.others?.on??defaultStyle.others.on,
-		},
-		off: {
-			slider: typeof customStyle.slider==="string"?customStyle.slider:customStyle.slider?.off??defaultStyle.slider.off,
-			bg: typeof customStyle.bg==="string"?customStyle.bg:customStyle.bg?.off??defaultStyle.bg.off,
-			others: typeof customStyle.others==="string"?customStyle.others:customStyle.others?.off??defaultStyle.others.off,
-		}
-	};
-}
+const mergeStyles = (customStyle:ToggleStyle) => mergeConfigs<StyleKeys,StateKeys>(customStyle,defaultStyle);
 
+/**
+ * calculates the sizes for toggle components using the height of the toggle.
+ * @param height height in rem to calculate sizes for toggle components.
+ */
 function calculateSizes(height:number){
 	return {
 		slider:{
@@ -65,14 +43,19 @@ function calculateSizes(height:number){
 	};
 }
 
-export default function Toggle({isToggled,setToggled,label,height=2,customStyle={}}:{
-	isToggled:boolean,
-	setToggled:Dispatch<SetStateAction<boolean>>,
-	label?:string,
-	height?:number,
-	customStyle?:ToggleStyle
-	}
-){
+export type ToggleProps = {
+	/** array returned by React.useState\<boolean\> */
+	toggleHook:[boolean,Dispatch<SetStateAction<boolean>>];
+	/** text label for toggle */
+	label?:string;
+	/** height of component in rem used for scaling */
+	height?:number;
+	/** custom style classes to apply to toggle */
+	customStyle?:ToggleStyle;
+}
+
+//TODO ADD HOVER
+export default function Toggle({toggleHook:[isToggled,setToggled],label,height=2,customStyle={}}:ToggleProps){
 	let sizes = calculateSizes(height);
 	let custom = mergeStyles(customStyle)[isToggled?"on":"off"];
 

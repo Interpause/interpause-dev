@@ -31,7 +31,7 @@ export function DarkToggle(){
 	}
 
 	return (
-		<Toggle label="Dark Mode" isToggled={isDark} setToggled={setDark} height={2} customStyle={{
+		<Toggle label="Dark Mode" toggleHook={[isDark,setDark]} height={2} customStyle={{
 			others:"rounded-full",
 			slider:{on:"bg-green-400"},
 			bg:{on:"bg-green-200"}

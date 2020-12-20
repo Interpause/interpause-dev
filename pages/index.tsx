@@ -118,7 +118,35 @@ export {Home};
 export default Index;
 
 /*
+ * 
  * TODO: make toggle switch and counter even though they are useless.
  * TODO: Visit other .dev sites to get inspiration (much later)
  * TODO: make Under construction rainbow and comic sans and marquee
+ * TSDocs: https://tsdoc.org/pages/tags/alpha/
+ * Recursive Object Destructuring. Yes. THATS SCARY
+ * How to properly format extremely long function signatures??? Spam interfaces it is
+ * How to iterate keys in ts?
+ * add author info to your components (separate commit)
+ * should I create a toggle switch module or smth with many toggle switches perhaps even range sliders
+ * https://github.com/typescript-cheatsheets/react/blob/main/README.md#basic-cheatsheet-table-of-contents
  */
+
+ /*
+	* TODO: Report glitch in typescript linter.
+
+REPRODUCE:
+
+function mergeStyles(customStyle:ToggleStyle){
+	let merged:Record<StateKeys,Record<StyleKeys,string>> = defaultStyle;
+	(Object.keys(customStyle) as StyleKeys[]).forEach(k => {
+		let v = customStyle[k];
+		if(v === "undefined") return;
+		console.log(typeof v); //hover to confirm v is not unioned with undefined anymore.
+		(Object.keys(merged) as StateKeys[]).forEach(c => {
+			merged[c][k] = v; //linter mistakenly errors that v may still be undefined even when confirmed not to be.
+		});
+	});
+	return merged;
+}
+
+	*/

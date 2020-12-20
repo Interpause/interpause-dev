@@ -4,7 +4,6 @@ import "tailwindcss/tailwind.css";
 import Counter from "../components/Counter";
 import CardFlex, {CardData} from "../components/Card";
 import { DarkThemeWrapper, DarkToggle } from "../components/DarkTheme";
-import { useContext } from "react";
 
 function Home(){
 	let cards:CardData[] = [
@@ -68,35 +67,39 @@ function Index(){
 	let cards:CardData[] = [
 		{
 			link:"https://github.com/Interpause/interpause-dev",
-			title:"Repository →",
+			title:"Repository",
 			body:"See the code for this website by clicking on this card."
 		},
 		{
 			link:"https://github.com/Interpause",
-			title:"Github →",
+			title:"Github",
 			body:"Look at my crappy past projects here."
 		},
 		{
 			link:"https://linkedin.com/in/interpause",
-			title:"LinkedIn →",
+			title:"LinkedIn",
 			body:"Please do not follow me on LinkedIn."
 		},
 		{
 			link:"https://youtube.com/c/Interpause",
-			title:"Youtube →",
+			title:"Youtube",
 			body:"Don't watch my Youtube channel. TODO: add stream scheldule to site."
+		},
+		{
+			title:"Test",
+			body:"Lorum Ipsum Lolsum."
 		}
 	];
 
 	return (
-		<div className={`h-screen w-screen text-center transition-colors fixed top-0 left-0 dark:bg-black dark:text-white bg-white text-black`}>
+		<div className={`h-screen w-screen text-center transition-colors fixed top-0 left-0 overflow-y-scroll dark:bg-black dark:text-white bg-white text-black`}>
 			<h1 className={`text-5xl my-4 font-bold`} style={{fontFamily:"Comic Sans MS, Comic Sans, cursive"}}>UNDER CONSTRUCTION</h1>
 				<DarkToggle/>
 				<div className={`flex justify-center font-mono`}>
 					<CardFlex cards={cards}/>
 				</div>
 				<DarkThemeWrapper>
-					<div className={`border-gray-400 border-t-2 dark:bg-black dark:text-white bg-white text-black`}>
+					<footer className={`border-gray-400 border-t-2 dark:bg-black dark:text-white bg-white text-black`}>
 						<h4 className={`text-lg`}>View the React code using{' '}
 							<a
 								className={`no-underline hover:underline text-blue-400`}
@@ -104,7 +107,7 @@ function Index(){
 							>React's Official Extension!</a>
 						</h4>
 						<span>TailwindCSS unfortunately doesn't multi-theme so I guess this localised theming toggle doesn't work: <DarkToggle/></span>
-					</div>
+					</footer>
 				</DarkThemeWrapper>
 			<Counter/>
 		</div>
@@ -115,7 +118,7 @@ export {Home};
 export default Index;
 
 /*
- * TODO: Build as production debug build and add text to site instructing viewers to download the react inspector to see more
+ * TODO: make toggle switch and counter even though they are useless.
  * TODO: Visit other .dev sites to get inspiration (much later)
  * TODO: make Under construction rainbow and comic sans and marquee
  */

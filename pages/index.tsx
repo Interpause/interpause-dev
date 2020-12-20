@@ -125,7 +125,6 @@ export default Index;
  * TSDocs: https://tsdoc.org/pages/tags/alpha/
  * Recursive Object Destructuring. Yes. THATS SCARY
  * How to properly format extremely long function signatures??? Spam interfaces it is
- * How to iterate keys in ts?
  * add author info to your components (separate commit)
  * should I create a toggle switch module or smth with many toggle switches perhaps even range sliders
  * https://github.com/typescript-cheatsheets/react/blob/main/README.md#basic-cheatsheet-table-of-contents

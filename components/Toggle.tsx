@@ -1,6 +1,6 @@
-import { Dispatch, SetStateAction, CSSProperties } from "react";
 import "tailwindcss/tailwind.css";
-import {DefaultLayeredConfig, LayeredConfig, mergeConfigs} from './LayeredConfig';
+import { Dispatch, SetStateAction, CSSProperties } from "react";
+import { DefaultLayeredConfig, LayeredConfig, mergeConfigs } from "./LayeredConfig";
 
 export type StyleKeys = "slider"|"bg"|"others";
 export type StateKeys = "on"|"off";
@@ -17,8 +17,7 @@ export const defaultStyle:DefaultLayeredConfig<StyleKeys,StateKeys> = {
 		others:"rounded"
 	}
 }
-
-const mergeStyles = (customStyle:ToggleStyle) => mergeConfigs<StyleKeys,StateKeys>(customStyle,defaultStyle);
+export const mergeStyles = (customStyle:ToggleStyle) => mergeConfigs<StyleKeys,StateKeys>(customStyle,defaultStyle);
 
 /**
  * calculates the sizes for toggle components using the height of the toggle.
@@ -35,7 +34,7 @@ function calculateSizes(height:number){
 		} as CSSProperties,
 		wrapper:{
 			height:`${height}rem`,
-			width:`${2*height}rem`
+			width:`${2*height}rem`,
 		},
 		label:{
 			fontSize:`${3/4*height}rem`
@@ -54,21 +53,17 @@ export type ToggleProps = {
 	customStyle?:ToggleStyle;
 }
 
-//TODO ADD HOVER
-export default function Toggle({toggleHook:[isToggled,setToggled],label,height=2,customStyle={}}:ToggleProps){
-	let sizes = calculateSizes(height);
-	let custom = mergeStyles(customStyle)[isToggled?"on":"off"];
+export default function Toggle({toggleHook:[isOn,setOn],label,height=2,customStyle={}}:ToggleProps){
+	let s = calculateSizes(height);
+	let c = mergeStyles(customStyle)[isOn?"on":"off"];
 
 	return (
-		<label className={`cursor-pointer select-none`}>
-			<span className={`align-middle`} style={sizes.label}>{label?(label+' '):''}</span>
-			<input className={`span opacity-0 h-0 w-0`} type="checkbox" checked={isToggled} onClick={() => setToggled(!isToggled)} readOnly></input>
-			<div className={`relative inline-block transition-colors align-middle`} style={sizes.wrapper}>
-				<span className={`absolute pointer-events-none top-0 right-0 bottom-0 left-0 ${custom.bg} ${custom.others}`}></span>
-				<span
-					className={`absolute pointer-events-none transition-transform ${custom.slider} ${custom.others} ${isToggled?"transform":""}`}
-					style={sizes.slider}
-				></span>
+		<label className={`group cursor-pointer select-none`} style={s.label}>
+			<span className={`align-middle`}>{label??""} </span>
+			<input className={`opacity-0 h-0 w-0`} type="checkbox" checked={isOn} onClick={() => setOn(!isOn)} readOnly></input>
+			<div className={`relative inline-block transition-colors align-middle`} style={s.wrapper}>
+				<span className={`absolute top-0 right-0 bottom-0 left-0 group-hover:shadow-inner-btn ${c.bg} ${c.others}`}></span>
+				<span className={`absolute transition-transform ${isOn?"transform":""} ${c.slider} ${c.others}`} style={s.slider}></span>
 			</div>
 		</label>
 	);

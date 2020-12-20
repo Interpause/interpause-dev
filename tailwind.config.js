@@ -12,7 +12,11 @@ module.exports = {
   purge: ['./pages/**/*.tsx','./components/**/*.tsx'],
   darkMode: 'class', // false or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+      boxShadow: {
+        'inner-btn': 'inset 0 0 0.5em 0 rgba(0, 0, 0, 0.2)'
+      }
+    },
   },
   variants: {
     extend: {},

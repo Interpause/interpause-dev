@@ -21,15 +21,17 @@ function App({ Component, pageProps }:AppProps) {
 				<meta name="keywords" content="interpause, developer, maker"/>
 
 				{/* https://realfavicongenerator.net/ */}
-				<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"/>
-				<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"/>
-				<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"/>
-				<link rel="manifest" href="/site.webmanifest"/>
-				<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff5555"/>
-				<meta name="apple-mobile-web-app-title" content="Interpause"/>
-				<meta name="application-name" content="Interpause"/>
-				<meta name="msapplication-TileColor" content="#da532c"/>
-				<meta name="theme-color" content="#ff5555"/>
+				<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"/>
+				<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/>
+				<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/>
+				<link rel="manifest" href="/favicon/site.webmanifest"/>
+				<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#fde68a"/>
+				<link rel="shortcut icon" href="/favicon/favicon.ico"/>
+				<meta name="apple-mobile-web-app-title" content="Interpause.Dev"/>
+				<meta name="application-name" content="Interpause.Dev"/>
+				<meta name="msapplication-TileColor" content="#ffc40d"/>
+				<meta name="msapplication-config" content="/favicon/browserconfig.xml"/>
+				<meta name="theme-color" content="#fde68a"/>
 			</Head>
 			<Component {...pageProps} />
 		</DarkThemeWrapper>

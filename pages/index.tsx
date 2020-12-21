@@ -57,7 +57,7 @@ export default function Index(){
 				<meta name="keywords" content="interpause, developer, maker"/>
 			</Head>
 			<header id="banner" className={`h-screen max-w-screen text-center`}>
-				<div id="banner-img-wrapper" className={`absolute flex h-full w-full overflow-hidden justify-center -z-10 bg-red-400`}></div>
+				<div id="banner-img-wrapper" className={`absolute flex h-screen w-full overflow-hidden justify-center -z-10 bg-yellow-200`}></div> {/* h-screen rather than h-full some weird margin issue */}
 				<h1 className={`absolute text-5xl bg-white bg-opacity-70 rounded px-1 bottom-64 mx-auto right-0 left-0 md:text-7xl md:bottom-32 md:px-auto md:ml-5 md:m-0 md:right-auto`}>A maker who is a jack of all trades</h1>
 			</header>
 			<DarkThemeWrapper darkDefault={true}>

@@ -58,7 +58,7 @@ export default function Index(){
 			</Head>
 			<header id="banner" className={`h-screen max-w-screen text-center`}>
 				<div id="banner-img-wrapper" className={`absolute flex h-screen w-full overflow-hidden justify-center -z-10 bg-yellow-200`}></div> {/* h-screen rather than h-full some weird margin issue */}
-				<h1 className={`absolute text-5xl bg-white bg-opacity-70 rounded px-1 bottom-64 mx-auto right-0 left-0 md:text-7xl md:bottom-32 md:px-auto md:ml-5 md:m-0 md:right-auto`}>A maker who is a jack of all trades</h1>
+				<h1 className={`absolute text-5xl bg-white bg-opacity-70 rounded px-1 bottom-64 mx-auto right-0 left-0 md:text-7xl md:bottom-32 md:px-auto md:ml-5 md:m-0 md:right-auto`}>TODO: non-cringy tagline</h1>
 			</header>
 			<DarkThemeWrapper darkDefault={true}>
 			<div className={`text-center transition-colors bg-white text-black dark:bg-black dark:text-white`}>
@@ -71,12 +71,12 @@ export default function Index(){
 			</div>
 			</DarkThemeWrapper>
 			<DarkThemeWrapper>
-			<footer className={`border-gray-400 border-t-2 text-center bg-white text-black dark:bg-black dark:text-white`}>
-				<h4 className={`text-lg`}>View the React code using{' '}
+			<footer className={`border-t-2 text-center transition-colors border-gray-200 bg-gray-50 text-black dark:border-gray-900 dark:bg-gray-900 dark:text-white`}>
+				<h4 className={`text-lg`}>TODO: footer{' '}
 					<a
 						className={`no-underline hover:underline text-blue-400`}
-						href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi"
-					>React's Official Extension!</a>
+						href="#"
+					>link that goes nowhere... so far</a>
 				</h4>
 				<span><DarkToggle/></span>
 			</footer>

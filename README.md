@@ -1,32 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). Be aware that this project uses [Yarn 2](https://yarnpkg.com/).
+# My Personal Site
 
-## Getting Started
+## Description
 
-First, run the development server:
+This website is a [Next.js](https://nextjs.org/) project deployed on the [Vercel Platform](https://vercel.com/). Besides the builtin [ReactJS](https://reactjs.org/), I heavily used [TailwindCSS](https://tailwindcss.com/) to style everything including my [`components`](/components).
+
+When completed, this website will serve several purposes:
+
+- Portfolio website to show off
+- Post blog posts
+- Host games
+- Redirect my email
+
+## Testing
+
+First, install [Yarn 2](https://yarnpkg.com/):
+
+```bash
+npm install -g yarn
+```
+
+The project is already configured to use Yarn 2 and its [Plug'n'Play](https://yarnpkg.com/features/pnp) feature, hence the absence of the `node_modules` folder.
+
+Next, run the development server:
 
 ```bash
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the website.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Deployment on Vercel
 
-## Learn More
+Here are some necessary environment variables to set:
 
-To learn more about Next.js, take a look at the following resources:
+```env
+FORCE_BUILDER_TAG=canary // needed due to Yarn 2
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## VSCode Workspace
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-
-## VSCode Extensions
-
-Tailwind Intellisense is highly recommended.
+As my IDE of choice is currently VSCode, you may notice I did not gitignore the `.vscode` folder which contains some configurations. I highly recommend installing [TailwindCSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss).

@@ -7,8 +7,6 @@ import { DarkThemeWrapper, DarkToggle } from "../components/DarkTheme";
 import { genBg } from "../components/isogrid";
 import { useEffect } from "react";
 
-
-
 export default function Index(){
 	let cards:CardData[] = [
 		{
@@ -28,7 +26,7 @@ export default function Index(){
 		},
 		{
 			title:"Test",
-			body:"Lorum Ipsum Lolsum."
+			body:"Email me at interpause@interpause.dev"
 		},
 		{
 			link:"https://youtube.com/c/Interpause",
@@ -52,9 +50,15 @@ export default function Index(){
 	//TODO componentize banner and footer. Add animated arrow thingy telling you to scroll down. 
 	return (
 		<div>
+			<Head>
+				<title>Interpause | Portfolio</title>
+				<meta name="description" content="My personal portfolio website."/>
+				<meta name="topic" content="portfolio"/>
+				<meta name="keywords" content="interpause, developer, maker"/>
+			</Head>
 			<header id="banner" className={`h-screen max-w-screen text-center`}>
-				<div id="banner-img-wrapper" className={`absolute flex h-screen w-screen overflow-hidden justify-center -z-10 bg-red-400`}></div>
-				<h1 className={`absolute text-5xl bg-white bg-opacity-70 rounded px-1 bottom-64 mx-auto right-0 left-0 md:text-7xl md:bottom-32 md:px-auto md:ml-5 md:m-0 md:right-auto`}>Welcome to Intertopia</h1>
+				<div id="banner-img-wrapper" className={`absolute flex h-full w-full overflow-hidden justify-center -z-10 bg-red-400`}></div>
+				<h1 className={`absolute text-5xl bg-white bg-opacity-70 rounded px-1 bottom-64 mx-auto right-0 left-0 md:text-7xl md:bottom-32 md:px-auto md:ml-5 md:m-0 md:right-auto`}>A maker who is a jack of all trades</h1>
 			</header>
 			<DarkThemeWrapper darkDefault={true}>
 			<div className={`text-center transition-colors bg-white text-black dark:bg-black dark:text-white`}>
@@ -82,7 +86,7 @@ export default function Index(){
 }
 
 /*
- * 
+ * TODO: can a CMS like Wordpress pipe .mdx files to the blog subdomain? MDX sounds damn cool https://mdxjs.com/ TBH: blog subdomain should be separate repo
  * TODO: make toggle switch and counter even though they are useless.
  * TODO: Visit other .dev sites to get inspiration (much later)
  * TODO: make Under construction rainbow and comic sans and marquee

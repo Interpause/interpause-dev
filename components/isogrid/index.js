@@ -76,7 +76,7 @@ module.exports.genBg = function(kwargs){
 	let container = document.createElementNS("http://www.w3.org/2000/svg", "svg");
 	container.setAttribute('xmlns','http://www.w3.org/2000/svg');
 	container.setAttribute('viewBox',`0 0 ${width} ${height}`);
-	//container.setAttribute('shape-rendering','geometricPrecision');
+	container.setAttribute('shape-rendering','geometricPrecision');
 	container.setAttribute('preserveAspectRatio','xMidYMid slice');
 	
 	let bg = document.createElementNS("http://www.w3.org/2000/svg", 'g');

@@ -35,6 +35,7 @@ Here are some necessary environment variables to set:
 
 ```env
 FORCE_BUILDER_TAG=canary // needed due to Yarn 2
+WEBSITE_URL=https://example.com
 ```
 
 ## VSCode Workspace

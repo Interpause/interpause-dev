@@ -1,7 +1,7 @@
 import Head from "next/head";
 import CardFlex, {CardData} from "../components/Card";
 
-function Home(){
+export default function Home(){
 	let cards:CardData[] = [
 		{
 			link:"https://nextjs.org/docs",

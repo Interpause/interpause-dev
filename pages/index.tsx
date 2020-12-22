@@ -12,10 +12,10 @@ function DownArrow(){
 	return (
 		<svg viewBox="0 0 100 155" xmlns="http://www.w3.org/2000/svg" version="1.1" height="100%" width="100%">
 			<g>
-				<polyline stroke="currentColor" stroke-width="8" stroke-linecap="butt"  fill="none" 
+				<polyline stroke="currentColor" strokeWidth="8" strokeLinecap="butt"  fill="none" 
 					points="0,0 50,50 100,0"
 				></polyline>
-				<polyline stroke="currentColor" stroke-width="8" stroke-linecap="butt"  fill="none" 
+				<polyline stroke="currentColor" strokeWidth="8" strokeLinecap="butt"  fill="none" 
 					points="0,50 50,100 100,50"
 				></polyline>
 				<animateTransform
@@ -52,10 +52,10 @@ function Banner(){
 	});
 
 	return (
-	<header id="banner" className={`h-screen max-w-screen text-center`}>
-		<div id="banner-img-wrapper" className={`absolute flex h-screen w-full overflow-hidden justify-center -z-10 bg-yellow-200`}></div> {/* h-screen rather than h-full some weird margin issue */}
-		<h1 className={`absolute text-5xl bg-white bg-opacity-70 rounded px-1 bottom-64 mx-auto right-0 left-0 md:text-7xl md:bottom-32 md:px-auto md:ml-5 md:m-0 md:right-auto`}>TODO: non-cringy tagline</h1>
-		<div className={`absolute mx-auto bottom-0 right-0 left-0 h-20 text-white`}><DownArrow/></div>
+	<header className={`relative h-screen`}>
+		<div id="banner-img-wrapper" className={`absolute h-full w-full -z-10 bg-yellow-200`}></div> {/* h-screen rather than h-full some weird margin issue */}
+		<h1 className={`absolute text-5xl md:text-7xl bg-white bg-opacity-70 rounded px-1 inset-x-1 md:right-auto bottom-64 md:bottom-32 md:ml-5`}>TODO: non-cringy tagline</h1>
+		<div className={`absolute bottom-16 mx-auto inset-x-0 h-20 text-white`}><DownArrow/></div>
 	</header>
 	);
 }
@@ -140,6 +140,9 @@ export default function Index(){
 }
 
 /*
+ * Side Panel for in page navigation, top navbar for subdomain nav?
+ * Insert three.js cube animation somewhere for fun.
+ * 
  * TODO: can a CMS like Wordpress (what cms) pipe .mdx files to the blog subdomain? MDX sounds damn cool https://mdxjs.com/ TBH: blog subdomain should be separate repo
  * TODO: make counter even though they are useless.
  * TODO: Visit other .dev sites to get inspiration (much later)

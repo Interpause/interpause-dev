@@ -69,7 +69,7 @@ export default function Toggle({toggleHook:[isOn,setOn],label,height=2,customSty
 			<span className={`align-middle`}>{label??""} </span>
 			<input className={`opacity-0 h-0 w-0`} type="checkbox" checked={isOn} onClick={() => setOn(!isOn)} readOnly></input>
 			<div className={`relative inline-block transition-colors align-middle`} style={s.wrapper}>
-				<span className={`absolute top-0 right-0 bottom-0 left-0 group-hover:shadow-inner-btn ${c.bg} ${c.others}`}></span>
+				<span className={`absolute inset-0 group-hover:shadow-inner-btn ${c.bg} ${c.others}`}></span>
 				<span className={`absolute transition-transform ${isOn?"transform":""} ${c.slider} ${c.others}`} style={s.slider}></span>
 			</div>
 		</label>

@@ -41,3 +41,19 @@ WEBSITE_URL=https://example.com
 ## VSCode Workspace
 
 As my IDE of choice is currently VSCode, you may notice I did not gitignore the `.vscode` folder which contains some configurations. I highly recommend installing [TailwindCSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss).
+
+## Notes for Myself
+
+### TailwindCSS Things
+
+- `.animate` so you don't have to make animations yourselves.
+- `.ring` to make borders but not actually borders around objects.
+- `.divide` to separate elements with line (can it be vertical too?).
+- `.space` controls margins between child elements rather than let child element set it. Might be useful.
+- `.object-cover` and `.object-center` for `<img>` and `<video>` allows easy to scale banners that preserve aspect ratio. Not needed for `<svg>` though.
+
+### Links to sutdy
+
+- <https://www.npmjs.com/package/react-structured-data>
+- <https://github.com/typescript-cheatsheets/react/blob/main/README.md#basic-cheatsheet-table-of-contents>
+- <https://tsdoc.org/pages/tags/alpha/>

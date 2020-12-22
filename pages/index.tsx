@@ -1,46 +1,12 @@
-import Head from "next/head";
 import "tailwindcss/tailwind.css";
+import Head from "next/head";
+import { useEffect } from "react";
 
 import Counter from "../components/Counter";
 import CardFlex, {CardData} from "../components/Card";
 import { DarkThemeWrapper, DarkToggle } from "../components/DarkTheme";
 import { genBg } from "../components/isogrid";
-import { useEffect } from "react";
-
-function DownArrow(){
-	//TODO took me a while to write, will generalise next time
-	return (
-		<svg viewBox="0 0 100 155" xmlns="http://www.w3.org/2000/svg" version="1.1" height="100%" width="100%">
-			<g>
-				<polyline stroke="currentColor" strokeWidth="8" strokeLinecap="butt"  fill="none" 
-					points="0,0 50,50 100,0"
-				></polyline>
-				<polyline stroke="currentColor" strokeWidth="8" strokeLinecap="butt"  fill="none" 
-					points="0,50 50,100 100,50"
-				></polyline>
-				<animateTransform
-					attributeName="transform"
-					type="translate"
-					values="0 5 ; 0 50"
-					calcMode="spline"
-					keyTimes="0 ; 1"
-					keySplines="0 0 0.5 1"
-					dur="1s"
-					repeatCount="indefinite"
-				/>
-				<animate
-					attributeName="opacity"
-					values="0; 1 ; 0"
-					calcMode="spline"
-					keyTimes="0 ; 0.3 ; 1"
-					keySplines="0.5 0 0.5 1 ; 0.5 0 0.5 1"
-					dur="1s"
-					repeatCount="indefinite"
-				/>
-			</g>
-		</svg>
-	);
-}
+import { ScrollHint } from "../components/SVGoodies";
 
 function Banner(){
 	useEffect(() => {
@@ -53,9 +19,9 @@ function Banner(){
 
 	return (
 	<header className={`relative h-screen`}>
-		<div id="banner-img-wrapper" className={`absolute h-full w-full -z-10 bg-yellow-200`}></div> {/* h-screen rather than h-full some weird margin issue */}
+		<div id="banner-img-wrapper" className={`absolute h-full w-full -z-10 bg-yellow-200`}></div>
 		<h1 className={`absolute text-5xl md:text-7xl bg-white bg-opacity-70 rounded px-1 inset-x-1 md:right-auto bottom-64 md:bottom-32 md:ml-5`}>TODO: non-cringy tagline</h1>
-		<div className={`absolute bottom-16 mx-auto inset-x-0 h-20 text-white`}><DownArrow/></div>
+		<div className={`absolute bottom-16 md:bottom-4 mx-auto inset-x-0 h-20 text-white`}><ScrollHint direction="up"/></div>
 	</header>
 	);
 }
@@ -111,13 +77,13 @@ function Footer(){
 		<DarkThemeWrapper>
 			<footer className={`absolute w-full border-t-2 transition-colors border-gray-200 bg-gray-50 text-black dark:border-gray-900 dark:bg-gray-900 dark:text-white`}>
 				<span className={`absolute right-1 top-1`}><DarkToggle/></span>
-				<h4 className={`text-lg text-center pt-8 sm:pt-1`}>TODO: footer{' '}
+				<p className={`text-lg text-center pt-8 sm:pt-1`}>TODO: footer{' '}
 					<a
 						className={`no-underline hover:underline text-center text-blue-400`}
 						href="#"
 					>link that goes nowhere... so far</a>
-				</h4>
-				<h6 className={`block text-sm text-center text-gray-500 py-1`}>© {new Date().getFullYear()} Interpause</h6>
+				</p>
+				<p className={`text-sm text-center text-gray-500 py-1`}>© {new Date().getFullYear()} Interpause</p>
 			</footer>
 		</DarkThemeWrapper>
 	);
@@ -147,12 +113,7 @@ export default function Index(){
  * TODO: make counter even though they are useless.
  * TODO: Visit other .dev sites to get inspiration (much later)
  * TODO: make Under construction rainbow and comic sans and marquee
- * TSDocs: https://tsdoc.org/pages/tags/alpha/
- * Recursive Object Destructuring. Yes. THATS SCARY
- * How to properly format extremely long function signatures??? Spam interfaces it is
- * add author info to your components (separate commit)
- * should I create a toggle switch module or smth with many toggle switches perhaps even range sliders
- * https://github.com/typescript-cheatsheets/react/blob/main/README.md#basic-cheatsheet-table-of-contents
+ * 
  */
 
  /*

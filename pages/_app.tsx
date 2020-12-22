@@ -5,7 +5,8 @@ import { DarkThemeWrapper } from '../components/DarkTheme';
 // https://nextjs.org/docs/advanced-features/custom-app
 
 function App({ Component, pageProps }:AppProps) {
-	/* Component here is the currently rendered page. As such, any jsx here would
+	/* 
+	 * Component here is the currently rendered page. As such, any jsx here would
 	 * persist across all the pages. Which is useful. For maybe a Navbar.
 	 */
 	return (
@@ -15,10 +16,6 @@ function App({ Component, pageProps }:AppProps) {
 				<meta httpEquiv="Content-Type" content="text/html; charset=utf-8"/>
 				<meta name="language" content="English"/>
 				<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-				<meta name="description" content="My personal portfolio website."/>
-				<meta name="topic" content="portfolio"/>
-				<meta name="keywords" content="interpause, developer, maker"/>
 
 				{/* https://realfavicongenerator.net/ */}
 				<link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"/>

@@ -2,13 +2,13 @@
  * @file I will put more react SVGs here next time.
  * @author John-Henry Lim <interpause@interpause.dev>
  */
-export type Orientation = "up"|"right"|"down"|"left";
+import { Orientation } from "./index";
 
 /**
  * Creates an animated arrow hinting the user to scroll in that direction.
  * @param dir Takes either an Orientation or degrees clockwise relative to pointing down. 
  */
-export function ScrollHint({direction:dir}:{direction:Orientation|number}){
+export default function ScrollHint({direction:dir}:{direction:Orientation|number}){
 	const angleMap = {up:180,right:270,down:0,left:90};
 	if(typeof(dir) === "string") dir = angleMap[dir];
 

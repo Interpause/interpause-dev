@@ -1,25 +1,21 @@
 import "tailwindcss/tailwind.css";
 import Head from "next/head";
-import { useEffect } from "react";
+import Link from 'next/link';
+import { useMemo, useRef, useState } from "react";
 
 import Counter from "../components/Counter";
 import CardFlex, {CardData} from "../components/Card";
 import { DarkThemeWrapper, DarkToggle } from "../components/DarkTheme";
-import { genBg } from "../components/isogrid";
-import { ScrollHint } from "../components/SVGoodies";
+import { IsogridBackground, ScrollHint } from "../components/SVGoodies";
 
 function Banner(){
-	useEffect(() => {
-		let bg = genBg({rows:6,cols:6});
-		bg.setAttribute("height","100%");
-		bg.setAttribute("width","100%");
-		document.querySelector('#banner-img-wrapper')?.appendChild(bg);
-		return () => bg.remove();
-	});
+	const wrapper = useRef(null);
+	
+	const isogridBg = useMemo(() => <IsogridBackground rows={6} cols={6}/>,[]);
 
 	return (
 	<header className={`relative h-screen`}>
-		<div id="banner-img-wrapper" className={`absolute h-full w-full -z-10 bg-yellow-200`}></div>
+		<div ref={wrapper} className={`absolute h-full w-full -z-10 bg-yellow-200`}>{isogridBg}</div>
 		<h1 className={`absolute text-5xl md:text-7xl bg-white bg-opacity-70 rounded px-1 inset-x-1 md:right-auto bottom-64 md:bottom-32 md:ml-5`}>TODO: non-cringy tagline</h1>
 		<div className={`absolute bottom-16 md:bottom-4 mx-auto inset-x-0 h-20 text-white`}><ScrollHint direction="up"/></div>
 	</header>
@@ -57,7 +53,7 @@ function Main(){
 			body:"May contain counter. Eventually."
 		}
 	];
-
+	const testHook = useState(false);
 	return (
 		<DarkThemeWrapper darkDefault={true}>
 			<section className={`text-center min-h-screen transition-colors bg-white text-black dark:bg-black dark:text-white`}>
@@ -74,14 +70,15 @@ function Main(){
 
 function Footer(){
 	return (
-		<DarkThemeWrapper>
+		<DarkThemeWrapper darkDefault={true}>
 			<footer className={`absolute w-full border-t-2 transition-colors border-gray-200 bg-gray-50 text-black dark:border-gray-900 dark:bg-gray-900 dark:text-white`}>
 				<span className={`absolute right-1 top-1`}><DarkToggle/></span>
 				<p className={`text-lg text-center pt-8 sm:pt-1`}>TODO: footer{' '}
-					<a
-						className={`no-underline hover:underline text-center text-blue-400`}
-						href="#"
-					>link that goes nowhere... so far</a>
+					<Link href="/nextjs">
+						<a
+							className={`no-underline hover:underline text-center text-blue-400`}
+						>link that goes nowhere... so far</a>
+					</Link>
 				</p>
 				<p className={`text-sm text-center text-gray-500 py-1`}>© {new Date().getFullYear()} Interpause</p>
 			</footer>
@@ -90,19 +87,17 @@ function Footer(){
 }
 
 export default function Index(){
-	return (
-		<div>
-			<Head>
-				<title>Interpause | Portfolio</title>
-				<meta name="description" content="My personal portfolio website."/>
-				<meta name="topic" content="portfolio"/>
-				<meta name="keywords" content="interpause, developer, maker"/>
-			</Head>
-			<Banner/>
-			<Main/>
-			<Footer/>
-		</div>
-	)
+	return (<>
+		<Head>
+			<title>Interpause | Portfolio</title>
+			<meta name="description" content="My personal portfolio website."/>
+			<meta name="topic" content="portfolio"/>
+			<meta name="keywords" content="interpause, developer, maker"/>
+		</Head>
+		<Banner/>
+		<Main/>
+		<Footer/>
+	</>)
 }
 
 /*

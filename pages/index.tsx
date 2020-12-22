@@ -13,13 +13,13 @@ function Banner(){
 	
 	const isogridBg = useMemo(() => <IsogridBackground rows={6} cols={6}/>,[]);
 
-	return (
-	<header className={`relative h-screen`}>
+	return (<>
+	<header className={`relative h-screen pointer-events-none`}>
 		<div ref={wrapper} className={`absolute h-full w-full -z-10 bg-yellow-200`}>{isogridBg}</div>
 		<h1 className={`absolute text-5xl md:text-7xl bg-white bg-opacity-70 rounded px-1 inset-x-1 md:right-auto bottom-64 md:bottom-32 md:ml-5`}>TODO: non-cringy tagline</h1>
-		<div className={`absolute bottom-16 md:bottom-4 mx-auto inset-x-0 h-20 text-white`}><ScrollHint direction="up"/></div>
 	</header>
-	);
+	<div className={`absolute bottom-2 mx-auto inset-x-0 h-20 text-white`}><ScrollHint direction="up"/></div> {/* Positioned relative to original viewport rather than header */}
+	</>);
 }
 
 function Main(){
@@ -77,7 +77,7 @@ function Footer(){
 					<Link href="/nextjs">
 						<a
 							className={`no-underline hover:underline text-center text-blue-400`}
-						>link that goes nowhere... so far</a>
+						>Original nextjs template page remade to use tailwindCSS</a>
 					</Link>
 				</p>
 				<p className={`text-sm text-center text-gray-500 py-1`}>© {new Date().getFullYear()} Interpause</p>

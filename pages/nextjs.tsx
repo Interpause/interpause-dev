@@ -28,7 +28,6 @@ export default function Home(){
 		<div className={`flex flex-col items-center min-h-screen py-0 px-2`}>
 			<Head>
 				<title>Create Next App</title>
-				<link rel="icon" href="/favicon.ico" />
 			</Head>
 
 			<main className={`flex flex-1 flex-col items-center justify-center py-20 px-0`}>

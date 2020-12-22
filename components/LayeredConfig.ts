@@ -9,18 +9,8 @@ export type LayeredConfig<K1 extends keyof any,K2 extends keyof any> = Partial<R
 /** K1 and K2 are reversed on purpose. This is to invert the config structure. */
 export type DefaultLayeredConfig<K1 extends keyof any,K2 extends keyof any> = Readonly<Record<K2,Record<K1,string>>>;
 /** Merges DefaultLayeredConfig with LayeredConfig, inverting the inner and outer keys in the process while also expanding any general options. See Toggle.tsx for example. */
-export function mergeConfigs<K1 extends keyof any,K2 extends keyof any>(customConfig:LayeredConfig<K1,K2>,defaultConfig:DefaultLayeredConfig<K1,K2>){
-	let mergedConfig:Record<K2,Record<K1,string>> = defaultConfig;
-	(Object.keys(customConfig) as K1[]).forEach(k1 => {
-		let v1 = customConfig[k1];
-		if(v1 === "undefined") return;
-		(Object.keys(mergedConfig) as K2[]).forEach(k2 => {
-			if(typeof v1 === "string") mergedConfig[k2][k1] = v1;
-			else if(typeof v1 !== "undefined"){
-				let v2 = v1[k2];
-				if(typeof v2 === "string") mergedConfig[k2][k1] = v2;
-			}
-		});
-	});
+export function mergeConfigs<K1 extends keyof any,K2 extends keyof any>(defaultConfig:DefaultLayeredConfig<K1,K2>,customConfig?:LayeredConfig<K1,K2>){
+	let mergedConfig:Record<K2,Record<K1,string>> = JSON.parse(JSON.stringify(defaultConfig));
+	(Object.entries(customConfig??{}) as [K1,InnerConfig<K2>][]).forEach(([k1,v1]) => (Object.entries(mergedConfig) as [K2,Record<K1,string>][]).forEach(([k2,d]) => d[k1] = typeof v1 === "string"? v1 : v1[k2]??d[k1]));
 	return mergedConfig;
 }

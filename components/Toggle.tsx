@@ -3,7 +3,7 @@
  * @author John-Henry Lim <interpause@interpause.dev>
  */
 import "tailwindcss/tailwind.css";
-import { Dispatch, SetStateAction, CSSProperties } from "react";
+import { Dispatch, SetStateAction, CSSProperties, useMemo } from "react";
 import { DefaultLayeredConfig, LayeredConfig, mergeConfigs } from "./LayeredConfig";
 
 export type StyleKeys = "slider"|"bg"|"others";
@@ -20,8 +20,8 @@ export const defaultStyle:DefaultLayeredConfig<StyleKeys,StateKeys> = {
 		bg:"bg-gray-400",
 		others:"rounded"
 	}
-}
-export const mergeStyles = (customStyle:ToggleStyle) => mergeConfigs<StyleKeys,StateKeys>(customStyle,defaultStyle);
+} as const;
+export const mergeStyles = (customStyle?:ToggleStyle) => mergeConfigs<StyleKeys,StateKeys>(defaultStyle,customStyle);
 
 /**
  * calculates the sizes for toggle components using the height of the toggle.
@@ -60,9 +60,10 @@ export type ToggleProps = {
 }
 
 /** Creates an inline customisable toggle. */
-export default function Toggle({toggleHook:[isOn,setOn],label,height=2,customStyle={}}:ToggleProps){
-	let s = calculateSizes(height);
-	let c = mergeStyles(customStyle)[isOn?"on":"off"];
+export default function Toggle({toggleHook:[isOn,setOn],label,height=2,customStyle}:ToggleProps){
+	let s = useMemo(() => calculateSizes(height),[height]);
+	let mc = useMemo(() => mergeStyles(customStyle),[mergeStyles,JSON.stringify(customStyle)]); //bug where object dependencies trigger false positives so stringify first
+	let c = mc[isOn?"on":"off"];
 
 	return (
 		<label className={`group select-none`} style={s.label}>

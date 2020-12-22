@@ -26,7 +26,7 @@ export function DarkThemeWrapper({children,darkDefault}:{children:ReactNode,dark
 	const [isDark,setDark] = useState(darkDefault??false);
 	return (
 		<DarkThemeContext.Provider value={{isDark,setDark,children}}>
-			<span className={`${isDark?"dark":"light"}`}>{children}</span>
+			<div className={`${isDark?"dark":"light"}`}>{children}</div>
 		</DarkThemeContext.Provider>
 	);
 }
@@ -38,7 +38,7 @@ export function DarkToggle(){
 		console.error("DarkThemeWrapper missing as ancestor to DarkToggle!");
 		return <span>DarkToggle failed to load.</span>;
 	}
-
+	
 	return (
 		<Toggle label="Dark Mode" toggleHook={[isDark,setDark]} height={1.5} customStyle={{
 			others:"rounded-full",

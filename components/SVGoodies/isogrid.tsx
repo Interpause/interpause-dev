@@ -4,7 +4,7 @@
  */
 
 /** string of format #{string} */
-export type HexColor = `#${string}`;
+export type HexColor = string; //`#${string}`; type template literals are broken on typescript 4.1.3, and for some reason yarn cant install the beta version with some error I cannot resolve
 /** Configuration settings for background generation */
 export interface IsogridConfig {
 	/** rows of triangles generated in background */

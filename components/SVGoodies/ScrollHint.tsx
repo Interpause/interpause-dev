@@ -4,23 +4,18 @@
  */
 import { Orientation } from "./index";
 
+const lineStyle = {stroke:"currentColor",strokeWidth:8,strokeLinecap:"butt",fill:"none"} as const;
+
 /**
  * Creates an animated arrow hinting the user to scroll in that direction.
  * @param dir Takes either an Orientation or degrees clockwise relative to pointing down. 
  */
 export default function ScrollHint({direction:dir}:{direction:Orientation|number}){
-	const angleMap = {up:180,right:270,down:0,left:90};
-	if(typeof(dir) === "string") dir = angleMap[dir];
-
 	return (
 		<svg transform={`rotate(${dir} 0 0)`} viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg" version="1.1" height="100%" width="100%">
 			<g>
-				<polyline stroke="currentColor" strokeWidth="8" strokeLinecap="butt"  fill="none" 
-					points="0,0 50,50 100,0"
-				></polyline>
-				<polyline stroke="currentColor" strokeWidth="8" strokeLinecap="butt"  fill="none" 
-					points="0,50 50,100 100,50"
-				></polyline>
+				<polyline {...lineStyle} points="0,0 50,50 100,0"></polyline>
+				<polyline {...lineStyle} points="0,50 50,100 100,50"></polyline>
 				<animateTransform
 					attributeName="transform"
 					type="translate"

@@ -13,6 +13,7 @@ export interface CardData{
 	link?:string;
 }
 
+//TODO generalize this further. Make it a wrapper. Needed for Github Card that will be created in a composition manner.
 /** Creates a flex card. */
 export function Card({data}:{data:CardData}){
 	return (

@@ -20,7 +20,7 @@ export const defaultStyle:DefaultLayeredConfig<StyleKeys,StateKeys> = {
 		bg:"bg-gray-400",
 		others:"rounded"
 	}
-} as const;
+};
 export const mergeStyles = (customStyle?:ToggleStyle) => mergeConfigs<StyleKeys,StateKeys>(defaultStyle,customStyle);
 
 /**

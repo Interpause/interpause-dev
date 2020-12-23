@@ -1,10 +1,12 @@
 /**
- * @file Pure JS SVG generator I made long ago updated using React. Used in my phone game and other places I needed a background for.
+ * @file Pure JS SVG generator I made long ago updated using React (refrained from renaming variables). Used in my phone game and other places I needed a background for.
  * @author John-Henry Lim <interpause@interpause.dev>
  */
 
- /** Configuration settings for background generation */
- export interface IsogridConfig {
+/** string of format #{string} */
+export type HexColor = `#${string}`;
+/** Configuration settings for background generation */
+export interface IsogridConfig {
 	/** rows of triangles generated in background */
 	rows:number;
 	/** cols of triangles generated in background */
@@ -21,7 +23,16 @@
 	colors:HexColor[];
 }
 export type IsogridKeys = keyof IsogridConfig;
-export type HexColor = string;
+
+/** properties each animated triangle has */
+export interface TriangleProps {
+	/** sequence of colors triangle animates through */
+	color_seq:HexColor[];
+	/** duration of animation in seconds */
+	speed:number;
+	/** coordinates of vertices */
+	points:string;
+}
 
 /** Default settings for the generated background. */
 export const bgDefaults:Readonly<IsogridConfig> = {
@@ -36,15 +47,6 @@ export const bgDefaults:Readonly<IsogridConfig> = {
 					'#fddb0d','#deddde','#ffffff',
 					'#0c7c5f','#000000']
 };
-
-interface TriangleProps {
-	/** sequence of colors triangle animates through */
-	color_seq:HexColor[];
-	/** duration of animation in seconds */
-	speed:number;
-	/** coordinates of vertices */
-	points:string;
-}
 
 /** 
  * Shuffles color sequence of triangle based on triangle on top and to the left of it 
@@ -136,13 +138,13 @@ export default function IsogridBackground(kwargs?:Partial<IsogridConfig>){
 	for(let y = 0; y < conf.rows*2; y++){
 		isUpright = y%2==0;
 
-		//For first triangle of each row, its split into 2 (wrapped around screen for to allow tessellating)
+		//For first triangle of each row, its split into 2 right angled triangles (wrapped around screen for to allow tessellating)
 		let tri1 = gen_tri(conf,prevarr[0],prevc);
 		let tri2 = Object.assign({},tri1);
 		curarr.push(tri1.color_seq[0]);
 		prevc = tri1.color_seq[0];
 
-		//Different calculation of points if triangle upright versus not
+		//Calculation for triangle 1
 		let p1x1 = 0;
 		let p1y1 = y*thgt+((isUpright)?hglen:glen)/2;
 		let p2x1 = 0;
@@ -152,6 +154,7 @@ export default function IsogridBackground(kwargs?:Partial<IsogridConfig>){
 		tri1.points = `${p1x1},${p1y1} ${p2x1},${p2y1} ${p3x1},${p3y1}`;
 		triangles.push(<Triangle {...tri1} key={triangles.length}/>);
 		
+		//Calculation for triangle 2
 		let p1x2 = width;
 		let p1y2 = p1y1;
 		let p2x2 = width;
@@ -166,7 +169,8 @@ export default function IsogridBackground(kwargs?:Partial<IsogridConfig>){
 			let tri = gen_tri(conf,prevarr[x],prevc);
 			curarr.push(tri.color_seq[0]);
 			prevc = tri.color_seq[0];
-
+			
+			//Calculation for equilateral triangle
 			let p1x = (x-1)*tlen/2+lglen;
 			let p1y = (isUpright)?(y+1)*thgt-hglen/2:y*thgt+hglen/2;
 			let p2x = (x+1)*tlen/2-lglen;

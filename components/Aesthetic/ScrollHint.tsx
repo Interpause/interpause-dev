@@ -2,17 +2,22 @@
  * @file I will put more react SVGs here next time.
  * @author John-Henry Lim <interpause@interpause.dev>
  */
+import { SVGProps } from "react";
 import { Orientation } from "./index";
 
 const lineStyle = {stroke:"currentColor",strokeWidth:8,strokeLinecap:"butt",fill:"none"} as const;
 
+export interface ScrollHintProps extends SVGProps<SVGSVGElement> {
+	direction:Orientation|number;
+}
+
 /**
  * Creates an animated arrow hinting the user to scroll in that direction.
- * @param dir Takes either an Orientation or degrees clockwise relative to pointing down. 
+ * @param direction Takes either an Orientation or degrees clockwise relative to pointing down. 
  */
-export default function ScrollHint({direction:dir}:{direction:Orientation|number}){
+export function ScrollHint({direction,...props}:ScrollHintProps){
 	return (
-		<svg transform={`rotate(${dir} 0 0)`} viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg" version="1.1" height="100%" width="100%">
+		<svg transform={`rotate(${direction} 0 0)`} viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg" version="1.1" height="100%" width="100%" {...props}>
 			<g>
 				<polyline {...lineStyle} points="0,0 50,50 100,0"></polyline>
 				<polyline {...lineStyle} points="0,50 50,100 100,50"></polyline>

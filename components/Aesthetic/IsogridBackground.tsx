@@ -105,9 +105,9 @@ function Triangle({color_seq,speed,points}:TriangleProps){
 }
 
 /** Generates SVG background. */
-export default function IsogridBackground(kwargs?:Partial<IsogridConfig>){
+export function IsogridBackground(props?:Partial<IsogridConfig>){
 	let conf:IsogridConfig = JSON.parse(JSON.stringify(bgDefaults));
-	(Object.entries(kwargs??{}) as [IsogridKeys,any][]).forEach(([k,v])=>conf[k]=v);
+	(Object.entries(props??{}) as [IsogridKeys,any][]).forEach(([k,v])=>conf[k]=v);
 
 	/** Base of triangles in arbitrary SVG units */
 	const tlen = 100;

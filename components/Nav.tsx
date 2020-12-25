@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
 
-import { Orientation, ScrollHint, Icon, ICON } from "./Aesthetic";
+import { Orientation, ScrollHint, Icon } from "./Aesthetic";
 
 export interface NavItemProps extends DetailedHTMLProps<HTMLAttributes<HTMLLIElement>, HTMLLIElement>{}
 export function NavItem({className,children,...props}:NavItemProps){

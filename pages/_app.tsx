@@ -1,7 +1,6 @@
 import "tailwindcss/tailwind.css";
 import Head from "next/head";
 import { AppProps } from 'next/app';
-import { StrictMode } from "react";
 
 import { Navbar } from "../components/Nav";
 // https://nextjs.org/docs/advanced-features/custom-app

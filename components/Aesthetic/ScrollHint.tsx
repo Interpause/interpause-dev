@@ -2,29 +2,26 @@
  * @file I will put more react SVGs here next time.
  * @author John-Henry Lim <interpause@interpause.dev>
  */
-import { SVGProps } from "react";
-import { Orientation } from "./index";
+import { OrientableSVG } from "./index";
 
 const lineStyle = {stroke:"currentColor",strokeWidth:8,strokeLinecap:"butt",fill:"none"} as const;
 
-export interface ScrollHintProps extends SVGProps<SVGSVGElement> {
-	direction:Orientation|number;
-}
+
 
 /**
  * Creates an animated arrow hinting the user to scroll in that direction.
- * @param direction Takes either an Orientation or degrees clockwise relative to pointing down. 
+ * @param orientation Takes either an Orientation or degrees clockwise relative to pointing down. 
  */
-export function ScrollHint({direction,...props}:ScrollHintProps){
+export function ScrollHint({orientation,...props}:OrientableSVG){
 	return (
-		<svg transform={`rotate(${direction} 0 0)`} viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg" version="1.1" height="100%" width="100%" {...props}>
+		<svg transform={`rotate(${orientation??0} 0 0)`} viewBox="0 0 100 160" xmlns="http://www.w3.org/2000/svg" version="1.1" height="100%" width="100%" {...props}>
 			<g>
-				<polyline {...lineStyle} points="0,0 50,50 100,0"></polyline>
-				<polyline {...lineStyle} points="0,50 50,100 100,50"></polyline>
+				<polyline {...lineStyle} points="0,160 50,110 100,160"></polyline>
+				<polyline {...lineStyle} points="0,110 50,60 100,110"></polyline>
 				<animateTransform
 					attributeName="transform"
 					type="translate"
-					values="0 5 ; 0 55"
+					values="0 -5 ; 0 -55"
 					calcMode="spline"
 					keyTimes="0 ; 1"
 					keySplines="0 0 0.5 1"

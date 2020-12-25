@@ -16,7 +16,7 @@ function Banner(){
 		<div className={`absolute h-full w-full -z-10 bg-yellow-200`}>{isogridBg}</div>
 		<h1 className={`absolute text-5xl md:text-7xl bg-white bg-opacity-70 rounded px-1 inset-x-1 md:right-auto bottom-64 md:bottom-32 md:ml-5`}>TODO: non-cringy tagline</h1>
 	</header>
-	<div className={`absolute bottom-2 mx-auto inset-x-0 h-20 text-white`}><ScrollHint direction={Orientation.up}/></div> {/* Positioned relative to original viewport rather than header */}
+	<div className={`absolute bottom-2 mx-auto inset-x-0 h-20 text-white`}><ScrollHint orientation={Orientation.up}/></div> {/* Positioned relative to original viewport rather than header */}
 	</>);
 }
 
@@ -54,7 +54,7 @@ function Main(){
 	return (
 		<DarkThemeWrapper darkDefault={true}>
 			<section className={`text-center min-h-screen transition-colors bg-white text-black dark:bg-black dark:text-white`}>
-				<h1 className={`text-5xl py-4 font-bold`} style={{fontFamily:"Comic Sans MS, Comic Sans, cursive"}}>UNDER CONSTRUCTION</h1>
+				<h1 className={`text-5xl py-4 font-bold font-comic`}>UNDER CONSTRUCTION</h1>
 					<DarkToggle/>
 					<div className={`flex justify-center font-mono`}>
 						<CardFlex cards={cards}/>
@@ -128,14 +128,14 @@ export default function Index(){
 /* 
  * Who I am, and project elab pages could be hosted by CMS shared with blog. 
  * ^Argument against having blog as separate project in subdomain
- * 
+ * Jamstack, Serverless
  */
 
 /*
 Pass props forwards (only for those that makes sense) (customize what is passed forwards by extending React types) (use union to have different accepted proptypes)
-Make function to generate theme variants for tailwind, modify dark variant to depend on presence of light class (create custom disabled theme for NavLink)
+modify dark variant to depend on presence of light class (create custom disabled theme for NavLink) (IMPOSSIBLE AS OF CSS2)
 ^DarkThemeWrapper should read default from browser preference
-NavLink is composited from NavItem, NavItem should have a width property (Nav is always horizontal). Other things based on NavItem would be dropdown, Navbar needs to be collapsable. 
+Other things based on NavItem would be dropdown, Navbar needs to be collapsable. 
 BaseCard has a logo, header, badges? and wraps content
 
 (Background image gradient) Gradient Color Stops (see if can be used for your text perhaps by making text transparent)

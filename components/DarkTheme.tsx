@@ -8,15 +8,14 @@ import {useContext, useState, createContext, ReactNode, Dispatch, SetStateAction
 import { Toggle, ToggleProps } from "./Toggle";
 
 /* 
- * NOTE: whoops tailwind only has a dark theme, and as it looks for the ancestor,
- * I cannot implement localised dark themes this way.
- * That said, this code could work in the future if they happen to implement multi-themes.
+ * NOTE: as there is no way to exclude elements based on whether it has a certain ancestor. 
+ * Localised dark themes cannot be implemented by ignoring descendants of a div with .light class.
+ * Therefore, higher up the ancestry wrappers will always override lower ones.
  */
 
-interface darkHook {
+interface darkHook{
 	isDark:boolean;
 	setDark:Dispatch<SetStateAction<boolean>>;
-	children:ReactNode;
 }
 
 export const DarkThemeContext = createContext({} as darkHook);
@@ -25,7 +24,7 @@ export const DarkThemeContext = createContext({} as darkHook);
 export function DarkThemeWrapper({children,darkDefault}:{children:ReactNode,darkDefault?:boolean}){
 	const [isDark,setDark] = useState(darkDefault??false);
 	return (
-		<DarkThemeContext.Provider value={{isDark,setDark,children}}>
+		<DarkThemeContext.Provider value={{isDark,setDark}}>
 			<div className={`${isDark?"dark":"light"}`}>{children}</div>
 		</DarkThemeContext.Provider>
 	);

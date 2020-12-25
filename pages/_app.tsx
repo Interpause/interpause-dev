@@ -4,7 +4,7 @@ import { AppProps } from 'next/app';
 import { DarkThemeWrapper } from '../components/DarkTheme';
 import { StrictMode } from "react";
 
-import Navbar from "../components/Nav";
+import { Navbar } from "../components/Nav";
 // https://nextjs.org/docs/advanced-features/custom-app
 
 const routes = {"/":"Home","/nextjs":"Smth Else","/robots.txt":"Robots only","/sitemap.xml":"some XML"} as const;

@@ -1,5 +1,5 @@
 import Head from "next/head";
-import CardFlex, {CardData} from "../components/Card";
+import { CardData,CardFlex } from "../components/Card";
 
 export default function Home(){
 	let cards:CardData[] = [

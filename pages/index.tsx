@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { useMemo } from "react";
 
 import Counter from "../components/Counter";
-import CardFlex, {CardData} from "../components/Card";
+import { CardData, CardFlex } from "../components/Card";
 import { DarkThemeWrapper, DarkToggle } from "../components/DarkTheme";
-import { Orientation, IsogridBackground, ScrollHint } from "../components/SVGoodies";
+import { Orientation, IsogridBackground, ScrollHint } from "../components/Aesthetic";
 
 function Banner(){
 	const isogridBg = useMemo(() => <IsogridBackground rows={6} cols={6}/>,[]);
@@ -132,6 +132,12 @@ export default function Index(){
  */
 
 /*
+Pass props forwards (only for those that makes sense) (customize what is passed forwards by extending React types) (use union to have different accepted proptypes)
+Make function to generate theme variants for tailwind, modify dark variant to depend on presence of light class (create custom disabled theme for NavLink)
+^DarkThemeWrapper should read default from browser preference
+NavLink is composited from NavItem, NavItem should have a width property (Nav is always horizontal). Other things based on NavItem would be dropdown, Navbar needs to be collapsable. 
+BaseCard has a logo, header, badges? and wraps content
+
 (Background image gradient) Gradient Color Stops (see if can be used for your text perhaps by making text transparent)
 <div class="text-5xl font-extrabold ...">
   <span class="bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">

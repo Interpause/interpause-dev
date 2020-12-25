@@ -60,7 +60,7 @@ export type ToggleProps = {
 }
 
 /** Creates an inline customisable toggle. */
-export default function Toggle({toggleHook:[isOn,setOn],label,height=2,customStyle}:ToggleProps){
+export function Toggle({toggleHook:[isOn,setOn],label,height=2,customStyle}:ToggleProps){
 	let s = useMemo(() => calculateSizes(height),[height]);
 	let mc = useMemo(() => mergeStyles(customStyle),[mergeStyles,JSON.stringify(customStyle)]); //bug where object dependencies trigger false positives so stringify first
 	let c = mc[isOn?"on":"off"];

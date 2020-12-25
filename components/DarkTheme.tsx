@@ -5,7 +5,7 @@
 import "tailwindcss/tailwind.css";
 import {useContext, useState, createContext, ReactNode, Dispatch, SetStateAction} from 'react';
 
-import Toggle from "./Toggle";
+import { Toggle, ToggleProps } from "./Toggle";
 
 /* 
  * NOTE: whoops tailwind only has a dark theme, and as it looks for the ancestor,
@@ -32,7 +32,7 @@ export function DarkThemeWrapper({children,darkDefault}:{children:ReactNode,dark
 }
 
 /** Place this as descendant to DarkThemeWrapper to toggle localized dark theme. */
-export function DarkToggle(){
+export function DarkToggle(props:Partial<ToggleProps>){
 	const {isDark,setDark} = useContext(DarkThemeContext);
 	if(isDark == undefined){
 		console.error("DarkThemeWrapper missing as ancestor to DarkToggle!");
@@ -44,6 +44,6 @@ export function DarkToggle(){
 			others:"rounded-full",
 			slider:{on:"bg-green-400"},
 			bg:{on:"bg-green-200"}
-		}}/>
+		}} {...props}/>
 	);
 }

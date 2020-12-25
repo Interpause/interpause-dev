@@ -28,7 +28,7 @@ export function Card({data}:{data:CardData}){
 }
 
 /** Populates a list of flex cards. */
-export default function CardFlex({cards}:{cards:CardData[]}){
+export function CardFlex({cards}:{cards:CardData[]}){
 	return (
 		<div className={`flex items-center justify-center flex-wrap sm:max-w-screen-md flex-col sm:flex-row`}>
 			{cards.map((card,i) => <Card data={card} key={i}/>)}

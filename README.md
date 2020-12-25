@@ -2,7 +2,7 @@
 
 ## Description
 
-This website is a [Next.js](https://nextjs.org/) project deployed on the [Vercel Platform](https://vercel.com/). Besides the builtin [ReactJS](https://reactjs.org/), I heavily used [TailwindCSS](https://tailwindcss.com/) to style everything including my [`components`](/components).
+This website is a [Next.js](https://nextjs.org/) project deployed on the [Vercel Platform](https://vercel.com/). Besides the builtin [ReactJS](https://reactjs.org/), I heavily used [TailwindCSS](https://tailwindcss.com/) to style everything including my [`components`](/components). To stretch myself, all the components used were of my own creation, but in the future I would probably use free pre-made components if I can find them.
 
 When completed, this website will serve several purposes:
 

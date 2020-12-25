@@ -1,4 +1,3 @@
-import "tailwindcss/tailwind.css";
 import Head from "next/head";
 import Link from 'next/link';
 import { useMemo } from "react";
@@ -54,7 +53,7 @@ function Main(){
 	return (
 		<DarkThemeWrapper darkDefault={true}>
 			<section className={`text-center min-h-screen transition-colors bg-white text-black dark:bg-black dark:text-white`}>
-				<h1 className={`text-5xl py-4 font-bold font-comic`}>UNDER CONSTRUCTION</h1>
+				<h1 className={`text-5xl py-4 font-bold font-comic overflow-ellipsis overflow-hidden`}>UNDER CONSTRUCTION</h1>
 					<DarkToggle/>
 					<div className={`flex justify-center font-mono`}>
 						<CardFlex cards={cards}/>

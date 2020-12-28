@@ -15,3 +15,4 @@ export interface OrientableSVG extends SVGProps<SVGSVGElement> {
 export * from "./ScrollHint";
 export * from "./IsogridBackground";
 export * from "./Icon";
+export * from "./RainbowText";

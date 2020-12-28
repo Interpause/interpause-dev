@@ -1,12 +1,12 @@
 import Head from "next/head";
 import Link from 'next/link';
 import { useMemo } from "react";
-import 'twin.macro';
 
 import Counter from "../components/Counter";
 import { CardData, CardFlex } from "../components/Card";
 import { DarkThemeWrapper, DarkToggle } from "../components/DarkTheme";
-import { Orientation, IsogridBackground, ScrollHint } from "../components/Aesthetic";
+import { Orientation, IsogridBackground, ScrollHint, RainbowText } from "../components/Aesthetic";
+import tw, { css, styled } from "twin.macro";
 
 function Banner(){
 	const isogridBg = useMemo(() => <IsogridBackground rows={6} cols={6}/>,[]);
@@ -14,7 +14,10 @@ function Banner(){
 	return (<>
 		<header tw="relative h-screen pointer-events-none">
 			<div tw="absolute h-full w-full -z-10 bg-yellow-200">{isogridBg}</div>
-			<h1 tw="absolute text-5xl bg-white bg-opacity-70 rounded px-1 inset-x-1 bottom-64 md:(bottom-32 right-auto ml-5 text-7xl)">TODO: non-cringy tagline</h1>
+			<div tw="absolute flex flex-col bottom-56 md:bottom-32 mx-2 md:ml-5">
+				<RainbowText text="John-Henry"/>
+				<h1 tw="text-5xl bg-white bg-opacity-70 rounded px-1 md:(text-7xl right-auto)">TODO: non-cringy tagline</h1>
+			</div>			
 		</header>
 		<ScrollHint orientation={Orientation.up} tw="absolute bottom-2 mx-auto inset-x-0 h-20 text-white"/> {/* Positioned relative to original viewport rather than header */}
 	</>);
@@ -51,12 +54,13 @@ const cards:CardData[] = [
 	}
 ];
 function Main(){
+	const Test = styled.h1`${tw`text-5xl py-4 font-bold font-comic overflow-ellipsis overflow-hidden`}`;
 	return (
 		<DarkThemeWrapper darkDefault={true}>
 			<section tw="text-center min-h-screen transition-colors bg-white dark:(bg-black text-white)">
-				<h1 tw="text-5xl py-4 font-bold font-comic overflow-ellipsis overflow-hidden">UNDER CONSTRUCTION</h1>
-					<DarkToggle/>
-					<CardFlex cards={cards} tw="font-mono inset-x-0 m-auto"/>
+				<Test>UNDER CONSTRUCTION</Test>
+				<DarkToggle/>
+				<CardFlex cards={cards} tw="font-mono inset-x-0 m-auto"/>
 				<Counter/>
 			</section>
 		</DarkThemeWrapper>

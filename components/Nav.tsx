@@ -34,7 +34,7 @@ export interface NavbarProps extends HTMLProps<HTMLElement>{
 export function Navbar({routes,itemProps,...props}:NavbarProps){
 	return (
 		<nav tw="absolute flex h-16 top-0 inset-x-0 bg-opacity-80 bg-black text-white" {...props}>
-			<Icon src="/favicon/original-icon.png" tw="w-14 h-14"/>
+			<Icon src="/favicon/original-icon.png" tw="w-14 h-14" priority/>
 			<ul tw="inline-flex flex-row w-full lg:w-3/5 divide-x-2 my-2 overflow-x-auto">
 				{Object.entries(routes).map(([route,text],i) => <NavLink route={route} {...itemProps} key={i}>{text}</NavLink>)}
 			</ul>

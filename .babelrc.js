@@ -11,5 +11,6 @@ module.exports = {
       },
     ],
   ],
+  sourceMaps: true,
   plugins: ['@emotion/babel-plugin', 'babel-plugin-macros'],
 }

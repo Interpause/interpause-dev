@@ -1,4 +1,4 @@
-import "tailwindcss/tailwind.css";
+import { GlobalStyles } from 'twin.macro';
 import Head from "next/head";
 import { AppProps } from 'next/app';
 
@@ -31,6 +31,7 @@ function App({ Component, pageProps }:AppProps) {
 			<meta name="msapplication-config" content="/favicon/browserconfig.xml"/>
 			<meta name="theme-color" content="#fde68a"/>
 		</Head>
+		<GlobalStyles/>
 		<Navbar routes = {routes}/>
 		<Component {...pageProps} />
 	</>);

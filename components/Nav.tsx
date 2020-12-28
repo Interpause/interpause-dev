@@ -1,41 +1,40 @@
 import "tailwindcss/tailwind.css";
+import tw from 'twin.macro';
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { DetailedHTMLProps, HTMLAttributes } from 'react';
+import { HTMLProps } from 'react';
 
 import { Orientation, ScrollHint, Icon } from "./Aesthetic";
 
-export interface NavItemProps extends DetailedHTMLProps<HTMLAttributes<HTMLLIElement>, HTMLLIElement>{}
-export function NavItem({className,children,...props}:NavItemProps){
-	return <li className={`relative inline-flex p-1 flex-col flex-shrink-0 flex-grow justify-center text-center w-32 ${className??""}`} {...props}>{children}</li>;
-}
+export const NavItem = tw.li`relative inline-flex flex-col flex-grow flex-shrink-0 justify-center text-center w-32 p-1`;
 
-export interface NavLinkProps extends NavItemProps{
-	route:string;
-}
+export interface NavLinkProps extends HTMLProps<HTMLLIElement>{ route:string }
 /** grounp-disabled:{class} can be used in className and children to customize */
-export function NavLink({route,className,children,...props}:NavLinkProps){
+export function NavLink({route,children,...props}:NavLinkProps){
 	const router = useRouter();
 	const currentRoute = router.pathname;
-	const enabled = currentRoute === route;
+	const disabled = currentRoute === route;
 	return (
-		<NavItem className={`hover:text-blue-400 group-disabled:text-gray-400 group-disabled:cursor-not-allowed ${className} ${enabled?"group-disabled":""}`} {...props}>
+		<NavItem css={disabled?tw`text-gray-400 cursor-not-allowed`:tw`hover:text-blue-400 focus:text-blue-900 cursor-pointer`} {...props}>
 			{children}
-			<Link href={route}><a className={`absolute inset-0 group-disabled:hidden`}></a></Link>
+			<Link href={route}><a tw="absolute inset-0" css={disabled&&tw`hidden`}></a></Link>
 		</NavItem>
 	);
 }
 
-//<span className={`relative h-14 w-14 m-1 flex-none`}><Image src="/favicon/original-icon.png" layout="fill"/></span>
+export interface NavbarProps extends HTMLProps<HTMLElement>{
+	routes:Record<string,string>,
+	itemProps?:HTMLProps<HTMLLIElement>
+}
 //TODO Implement the navbar context provider for in page hiding of navbar, recustomization by page etc
-export function Navbar({routes,barClass,itemClass}:{routes:Record<string,string>,barClass?:string,itemClass?:string}){
+export function Navbar({routes,itemProps,...props}:NavbarProps){
 	return (
-		<nav className={`absolute flex h-16 top-0 inset-x-0 bg-opacity-80 bg-black text-white ${barClass??""}`}>
-			<Icon src="/favicon/original-icon.png" className={`w-14 h-14`}/>
-			<ul className={`inline-flex flex-row w-full lg:w-3/5 divide-x-2 my-2 overflow-x-auto`}>
-				{Object.entries(routes).map(([route,text],i) => <NavLink route={route} className={`${itemClass??""}`} key={i}>{text}</NavLink>)}
+		<nav tw="absolute flex h-16 top-0 inset-x-0 bg-opacity-80 bg-black text-white" {...props}>
+			<Icon src="/favicon/original-icon.png" tw="w-14 h-14"/>
+			<ul tw="inline-flex flex-row w-full lg:w-3/5 divide-x-2 my-2 overflow-x-auto">
+				{Object.entries(routes).map(([route,text],i) => <NavLink route={route} {...itemProps} key={i}>{text}</NavLink>)}
 			</ul>
-			<span className={`absolute right-0 inset-y-0 w-16 sm:hidden`}><ScrollHint orientation={Orientation.left}/></span>
+			<span tw="absolute right-0 inset-y-0 w-16 sm:hidden"><ScrollHint orientation={Orientation.left}/></span>
 		</nav>
 	)
 }

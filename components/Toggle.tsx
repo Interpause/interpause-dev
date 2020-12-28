@@ -1,15 +1,15 @@
 /**
- * @file ReactJS + TailwindCSS customizable toggle.
+ * @file ReactJS + TailwindCSS customizable toggle. Did not use twin.macro here due to some design conflicts causing huge render time.
  * @author John-Henry Lim <interpause@interpause.dev>
  */
 import "tailwindcss/tailwind.css";
-import { Dispatch, SetStateAction, CSSProperties, useMemo } from "react";
+import { Dispatch, SetStateAction, CSSProperties, useMemo, HTMLProps } from "react";
 import { DefaultLayeredConfig, LayeredConfig, mergeConfigs } from "./LayeredConfig";
 
 export type StyleKeys = "slider"|"bg"|"others";
 export type StateKeys = "on"|"off";
-export type ToggleStyle = LayeredConfig<StyleKeys,StateKeys>;
-export const defaultStyle:DefaultLayeredConfig<StyleKeys,StateKeys> = {
+export type ToggleStyle = LayeredConfig<StyleKeys,StateKeys,string>;
+export const defaultStyle:DefaultLayeredConfig<StyleKeys,StateKeys,string> = {
 	on:{
 		slider:"bg-white",
 		bg:"bg-blue-400",
@@ -21,7 +21,7 @@ export const defaultStyle:DefaultLayeredConfig<StyleKeys,StateKeys> = {
 		others:"rounded"
 	}
 };
-export const mergeStyles = (customStyle?:ToggleStyle) => mergeConfigs<StyleKeys,StateKeys>(defaultStyle,customStyle);
+export const mergeStyles = (customStyle?:ToggleStyle) => mergeConfigs<StyleKeys,StateKeys,string>(defaultStyle,customStyle);
 
 /**
  * calculates the sizes for toggle components using the height of the toggle.
@@ -46,7 +46,8 @@ function calculateSizes(height:number){
 	};
 }
 
-export type ToggleProps = {
+// for tw & emotion css to work, at least needs className to be forwarded
+export interface ToggleProps extends HTMLProps<HTMLLabelElement> {
 	/** array returned by React.useState\<boolean\> */
 	toggleHook:[boolean,Dispatch<SetStateAction<boolean>>];
 	/** text label for toggle */
@@ -60,18 +61,18 @@ export type ToggleProps = {
 }
 
 /** Creates an inline customisable toggle. */
-export function Toggle({toggleHook:[isOn,setOn],label,height=2,customStyle}:ToggleProps){
+export function Toggle({toggleHook:[isOn,setOn],label,height=2,customStyle,...props}:ToggleProps){
 	let s = useMemo(() => calculateSizes(height),[height]);
 	let mc = useMemo(() => mergeStyles(customStyle),[mergeStyles,JSON.stringify(customStyle)]); //bug where object dependencies trigger false positives so stringify first
 	let c = mc[isOn?"on":"off"];
 
 	return (
-		<label className={`group select-none`} style={s.label}>
-			<span className={`align-middle`}>{label??""} </span>
+		<label className={`group select-none`} style={s.label} {...props}>
+			<p className={`align-middle inline`}>{label??""} </p>
 			<input className={`opacity-0 h-0 w-0`} type="checkbox" checked={isOn} onClick={() => setOn(!isOn)} readOnly></input>
 			<div className={`relative inline-block transition-colors align-middle`} style={s.wrapper}>
 				<span className={`absolute inset-0 group-hover:shadow-inner-btn ${c.bg} ${c.others}`}></span>
-				<span className={`absolute transition-transform ${isOn?"transform":""} ${c.slider} ${c.others}`} style={s.slider}></span>
+				<span className={`absolute transition-transform ${isOn&&"transform"} ${c.slider} ${c.others}`} style={s.slider}></span>
 			</div>
 		</label>
 	);

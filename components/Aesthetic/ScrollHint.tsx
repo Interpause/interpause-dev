@@ -6,8 +6,6 @@ import { OrientableSVG } from "./index";
 
 const lineStyle = {stroke:"currentColor",strokeWidth:8,strokeLinecap:"butt",fill:"none"} as const;
 
-
-
 /**
  * Creates an animated arrow hinting the user to scroll in that direction.
  * @param orientation Takes either an Orientation or degrees clockwise relative to pointing down. 

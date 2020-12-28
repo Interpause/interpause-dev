@@ -1,3 +1,4 @@
+import 'twin.macro';
 import Head from "next/head";
 import { CardData,CardFlex } from "../components/Card";
 
@@ -25,33 +26,33 @@ export default function Home(){
 		}
 	];
 	return (
-		<div className={`flex flex-col items-center min-h-screen py-0 px-2`}>
+		<div tw="flex flex-col items-center min-h-screen py-0 px-2">
 			<Head>
 				<title>Create Next App</title>
 			</Head>
 
-			<main className={`flex flex-1 flex-col items-center justify-center py-20 px-0`}>
-				<h1 className={`text-6xl text-center m-0`}>
-					Welcome to <a className={`text-blue-500 no-underline hover:underline`} href="https://nextjs.org">Next.js!</a>
+			<main tw="flex flex-1 flex-col items-center justify-center py-20 px-0">
+				<h1 tw="text-6xl text-center m-0">
+					Welcome to <a tw="text-blue-500 no-underline hover:underline" href="https://nextjs.org">Next.js!</a>
 				</h1>
 
-				<p className={`text-2xl text-center my-4`}>
+				<p tw="text-2xl text-center my-4">
 					Get started by editing{' '}
-					<code className={`bg-gray-100 rounded text-xl p-1 font-mono`}>pages/index.js</code>
+					<code tw="bg-gray-100 rounded text-xl p-1 font-mono">pages/index.js</code>
 				</p>
 				<CardFlex cards={cards}/>
 				
 			</main>
 
-			<footer className={`flex justify-center items-center w-full h-8 border-t-2 border-gray-300`}>
+			<footer tw="flex justify-center items-center w-full h-8 border-t-2 border-gray-300">
 				<a
-					className={`flex justify-center items-center`}
+					tw="flex justify-center items-center"
 					href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
 					target="_blank"
 					rel="noopener noreferrer"
 				>
 					Powered by{' '}
-					<img src="/vercel.svg" alt="Vercel Logo" className={`ml-2 h-4`} />
+					<img src="/vercel.svg" alt="Vercel Logo" tw="ml-2 h-4" />
 				</a>
 			</footer>
 		</div>

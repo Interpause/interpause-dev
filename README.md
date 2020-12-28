@@ -72,4 +72,4 @@ I have decided to split into 3 branches, diy-tailwind (make components myself), 
 
 On Further thought, none of these tailwind component libraries are developed in the least. I might as well continue developing components myself. Will do react-bootstrap if I give up.
 
-consider Material UI
+I was looking at Vuejs' approach for styling components, then realised I probably should use styled-components (I used emotion instead actually). And then I found tailwind.macro. I think I am satisified with this setup for component styling.

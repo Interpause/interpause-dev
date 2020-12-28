@@ -1,3 +1,7 @@
+/**
+ * @file some sort of icon wrapper.
+ * @author John-Henry Lim <hyphen@interpause.dev>
+ */
 import { css } from 'twin.macro';
 import Image from "next/image";
 import { OrientableSVG, Orientation } from "./index";

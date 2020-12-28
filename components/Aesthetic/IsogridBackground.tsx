@@ -1,6 +1,6 @@
 /**
  * @file Pure JS SVG generator I made long ago updated using React (refrained from renaming variables). Used in my phone game and other places I needed a background for.
- * @author John-Henry Lim <interpause@interpause.dev>
+ * @author John-Henry Lim <hyphen@interpause.dev>
  */
 
 /** string of format #{string} */

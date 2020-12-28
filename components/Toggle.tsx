@@ -1,6 +1,6 @@
 /**
  * @file ReactJS + TailwindCSS customizable toggle. Did not use twin.macro here due to some design conflicts causing huge render time.
- * @author John-Henry Lim <interpause@interpause.dev>
+ * @author John-Henry Lim <hyphen@interpause.dev>
  */
 import "tailwindcss/tailwind.css";
 import { Dispatch, SetStateAction, CSSProperties, useMemo, HTMLProps } from "react";

@@ -1,6 +1,6 @@
 /**
  * @file I will put more react SVGs here next time.
- * @author John-Henry Lim <interpause@interpause.dev>
+ * @author John-Henry Lim <hyphen@interpause.dev>
  */
 import { OrientableSVG } from "./index";
 

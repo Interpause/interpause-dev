@@ -1,6 +1,6 @@
 /**
  * @file Localized Dark Theme using Context API
- * @author John-Henry Lim <interpause@interpause.dev>
+ * @author John-Henry Lim <hyphen@interpause.dev>
  */
 import {useContext, useState, createContext, ReactNode, Dispatch, SetStateAction} from 'react';
 

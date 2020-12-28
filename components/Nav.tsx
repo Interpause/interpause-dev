@@ -1,3 +1,7 @@
+/**
+ * @file quite a primitive navbar tbh
+ * @author John-Henry Lim <hyphen@interpause.dev>
+ */
 import "tailwindcss/tailwind.css";
 import tw from 'twin.macro';
 import Link from "next/link";

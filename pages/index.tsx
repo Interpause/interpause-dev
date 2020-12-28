@@ -38,7 +38,7 @@ const cards:CardData[] = [
 	},
 	{
 		title:"Test",
-		body:"Email me at interpause@interpause.dev"
+		body:(<>Email me at <a tw="text-blue-400" href="mailto:hyphen@interpause.dev">hyphen@interpause.dev</a></>)
 	},
 	{
 		link:"https://youtube.com/c/Interpause",

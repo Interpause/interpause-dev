@@ -1,15 +1,15 @@
 /**
  * @file Primitive card components.
- * @author John-Henry Lim <interpause@interpause.dev>
+ * @author John-Henry Lim <hyphen@interpause.dev>
  */
-import { HTMLProps } from 'react';
+import { HTMLProps, ReactNode } from 'react';
 import tw, { styled } from 'twin.macro';
 
-export interface CardData extends HTMLProps<HTMLElement>{
+export type CardData = HTMLProps<HTMLElement> & {
 	/** title of card */
-	title:string;
+	title:ReactNode;
 	/** text in card */
-	body:string;
+	body:ReactNode;
 	/** link to redirect to when card is clicked */
 	link?:string;
 }

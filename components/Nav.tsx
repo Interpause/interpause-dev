@@ -8,7 +8,8 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { HTMLProps, useMemo } from 'react';
 
-import { Orientation, ScrollHint, Icon, mobileScreen, ICON } from "./Aesthetic";
+import { Icon, ICON } from "./Aesthetic";
+import { mobileScreen } from "./DeviceOrientationCSS";
 import { StyledComponent } from "@emotion/styled";
 
 export const NavItem = tw.li`relative inline-flex flex-col flex-grow flex-shrink-0 justify-center text-center w-32 p-1` as StyledComponent<HTMLProps<HTMLLIElement>>;

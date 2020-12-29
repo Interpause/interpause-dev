@@ -5,7 +5,8 @@ import { useMemo } from "react";
 import Counter from "../components/Counter";
 import { CardData, CardFlex } from "../components/Card";
 import { DarkThemeWrapper, DarkToggle } from "../components/DarkTheme";
-import { Orientation, IsogridBackground, ScrollHint, RainbowText, hideMobileLandscape } from "../components/Aesthetic";
+import { Orientation, IsogridBackground, ScrollHint, RainbowText } from "../components/Aesthetic";
+import { hideMobileLandscape } from "../components/DeviceOrientationCSS";
 import tw, { styled } from "twin.macro";
 
 function Banner(){

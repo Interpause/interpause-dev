@@ -41,6 +41,8 @@ const PatternConfig = {
 	pWidth:28,
 	/** Size of pattern, should be factor of 100 */
 	pSize:20,
+	/** Color of pattern */
+	pFill:"#fff",
 	/** width of rect used in pattern, should be larger than 100% to transition smoothly. Should use pWidth/pHeight*2 for teselating. */
 	bgWidth:100*28/49*2,
 	/** Height of rect used in pattern, just leave at 100% */
@@ -57,7 +59,7 @@ export interface RainbowTextProps extends OrientableSVG {
  */
 export function RainbowText({orientation,text,config,...props}:RainbowTextProps){
 	const conf = {...PatternConfig,...config};
-	const {duration, numStops:N, saturation:S, luminosity:L, bgWidth, bgHeight, pattern, pHeight, pWidth, pSize} = conf;
+	const {duration, numStops:N, saturation:S, luminosity:L, bgWidth, bgHeight, pattern, pHeight, pWidth, pSize, pFill} = conf;
 
 	const [state,setState] = useState<styleState>();
 	const measurementRef = useRef<HTMLSpanElement>(null);
@@ -81,7 +83,7 @@ export function RainbowText({orientation,text,config,...props}:RainbowTextProps)
 			<defs>
 				<linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">{stops}</linearGradient>
 				<pattern id="hex" width={`${(state.height*bgHeight)/(state.width*bgWidth)*pWidth/pHeight*pSize}%`} height={`${pSize}%`} viewBox={`0 0 ${pWidth} ${pHeight}`}>
-					<path fill="#fff" d={pattern}/>
+					<path fill={pFill} d={pattern}/>
 				</pattern>
 				
 				<pattern id="pattern" x="0" y="0" width={`${bgWidth*2}%`} height={`${bgHeight}%`} patternUnits="userSpaceOnUse">

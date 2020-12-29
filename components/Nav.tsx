@@ -6,7 +6,7 @@ import "tailwindcss/tailwind.css";
 import tw from 'twin.macro';
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { HTMLProps } from 'react';
+import { HTMLProps, useMemo } from 'react';
 
 import { Orientation, ScrollHint, Icon } from "./Aesthetic";
 
@@ -32,12 +32,11 @@ export interface NavbarProps extends HTMLProps<HTMLElement>{
 }
 //TODO Implement the navbar context provider for in page hiding of navbar, recustomization by page etc
 export function Navbar({routes,itemProps,...props}:NavbarProps){
+	const items = useMemo(() => Object.entries(routes).map(([route,text],i) => <NavLink route={route} {...itemProps} key={i}>{text}</NavLink>),[JSON.stringify(routes),JSON.stringify(itemProps)]);
 	return (
-		<nav tw="absolute flex h-16 top-0 inset-x-0 bg-opacity-80 bg-black text-white" {...props}>
+		<nav tw="absolute flex h-16 top-0 inset-x-0 bg-opacity-80 bg-black text-white z-50" {...props}>
 			<Icon src="/favicon/original-icon.png" tw="w-14 h-14" priority/>
-			<ul tw="inline-flex flex-row w-full lg:w-3/5 divide-x-2 my-2 overflow-x-auto">
-				{Object.entries(routes).map(([route,text],i) => <NavLink route={route} {...itemProps} key={i}>{text}</NavLink>)}
-			</ul>
+			<ul tw="inline-flex flex-row w-full lg:w-3/5 divide-x-2 my-2 overflow-x-auto">{items}</ul>
 			<span tw="absolute right-0 inset-y-0 w-16 sm:hidden"><ScrollHint orientation={Orientation.left}/></span>
 		</nav>
 	)

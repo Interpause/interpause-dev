@@ -12,7 +12,7 @@ function Banner(){
 	const isogridBg = useMemo(() => <IsogridBackground rows={6} cols={6}/>,[]);
 
 	return (<>
-		<header tw="relative h-screen pointer-events-none">
+		<header tw="relative h-screen">
 			<div tw="absolute h-full w-full -z-10 bg-yellow-200">{isogridBg}</div>
 			<div tw="absolute flex flex-col bottom-56 md:bottom-32 mx-2 md:ml-5">
 				<RainbowText text="John-Henry"/>

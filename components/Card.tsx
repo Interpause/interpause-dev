@@ -2,7 +2,7 @@
  * @file Primitive card components.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
-import { HTMLProps, ReactNode } from 'react';
+import { HTMLProps, ReactNode, useMemo } from 'react';
 import tw, { styled } from 'twin.macro';
 
 export type CardData = HTMLProps<HTMLElement> & {
@@ -39,9 +39,6 @@ export interface CardFlexProps extends HTMLProps<HTMLDivElement>{
 }
 /** Populates a list of flex cards. */
 export function CardFlex({cards,cardProps,...props}:CardFlexProps){
-	return (
-		<div tw="flex flex-col flex-wrap items-center justify-center sm:(max-w-screen-md flex-row)" {...props}>
-			{cards.map((card,i) => <BasicCard {...card} {...cardProps} key={i}/>)}
-		</div>
-	);
+	const items = useMemo(() => cards.map((card,i) => <BasicCard {...card} {...cardProps} key={i}/>),[JSON.stringify(cards),JSON.stringify(cardProps)]);
+	return <div tw="flex flex-col flex-wrap items-center justify-center sm:(max-w-screen-md flex-row)" {...props}>{items}</div>;
 }

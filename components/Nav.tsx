@@ -3,14 +3,15 @@
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
 import "tailwindcss/tailwind.css";
-import tw from 'twin.macro';
+import tw, { css } from 'twin.macro';
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { HTMLProps, useMemo } from 'react';
 
-import { Orientation, ScrollHint, Icon } from "./Aesthetic";
+import { Orientation, ScrollHint, Icon, hideMobileLandscape } from "./Aesthetic";
 
 export const NavItem = tw.li`relative inline-flex flex-col flex-grow flex-shrink-0 justify-center text-center w-32 p-1`;
+
 
 export interface NavLinkProps extends HTMLProps<HTMLLIElement>{ route:string }
 /** grounp-disabled:{class} can be used in className and children to customize */
@@ -34,7 +35,7 @@ export interface NavbarProps extends HTMLProps<HTMLElement>{
 export function Navbar({routes,itemProps,...props}:NavbarProps){
 	const items = useMemo(() => Object.entries(routes).map(([route,text],i) => <NavLink route={route} {...itemProps} key={i}>{text}</NavLink>),[JSON.stringify(routes),JSON.stringify(itemProps)]);
 	return (
-		<nav tw="absolute flex h-16 top-0 inset-x-0 bg-opacity-80 bg-black text-white z-50" {...props}>
+		<nav tw="absolute flex h-16 top-0 inset-x-0 bg-opacity-80 bg-black text-white z-50" css={hideMobileLandscape} {...props}>
 			<Icon src="/favicon/original-icon.png" tw="w-14 h-14" priority/>
 			<ul tw="inline-flex flex-row w-full lg:w-3/5 divide-x-2 my-2 overflow-x-auto">{items}</ul>
 			<span tw="absolute right-0 inset-y-0 w-16 sm:hidden"><ScrollHint orientation={Orientation.left}/></span>

@@ -5,21 +5,19 @@ import { useMemo } from "react";
 import Counter from "../components/Counter";
 import { CardData, CardFlex } from "../components/Card";
 import { DarkThemeWrapper, DarkToggle } from "../components/DarkTheme";
-import { Orientation, IsogridBackground, ScrollHint, RainbowText } from "../components/Aesthetic";
-import tw, { css, styled } from "twin.macro";
+import { Orientation, IsogridBackground, ScrollHint, RainbowText, hideMobileLandscape } from "../components/Aesthetic";
+import tw, { styled } from "twin.macro";
 
 function Banner(){
 	const isogridBg = useMemo(() => <IsogridBackground rows={6} cols={6}/>,[]);
 
 	return (<>
-		<header tw="relative h-screen">
-			<div tw="absolute h-full w-full -z-10 bg-yellow-200">{isogridBg}</div>
-			<div tw="absolute flex flex-col bottom-56 md:bottom-32 mx-2 md:ml-5">
-				<RainbowText text="John-Henry"/>
-				<h1 tw="text-5xl bg-white bg-opacity-70 rounded px-1 md:(text-7xl right-auto)">TODO: non-cringy tagline</h1>
-			</div>			
+		<div tw="h-screen w-full -z-10 bg-yellow-200">{isogridBg}</div>
+		<header tw="absolute flex flex-col top-1/4 mx-2 lg:(top-auto bottom-1/4 ml-5)">
+			<RainbowText text="John-Henry"/>
+			<h1 tw="text-5xl bg-white bg-opacity-70 rounded px-1 lg:(text-7xl right-auto)">TODO: non-cringy tagline</h1>
 		</header>
-		<ScrollHint orientation={Orientation.up} tw="absolute bottom-2 mx-auto inset-x-0 h-20 text-white"/> {/* Positioned relative to original viewport rather than header */}
+		<ScrollHint orientation={Orientation.up} tw="absolute bottom-2 mx-auto inset-x-0 h-20 text-white" css={hideMobileLandscape}/>
 	</>);
 }
 

@@ -1,4 +1,5 @@
 import { SVGProps } from "react";
+import { css } from "twin.macro";
 
 /** All SVG components are designed oriented upwards */
 export enum Orientation {
@@ -16,3 +17,5 @@ export * from "./ScrollHint";
 export * from "./IsogridBackground";
 export * from "./Icon";
 export * from "./RainbowText";
+
+export const hideMobileLandscape = css`@media screen and (max-width:1024px) and (orientation:landscape){ display:none; }`;

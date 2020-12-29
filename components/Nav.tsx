@@ -66,9 +66,8 @@ export function Navbar({routes,itemProps,...props}:NavbarProps){
 		<CollapsableNavbar height={height} ref={navbar} {...props as StyledComponent<HTMLProps<HTMLElement>>}>
 			<Icon src="/favicon/original-icon.png" tw="m-1 my-auto inset-y-0" css={css`height:${height*3/4}rem;width:${height*3/4}rem;`} priority/>
 			<span tw="flex-grow md:flex-grow-0"></span>
-			<IconButton as="button" icon={ICON.menu} tw="m-1 flex-shrink-0 text-white ring-yellow-400 md:hidden" css={css`height:${height*3/4}rem;width:${height*3/4}rem;backdrop-filter:invert(40%) hue-rotate(60deg)`} onClick={navOpener}/>
+			<IconButton as="button" icon={ICON.menu} tw="m-1 flex-shrink-0 text-white ring-yellow-200 bg-yellow-400 md:hidden" css={css`height:${height*3/4}rem;width:${height*3/4}rem;backdrop-filter:invert(40%) hue-rotate(60deg)`} onClick={navOpener}/>
 			<ul className="nav-items">{items}</ul>
-
 		</CollapsableNavbar>
 	)
 }

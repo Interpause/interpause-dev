@@ -5,18 +5,25 @@ import { useMemo } from "react";
 import Counter from "../components/Counter";
 import { CardData, CardFlex } from "../components/Card";
 import { DarkThemeWrapper, DarkToggle } from "../components/DarkTheme";
-import { Orientation, IsogridBackground, ScrollHint, RainbowText } from "../components/Aesthetic";
+import { Orientation, IsogridBackground, ScrollHint, RainbowText, Icon } from "../components/Aesthetic";
 import { hideMobileLandscape } from "../components/DeviceOrientationCSS";
-import tw, { styled } from "twin.macro";
+import tw, { css, styled } from "twin.macro";
 
 function Banner(){
 	const isogridBg = useMemo(() => <IsogridBackground rows={6} cols={6}/>,[]);
 
 	return (<>
 		<div tw="h-screen w-full -z-10 bg-yellow-200">{isogridBg}</div>
-		<header tw="absolute flex flex-col top-1/4 inset-x-2 lg:(top-auto right-auto bottom-1/4 ml-5)">
-			<RainbowText text="John-Henry"/>
-			<h1 tw="text-5xl bg-white bg-opacity-70 rounded px-1 lg:(text-7xl)">TODO: non-cringy tagline</h1>
+		<header tw="absolute flex flex-col top-1/4 inset-x-2 p-1 lg:(top-auto right-auto bottom-1/4 ml-5) rounded-lg bg-white bg-opacity-70" css={css`backdrop-filter: blur(0.25rem)`}>
+			<h1 tw="text-5xl rounded px-1 lg:(text-9xl)"><b>J</b>ohn-<b>H</b>enry <b>L</b>im</h1>
+			<span tw="text-2xl lg:text-5xl">
+				<span tw="hidden lg:inline">aka </span>
+				<span tw="whitespace-nowrap">
+					<Icon src="/profilePic.svg" tw="h-4 w-4 lg:(h-8 w-8) align-baseline m-0 " priority/>{' '}
+					<RainbowText tw="inline h-8 lg:h-12 align-top m-0 p-0 font-mono font-extrabold">Hyphen Interpause</RainbowText>
+				</span>
+			</span>
+			<h3 tw="text-2xl rounded px-1 lg:(text-5xl)">TODO: non-cringy tagline</h3>
 		</header>
 		<ScrollHint orientation={Orientation.up} tw="absolute bottom-2 mx-auto inset-x-0 h-20 text-white" css={hideMobileLandscape}/>
 	</>);

@@ -14,7 +14,7 @@ export enum ICON {
 }
 
 const IconWrapper = styled.span`
-	${tw`relative m-0.5 flex-none`}
+	${tw`relative m-0.5 flex-none inline-block`}
 	${({orientation}:{orientation?:Orientation|number}) => css`transform:rotate(${orientation??0}deg)`}
 `;
 

@@ -18,4 +18,6 @@ export * from "./IsogridBackground";
 export * from "./Icon";
 export * from "./RainbowText";
 
-export const hideMobileLandscape = css`@media screen and (max-width:1024px) and (orientation:landscape){ display:none; }`;
+export const mobileLandscape = "@media screen and (max-width:1024px) and (orientation:landscape)";
+export const mobileScreen = "@media screen and (max-width:768px)";
+export const hideMobileLandscape = css`${mobileLandscape}{ display:none; }`;

@@ -42,7 +42,7 @@ export function NavLink({route,children,...props}:NavLinkProps){
 	);
 }
 
-export interface NavbarProps extends StyledComponent<HTMLProps<HTMLElement>>{
+export interface NavbarProps extends HTMLProps<HTMLElement>{
 	routes:Record<string,string>,
 	itemProps?:HTMLProps<HTMLLIElement>
 }
@@ -50,7 +50,7 @@ export interface NavbarProps extends StyledComponent<HTMLProps<HTMLElement>>{
 export function Navbar({routes,itemProps,...props}:NavbarProps){
 	const items = useMemo(() => Object.entries(routes).map(([route,text],i) => <NavLink route={route} {...itemProps} key={i}>{text}</NavLink>),[JSON.stringify(routes),JSON.stringify(itemProps)]);
 	return (
-		<CollapsableNavbar id="navbar" tw="absolute flex flex-wrap md:flex-nowrap h-16 p-1 top-0 inset-x-0 bg-black text-white z-50" {...props}>
+		<CollapsableNavbar id="navbar" tw="absolute flex flex-wrap md:flex-nowrap h-16 p-1 top-0 inset-x-0 bg-black text-white z-50" {...props as StyledComponent<HTMLProps<HTMLElement>>}>
 			<Icon src="/favicon/original-icon.png" tw="w-14 h-14" priority/>
 			<span tw="flex-grow md:flex-grow-0"></span>
 			<button tw="relative w-16 h-16 flex-shrink-0 text-white rounded-lg ring-white ring-inset ring-2 md:hidden hocus:(bg-black bg-opacity-20)" onClick={()=>document.querySelector("#navbar")?.classList.toggle("opened")}><Icon type={ICON.menu} tw="absolute inset-0"></Icon></button>

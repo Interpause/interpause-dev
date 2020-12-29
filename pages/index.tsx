@@ -14,9 +14,9 @@ function Banner(){
 
 	return (<>
 		<div tw="h-screen w-full -z-10 bg-yellow-200">{isogridBg}</div>
-		<header tw="absolute flex flex-col top-1/4 mx-2 lg:(top-auto bottom-1/4 ml-5)">
+		<header tw="absolute flex flex-col top-1/4 inset-x-2 lg:(top-auto right-auto bottom-1/4 ml-5)">
 			<RainbowText text="John-Henry"/>
-			<h1 tw="text-5xl bg-white bg-opacity-70 rounded px-1 lg:(text-7xl right-auto)">TODO: non-cringy tagline</h1>
+			<h1 tw="text-5xl bg-white bg-opacity-70 rounded px-1 lg:(text-7xl)">TODO: non-cringy tagline</h1>
 		</header>
 		<ScrollHint orientation={Orientation.up} tw="absolute bottom-2 mx-auto inset-x-0 h-20 text-white" css={hideMobileLandscape}/>
 	</>);

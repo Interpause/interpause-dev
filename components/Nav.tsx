@@ -3,29 +3,37 @@
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
 import "tailwindcss/tailwind.css";
-import tw, { styled } from 'twin.macro';
+import tw, { css, styled } from 'twin.macro';
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { HTMLProps, useMemo, useRef } from 'react';
+import React, { HTMLProps, useMemo, useRef } from 'react';
 
-import { Icon, IconButton, ICON } from "./Aesthetic";
+import { Icon, ICON, IconButton } from "./Aesthetic";
 import { mobileScreen } from "./DeviceOrientationCSS";
 import { StyledComponent } from "@emotion/styled";
 
 export const NavItem = tw.li`relative inline-flex flex-col flex-grow flex-shrink-0 justify-center text-center w-32 p-1` as StyledComponent<HTMLProps<HTMLLIElement>>;
 
-const CollapsableNavbar = styled.nav`
+const BaseNavbar = styled.nav`
+	${tw`absolute flex flex-wrap md:flex-nowrap top-0 inset-x-0 bg-black text-white z-50`}
+	>.nav-items{ ${tw`inline-flex flex-row w-full lg:w-3/5 divide-x-2 my-2 overflow-x-auto`} }
+	${({height}:{height:number}) => `height:${height}rem`}
+`;
+
+const CollapsableNavbar = styled(BaseNavbar)`
 	${mobileScreen}{
-		${tw`h-auto bg-black`}
-		>.nav-items{ ${tw`w-full flex-shrink-0 flex-col divide-y-2 divide-x-0 bg-black`} }
+		${tw`bg-transparent`}
+		>.nav-items{
+			${tw`flex absolute top-0 -z-10 m-0 flex-col divide-y-2 divide-x-0 bg-black transition-transform transform-gpu`}
+			${({height}:{height:number}) => `padding-top:${height}rem`}
+		}
 		&:not(.opened){
-			${tw`bg-transparent`}
-			>.nav-items{ ${tw`hidden`} }
+			>.nav-items{
+				${tw`pointer-events-none`}
+				--tw-translate-y: -200%;
+			}
 		}
-		
-		${NavItem}{
-			${tw`w-full text-left`}
-		}
+		${NavItem}{ ${tw`w-full text-left`} }
 	}
 `;
 
@@ -49,15 +57,17 @@ export interface NavbarProps extends HTMLProps<HTMLElement>{
 }
 //TODO Implement the navbar context provider for in page hiding of navbar, recustomization by page etc
 export function Navbar({routes,itemProps,...props}:NavbarProps){
+	/** height in rem */
+	const height = 4;
 	const navbar = useRef<HTMLElement>(null);
 	const items = useMemo(() => Object.entries(routes).map(([route,text],i) => <NavLink route={route} {...itemProps} key={i}>{text}</NavLink>),[JSON.stringify(routes),JSON.stringify(itemProps)]);
 	const navOpener = ()=>navbar.current?.classList.toggle("opened");
 	return (
-		<CollapsableNavbar ref={navbar} tw="absolute flex flex-wrap md:flex-nowrap h-16 p-1 top-0 inset-x-0 bg-black text-white z-50" {...props as StyledComponent<HTMLProps<HTMLElement>>}>
-			<Icon src="/favicon/original-icon.png" tw="w-10 h-10 sm:(w-14 h-14)" priority/>
+		<CollapsableNavbar height={height} ref={navbar} {...props as StyledComponent<HTMLProps<HTMLElement>>}>
+			<Icon src="/favicon/original-icon.png" tw="m-1 my-auto inset-y-0" css={css`height:${height*3/4}rem;width:${height*3/4}rem;`} priority/>
 			<span tw="flex-grow md:flex-grow-0"></span>
-			<Icon as="button" icon={ICON.menu} tw="w-10 h-10 sm:(w-14 h-14) p-1 flex-shrink-0 text-white ring-white rounded-lg ring-inset ring-2 md:hidden hocus:(bg-black bg-opacity-20)" onClick={navOpener}/>
-			<ul className="nav-items" tw="inline-flex flex-row w-full lg:w-3/5 divide-x-2 my-2 overflow-x-auto">{items}</ul>
+			<IconButton as="button" icon={ICON.menu} tw="m-1 flex-shrink-0 text-white ring-yellow-400 md:hidden" css={css`height:${height*3/4}rem;width:${height*3/4}rem;backdrop-filter:invert(40%) hue-rotate(60deg)`} onClick={navOpener}/>
+			<ul className="nav-items">{items}</ul>
 
 		</CollapsableNavbar>
 	)

@@ -32,3 +32,5 @@ export function Icon({orientation,className,as,...props}:IconProps){
 		}
 	</IconWrapper>;	
 }
+
+export const IconButton = tw(Icon)`p-1 rounded-lg ring-inset ring-2 bg-opacity-20! hocus:bg-opacity-60!`;

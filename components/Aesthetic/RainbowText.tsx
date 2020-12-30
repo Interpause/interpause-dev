@@ -3,7 +3,7 @@
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
 import "twin.macro";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { ReactText, useEffect, useRef, useState } from "react";
 import { OrientableSVG } from "./index";
 
 /** taken from https://stackoverflow.com/a/44134328/9614726 */
@@ -51,6 +51,7 @@ const PatternConfig = {
 
 export interface RainbowTextProps extends OrientableSVG {
 	config?: Partial<typeof PatternConfig>;
+	children: ReactText;
 }
 /**
  * rainbow text cause why not
@@ -60,78 +61,78 @@ export function RainbowText({orientation,children,config,...props}:RainbowTextPr
 	const {duration, numStops:N, saturation:S, luminosity:L, bgWidth, bgHeight, pattern, pHeight, pWidth, pSize, pFill} = conf;
 
 	const [state,setState] = useState<styleState>();
-	const [updating,setUpdate] = useState(true);
-	const measurementRef = useRef<HTMLSpanElement>(null);
-	const stops = useMemo(() => Array.from(Array(N).keys()).map(n => <stop offset={`${100*n/(N-1)}%`} stopColor={hslToHex(360*n/(N-1),S,L)} key={n}/>),[]);
+	const fontRef = useRef<any>(null);
 
 	useEffect(() => {
-		if(updating) return setUpdate(false);
-		const measurementSpan = measurementRef.current;
-		if(measurementSpan == null) return;
-		const font = getComputedStyle(measurementSpan).font;
-		measurementSpan.remove();
-		document.documentElement.appendChild(measurementSpan);
-		measurementSpan.style.font = font;
-		const rect = measurementSpan.getBoundingClientRect();
+		const fontElem = fontRef.current;
+		if(fontElem == null) return;
+		const font = getComputedStyle(fontElem).font;
+		let measureSpan = document.createElement("span");
+		measureSpan.style.font = font;
+		measureSpan.style.position = "fixed";
+		measureSpan.innerText = children.toString();
+		document.documentElement.appendChild(measureSpan);
+		const rect = measureSpan.getBoundingClientRect();
+		measureSpan.remove();
 		setState({
 			height:rect.height,
 			width:rect.width,
 			font:font
 		});
-		return () => setUpdate(true);
-	},[children,updating,props.className]);
+	},[children.toString(),props.className]);
 
-	return (<>
-		<span ref={measurementRef} tw="fixed! block! invisible! h-auto! w-auto!" className={props.className}>{children}</span>{/*fixed necessary to ignore effects of parent container on width/height*/}
-		{state&&
-			<svg transform={`rotate(${orientation??0} 0 0)`} viewBox={`0 0 ${state.width} ${state.height}`} xmlns="http://www.w3.org/2000/svg" version="1.1" {...props}>
-				<defs>
-					<linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">{stops}</linearGradient>
-					<pattern id="hex" width={`${(state.height*bgHeight)/(state.width*bgWidth)*pWidth/pHeight*pSize}%`} height={`${pSize}%`} viewBox={`0 0 ${pWidth} ${pHeight}`}>
-						<path fill={pFill} d={pattern}/>
-					</pattern>
-					
-					<pattern id="pattern" x="0" y="0" width={`${bgWidth*2}%`} height={`${bgHeight}%`} patternUnits="userSpaceOnUse">
-						<rect x="0" y="0" width={`${bgWidth}%`} height="100%" fill="url(#gradient)">
-							<animate
-								attributeType="XML"
-								attributeName="x"
-								from="0" to={`${bgWidth}%`}
-								dur={duration}
-								repeatCount="indefinite"
-							/>
-						</rect>
-						<rect x={`${-bgWidth}%`} y="0" width={`${bgWidth}%`} height="100%" fill="url(#gradient)">
-							<animate
-								attributeType="XML"
-								attributeName="x"
-								from={`${-bgWidth}%`} to="0"
-								dur={duration}
-								repeatCount="indefinite"
-							/>
-						</rect>	
-						<rect x="0" y="0" width={`${bgWidth}%`} height="100%" fill="url(#hex)">
-							<animate
-								attributeType="XML"
-								attributeName="x"
-								from="0" to={`${bgWidth}%`}
-								dur={duration*2/3}
-								repeatCount="indefinite"
-							/>
-						</rect>
-						<rect x={`${-bgWidth}%`} y="0" width={`${bgWidth}%`} height="100%" fill="url(#hex)">
-							<animate
-								attributeType="XML"
-								attributeName="x"
-								from={`${-bgWidth}%`} to="0"
-								dur={duration*2/3}
-								repeatCount="indefinite"
-							/>
-						</rect>	
-					</pattern>
-				</defs>
-				<text x="50%" textAnchor="middle" y="50%" dy="0.4em" style={{font:state.font}} fill="url(#pattern)">{children}</text>
-			</svg>
-		}
-	</>);
+	if(typeof state === "undefined") return <span ref={fontRef} tw="hidden!" className={props.className}></span>;
+
+	return (
+		<svg ref={fontRef} transform={`rotate(${orientation??0} 0 0)`} viewBox={`0 0 ${state.width} ${state.height}`} xmlns="http://www.w3.org/2000/svg" version="1.1" {...props}>
+			<defs>
+				<linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+					{Array.from(Array(N).keys()).map(n => <stop offset={`${100*n/(N-1)}%`} stopColor={hslToHex(360*n/(N-1),S,L)} key={n}/>)}
+				</linearGradient>
+				<pattern id="hex" width={`${(state.height*bgHeight)/(state.width*bgWidth)*pWidth/pHeight*pSize}%`} height={`${pSize}%`} viewBox={`0 0 ${pWidth} ${pHeight}`}>
+					<path fill={pFill} d={pattern}/>
+				</pattern>
+				
+				<pattern id="pattern" x="0" y="0" width={`${bgWidth*2}%`} height={`${bgHeight}%`} patternUnits="userSpaceOnUse">
+					<rect x="0" y="0" width={`${bgWidth}%`} height="100%" fill="url(#gradient)">
+						<animate
+							attributeType="XML"
+							attributeName="x"
+							from="0" to={`${bgWidth}%`}
+							dur={duration}
+							repeatCount="indefinite"
+						/>
+					</rect>
+					<rect x={`${-bgWidth}%`} y="0" width={`${bgWidth}%`} height="100%" fill="url(#gradient)">
+						<animate
+							attributeType="XML"
+							attributeName="x"
+							from={`${-bgWidth}%`} to="0"
+							dur={duration}
+							repeatCount="indefinite"
+						/>
+					</rect>	
+					<rect x="0" y="0" width={`${bgWidth}%`} height="100%" fill="url(#hex)">
+						<animate
+							attributeType="XML"
+							attributeName="x"
+							from="0" to={`${bgWidth}%`}
+							dur={duration*2/3}
+							repeatCount="indefinite"
+						/>
+					</rect>
+					<rect x={`${-bgWidth}%`} y="0" width={`${bgWidth}%`} height="100%" fill="url(#hex)">
+						<animate
+							attributeType="XML"
+							attributeName="x"
+							from={`${-bgWidth}%`} to="0"
+							dur={duration*2/3}
+							repeatCount="indefinite"
+						/>
+					</rect>	
+				</pattern>
+			</defs>
+			<text x="50%" textAnchor="middle" y="50%" dy="0.4em" style={{font:state.font}} fill="url(#pattern)">{children}</text>
+		</svg>
+	);
 }

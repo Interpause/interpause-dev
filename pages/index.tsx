@@ -3,14 +3,12 @@ import Link from 'next/link';
 
 import Counter from "../components/Counter";
 import { CardData, CardFlex } from "../components/Card";
-import { Toggle } from "../components/Toggle";
 import { DarkThemeWrapper, DarkToggle } from "../components/DarkTheme";
 import { Orientation, IsogridBackground, ScrollHint, RainbowText, Icon } from "../components/Aesthetic";
 import { hideMobileLandscape } from "../components/DeviceOrientationCSS";
 import tw, { css, styled } from "twin.macro";
-import { useState } from "react";
 
-/** 
+/*
 function UpdatePropagationTest(){
 	const [test,setTest] = useState(false);
 	return (<>
@@ -21,7 +19,6 @@ function UpdatePropagationTest(){
 */
 
 function Banner(){
-	const [test,setTest] = useState(false);
 	return (<>
 		<div tw="h-screen w-full -z-10 bg-yellow-200"><IsogridBackground rows={6} cols={6}/></div>
 		<header tw="absolute flex flex-col top-1/4 inset-x-2 p-1 lg:(top-auto right-auto bottom-1/4 ml-5) rounded-lg bg-white bg-opacity-70" css={css`backdrop-filter: blur(0.25rem)`}>
@@ -29,8 +26,8 @@ function Banner(){
 			<span tw="text-2xl lg:text-5xl">
 				<span tw="hidden lg:inline">aka </span>
 				<span tw="whitespace-nowrap">
-					<Icon src="/profilePic.svg" tw="h-4 w-4 lg:(h-8 w-8) align-baseline m-0 " priority/>{' '}
-					<RainbowText tw="inline h-8 lg:h-12 align-top m-0 p-0 font-mono" css={test&&tw`font-extrabold`}>Hyphen Interpause</RainbowText>
+					<Icon src="/profilePic.svg" tw="h-4 w-4 lg:(h-8 w-8) align-baseline m-0" priority/>{' '}
+					<RainbowText tw="inline h-6 lg:h-12 mb-1.5 font-mono font-extrabold">Hyphen Interpause</RainbowText>
 				</span>
 			</span>
 			<h3 tw="text-2xl rounded px-1 lg:(text-5xl)">TODO: non-cringy tagline</h3>
@@ -69,8 +66,8 @@ const cards:CardData[] = [
 		body:"May contain counter. Eventually."
 	}
 ];
+const Test = styled.h1`${tw`text-5xl py-4 font-bold font-comic overflow-ellipsis overflow-hidden`}`;
 function Main(){
-	const Test = styled.h1`${tw`text-5xl py-4 font-bold font-comic overflow-ellipsis overflow-hidden`}`;
 	return (
 		<DarkThemeWrapper darkDefault={true}>
 			<section tw="text-center min-h-screen transition-colors bg-white dark:(bg-black text-white)">

@@ -7,10 +7,6 @@ import { Navbar } from "../components/Nav";
 
 const routes = {"/":"Home","/nextjs":"Smth Else","/robots.txt":"Robots only","/sitemap.xml":"some XML"} as const;
 function App({ Component, pageProps }:AppProps) {
-	/* 
-	 * Component here is the currently rendered page. As such, any jsx here would
-	 * persist across all the pages. Which is useful. For maybe a Navbar.
-	 */
 	return (<>
 		<Head>			
 			<meta name="robots" content="index, follow"/>

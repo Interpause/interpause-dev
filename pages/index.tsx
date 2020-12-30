@@ -27,7 +27,7 @@ function Banner(){
 				<span tw="hidden lg:inline">aka </span>
 				<span tw="whitespace-nowrap">
 					<Icon src="/profilePic.svg" tw="h-4 w-4 lg:(h-8 w-8) align-baseline m-0" priority/>{' '}
-					<RainbowText tw="inline h-6 lg:h-12 mb-1.5 font-mono font-extrabold">Hyphen Interpause</RainbowText>
+					<RainbowText tw="inline h-6 lg:h-12 mb-0.5 lg:mb-1.5 font-mono font-extrabold">Hyphen Interpause</RainbowText>
 				</span>
 			</span>
 			<h3 tw="text-2xl rounded px-1 lg:(text-5xl)">TODO: non-cringy tagline</h3>

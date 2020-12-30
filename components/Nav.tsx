@@ -6,7 +6,7 @@ import "tailwindcss/tailwind.css";
 import tw, { css, styled } from 'twin.macro';
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { HTMLProps, useMemo, useRef } from 'react';
+import React, { HTMLProps, useRef } from 'react';
 
 import { Icon, ICON, IconButton } from "./Aesthetic";
 import { mobileScreen } from "./DeviceOrientationCSS";
@@ -60,14 +60,15 @@ export function Navbar({routes,itemProps,...props}:NavbarProps){
 	/** height in rem */
 	const height = 4;
 	const navbar = useRef<HTMLElement>(null);
-	const items = useMemo(() => Object.entries(routes).map(([route,text],i) => <NavLink route={route} {...itemProps} key={i}>{text}</NavLink>),[JSON.stringify(routes),JSON.stringify(itemProps)]);
 	const navOpener = ()=>navbar.current?.classList.toggle("opened");
 	return (
 		<CollapsableNavbar height={height} ref={navbar} {...props as StyledComponent<HTMLProps<HTMLElement>>}>
 			<Icon src="/favicon/original-icon.png" tw="m-1 my-auto inset-y-0" css={css`height:${height*3/4}rem;width:${height*3/4}rem;`} priority/>
 			<span tw="flex-grow md:flex-grow-0"></span>
 			<IconButton as="button" icon={ICON.menu} tw="m-1 flex-shrink-0 text-white ring-yellow-200 bg-yellow-400 md:hidden" css={css`height:${height*3/4}rem;width:${height*3/4}rem;backdrop-filter:invert(40%) hue-rotate(60deg)`} onClick={navOpener}/>
-			<ul className="nav-items">{items}</ul>
+			<ul className="nav-items">
+				{Object.entries(routes).map(([route,text],i) => <NavLink route={route} {...itemProps} key={i}>{text}</NavLink>)}
+			</ul>
 		</CollapsableNavbar>
 	)
 }

@@ -1,26 +1,36 @@
 import Head from "next/head";
 import Link from 'next/link';
-import { useMemo } from "react";
 
 import Counter from "../components/Counter";
 import { CardData, CardFlex } from "../components/Card";
+import { Toggle } from "../components/Toggle";
 import { DarkThemeWrapper, DarkToggle } from "../components/DarkTheme";
 import { Orientation, IsogridBackground, ScrollHint, RainbowText, Icon } from "../components/Aesthetic";
 import { hideMobileLandscape } from "../components/DeviceOrientationCSS";
 import tw, { css, styled } from "twin.macro";
+import { useState } from "react";
+
+/** 
+function UpdatePropagationTest(){
+	const [test,setTest] = useState(false);
+	return (<>
+		<RainbowText tw="inline h-8 lg:h-12 align-top m-0 p-0 font-mono" css={test&&tw`font-extrabold`}>Hyphen Interpause</RainbowText>
+		<Toggle toggleHook={[test,setTest]} label="Update Test"/>
+	</>);
+}
+*/
 
 function Banner(){
-	const isogridBg = useMemo(() => <IsogridBackground rows={6} cols={6}/>,[]);
-
+	const [test,setTest] = useState(false);
 	return (<>
-		<div tw="h-screen w-full -z-10 bg-yellow-200">{isogridBg}</div>
+		<div tw="h-screen w-full -z-10 bg-yellow-200"><IsogridBackground rows={6} cols={6}/></div>
 		<header tw="absolute flex flex-col top-1/4 inset-x-2 p-1 lg:(top-auto right-auto bottom-1/4 ml-5) rounded-lg bg-white bg-opacity-70" css={css`backdrop-filter: blur(0.25rem)`}>
 			<h1 tw="text-5xl rounded px-1 lg:(text-9xl)"><b>J</b>ohn-<b>H</b>enry <b>L</b>im</h1>
 			<span tw="text-2xl lg:text-5xl">
 				<span tw="hidden lg:inline">aka </span>
 				<span tw="whitespace-nowrap">
 					<Icon src="/profilePic.svg" tw="h-4 w-4 lg:(h-8 w-8) align-baseline m-0 " priority/>{' '}
-					<RainbowText tw="inline h-8 lg:h-12 align-top m-0 p-0 font-mono font-extrabold">Hyphen Interpause</RainbowText>
+					<RainbowText tw="inline h-8 lg:h-12 align-top m-0 p-0 font-mono" css={test&&tw`font-extrabold`}>Hyphen Interpause</RainbowText>
 				</span>
 			</span>
 			<h3 tw="text-2xl rounded px-1 lg:(text-5xl)">TODO: non-cringy tagline</h3>

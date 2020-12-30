@@ -2,6 +2,7 @@
  * @file Pure JS SVG generator I made long ago updated using React (refrained from renaming variables). Used in my phone game and other places I needed a background for.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
+import React from "react";
 
 /** string of format #{string} */
 export type HexColor = string; //`#${string}`; type template literals are broken on typescript 4.1.3, and for some reason yarn cant install the beta version with some error I cannot resolve
@@ -105,7 +106,7 @@ function Triangle({color_seq,speed,points}:TriangleProps){
 }
 
 /** Generates SVG background. */
-export function IsogridBackground(props?:Partial<IsogridConfig>){
+export const IsogridBackground = React.memo((props?:Partial<IsogridConfig>) => {
 	let conf:IsogridConfig = JSON.parse(JSON.stringify(bgDefaults));
 	(Object.entries(props??{}) as [IsogridKeys,any][]).forEach(([k,v])=>conf[k]=v);
 
@@ -188,4 +189,4 @@ export function IsogridBackground(props?:Partial<IsogridConfig>){
 	}
 	
 	return <svg viewBox={`0 0 ${width} ${height}`} preserveAspectRatio="xMidYMid slice" height="100%" width="100%">{triangles}</svg>;
-};
+},(prev,next) => JSON.stringify(prev) == JSON.stringify(next));

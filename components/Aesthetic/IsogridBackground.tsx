@@ -2,8 +2,9 @@
  * @file Pure JS SVG generator I made long ago updated using React (refrained from renaming variables). Used in my phone game and other places I needed a background for.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
-import React from "react";
-
+/** Very fast barely RNG random number generator */
+const detRNG = (s:number)=>()=>(2**31-1&(s=Math.imul(48271,s)))/2**31;
+let rand = ()=>0.5;
 /** string of format #{string} */
 export type HexColor = string; //`#${string}`; type template literals are broken on typescript 4.1.3, and for some reason yarn cant install the beta version with some error I cannot resolve
 /** Configuration settings for background generation */
@@ -22,6 +23,8 @@ export interface IsogridConfig {
 	randomness:number;
 	/** shuffled colors that triangles will change between */
 	colors:HexColor[];
+	/** Seed used for deterministic random number generation */
+	rand_seed:number;
 }
 export type IsogridKeys = keyof IsogridConfig;
 
@@ -43,6 +46,7 @@ export const bgDefaults:Readonly<IsogridConfig> = {
 	max_speed:50,
 	gap_ratio:0.15,
 	randomness:0.75,
+	rand_seed:31415926535898,
 	colors:['#ffffff','#0c7c5f','#000000',
 					'#fab20b','#e62840','#8862b8',
 					'#fddb0d','#deddde','#ffffff',
@@ -60,15 +64,15 @@ function smart_shuffle(conf:IsogridConfig,above?:HexColor,left?:HexColor){
 	let shuffled:HexColor[] = [];
 	
 	//assuming its in list, highly likely considering context of usage
-	if (Math.random() < conf.randomness && typeof above !== "undefined") frndarr.splice(frndarr.indexOf(above),1); 
-	if (Math.random() < conf.randomness && typeof left !== "undefined") frndarr.splice(frndarr.indexOf(left),1);
+	if (rand() < conf.randomness && typeof above !== "undefined") frndarr.splice(frndarr.indexOf(above),1); 
+	if (rand() < conf.randomness && typeof left !== "undefined") frndarr.splice(frndarr.indexOf(left),1);
 	
-	shuffled.push(frndarr[Math.floor(Math.random() * frndarr.length)]);
+	shuffled.push(frndarr[Math.floor(rand() * frndarr.length)]);
 	let nrndarr = conf.colors.slice();
 	nrndarr.splice(nrndarr.indexOf(shuffled[0]),1);
 	
 	for (let i = nrndarr.length - 1; i>0; i--){
-		let j = Math.floor(Math.random() * (i + 1));
+		let j = Math.floor(rand() * (i + 1));
 		[nrndarr[i], nrndarr[j]] = [nrndarr[j], nrndarr[i]];
 	}
 	
@@ -86,25 +90,24 @@ function gen_tri(conf:IsogridConfig,above?:HexColor,left?:HexColor){
 	r_seq.push(r_seq.slice(0,1)[0]);
 	return {
 		color_seq:r_seq,
-		speed:Math.floor(Math.random()*(conf.max_speed-conf.min_speed))+conf.min_speed,
+		speed:Math.floor(rand()*(conf.max_speed-conf.min_speed))+conf.min_speed,
 		points:""
 	} as TriangleProps;
 }
 
 /** Makes triangle */
 function Triangle({color_seq,speed,points}:TriangleProps){
-	return (
-		<polygon fill={color_seq[0]} points={points}>
-			<animate
-				attributeName="fill"
-				values={`${color_seq.join(';')}`}
-				dur={`${speed}s`}
-				repeatCount="indefinite"
-			/>
-		</polygon>
-	);
+	return <polygon fill={color_seq[0]} points={points}>
+		<animate
+			attributeName="fill"
+			values={`${color_seq.join(';')}`}
+			dur={`${speed}s`}
+			repeatCount="indefinite"
+		/>
+	</polygon>;
 }
 
+import React from "react";
 /** Generates SVG background. */
 export const IsogridBackground = React.memo((props?:Partial<IsogridConfig>) => {
 	let conf:IsogridConfig = JSON.parse(JSON.stringify(bgDefaults));
@@ -124,6 +127,9 @@ export const IsogridBackground = React.memo((props?:Partial<IsogridConfig>) => {
 	let width = tlen*conf.cols;
 	/** Height of SVG */
 	let height = thgt*conf.rows+hglen/4;
+
+	/** Reseed predetermined RNG generator, this is to make React happy. */
+	rand = detRNG(conf.rand_seed);
 
 	/** Starting colors of previous row of triangles */
 	let prevarr:HexColor[] = [];

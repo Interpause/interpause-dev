@@ -492,6 +492,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tailwindcss/typography@npm:^0.3.1":
+  version: 0.3.1
+  resolution: "@tailwindcss/typography@npm:0.3.1"
+  peerDependencies:
+    tailwindcss: 2.0.0-alpha.24 || ^2.0.0
+  checksum: 341c009ec5d6a923103f625e73f93ccd5f94c6e11938c04f28d64203cc2c044f129b7afd2ddcf156fb3c144d660cef648bdb957edc3ede0a679583fbd5311017
+  languageName: node
+  linkType: hard
+
 "@types/cacheable-request@npm:^6.0.1":
   version: 6.0.1
   resolution: "@types/cacheable-request@npm:6.0.1"
@@ -3815,13 +3824,14 @@ fsevents@~2.1.2:
     "@emotion/css": ^11.1.3
     "@emotion/react": ^11.1.4
     "@emotion/styled": ^11.0.0
+    "@tailwindcss/typography": ^0.3.1
     "@types/node": ^14.14.14
     "@types/react": ^17.0.0
     "@yarnpkg/pnpify": ^2.4.0
     autoprefixer: ^10.1.0
     globby: ^11.0.1
     next: ^10.0.4
-    postcss: ^8.2.1
+    postcss: ^8.2.2
     postcss-flexbugs-fixes: ^5.0.2
     postcss-preset-env: ^6.7.0
     react: ^17.0.1
@@ -5944,6 +5954,17 @@ fsevents@~2.1.2:
     nanoid: ^3.1.20
     source-map: ^0.6.1
   checksum: aa7ba3d80a4d8e25bc1a3f61461d7f6b60d361fb1301465d0eb973c5f38b347ad0842b02b8cc8801ede46559391d7c640c7313301a829ef9ca77e34be7230854
+  languageName: node
+  linkType: hard
+
+"postcss@npm:^8.2.2":
+  version: 8.2.2
+  resolution: "postcss@npm:8.2.2"
+  dependencies:
+    colorette: ^1.2.1
+    nanoid: ^3.1.20
+    source-map: ^0.6.1
+  checksum: c661b093d245ef8e3b0340958f672e3abeb89627afa7064771dafafa49c80742f0b6e05c55ee5ab14aa1da2095aebfd69325778df8a90d4e41fdf685a76993f2
   languageName: node
   linkType: hard
 

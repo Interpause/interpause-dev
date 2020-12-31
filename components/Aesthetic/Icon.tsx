@@ -4,7 +4,7 @@
  */
 import tw, { css, styled } from 'twin.macro';
 import Image, { ImageProps } from "next/image";
-import { OrientableSVG, Orientation } from "./index";
+import { OrientableSVG } from "./index";
 
 export enum ICON {
 	/** https://icomoon.io/ */
@@ -13,24 +13,23 @@ export enum ICON {
 	menu='M64 288A1 1 0 0164 224H960A1 1 0 01960 288H64ZM64 800A1 1 0 0164 736H960A1 1 0 01960 800H64ZM64 544A1 1 0 0164 480H960A1 1 0 01960 544H64Z'
 }
 
-const IconWrapper = styled.span`
-	${tw`relative m-0.5 flex-none inline-block`}
-	${({orientation}:{orientation?:Orientation|number}) => css`transform:rotate(${orientation??0}deg)`}
+// TODO implement icon label as figcaption lol
+export const IconWrapper = styled.figure`
+	${tw`relative inline-block flex-none m-0.5`}
+	${({orientation}:{orientation?:number}) => css`transform:rotate(${orientation??0}deg)`}
 `;
 
-type IconProps = (({orientation?:Orientation|number,className?:string} & Omit<ImageProps,"height"|"width"|"layout">)|({icon:ICON} & OrientableSVG)) & {as?:keyof JSX.IntrinsicElements};
+export type IconProps = (({orientation?:number} & Omit<ImageProps,"height"|"width"|"layout">) | ({icon:ICON} & OrientableSVG)) & {as?:keyof JSX.IntrinsicElements};
 /** Must restyle with height and width. Either specify icon which is enum ICON or src which is path. */
 export function Icon({orientation,className,as,...props}:IconProps){
-	return <IconWrapper className={className} as={as}>
+	return <IconWrapper as={as} className={className} orientation={orientation}>
 		{
 			("src" in props)?
 				(<Image layout="fill" {...props}/>)
 			:
-				(<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" version="1.1" height="100%" width="100%" {...props}>
-					<path strokeLinecap="round" strokeLinejoin="round" d={props.icon} fill="currentColor"></path>
+				(<svg viewBox="0 0 1024 1024" {...props}>
+					<path strokeLinecap="round" strokeLinejoin="round" fill="currentColor" d={props.icon}/>
 				</svg>)
 		}
 	</IconWrapper>;	
 }
-
-export const IconButton = tw(Icon)`p-1 rounded-lg ring-inset ring-2 bg-opacity-20! hocus:bg-opacity-60!`;

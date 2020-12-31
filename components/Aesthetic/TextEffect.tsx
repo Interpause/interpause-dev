@@ -2,11 +2,10 @@
  * @file SVG Text with special effects.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
-import "twin.macro";
 import { Dispatch, ReactText, SetStateAction, useEffect, useRef, useState } from "react";
 import { OrientableSVG } from "./index";
 
-interface styleState {
+export interface styleState {
 	height:number;
 	width:number;
 	font:string;
@@ -45,14 +44,12 @@ export function BaseTextWithEffect({orientation,text,children,styleStateHook,...
 		});
 	},[text,props.className]);
 
-	if(typeof state === "undefined") return <span ref={fontRef} tw="hidden!" className={props.className}></span>;
+	if(typeof state === "undefined") return <span ref={fontRef} className={props.className} style={{visibility:"hidden"}}></span>;
 
-	return (
-		<svg ref={fontRef} transform={`rotate(${orientation??0} 0 0)`} viewBox={`0 0 ${state.width} ${state.height}`} xmlns="http://www.w3.org/2000/svg" version="1.1" {...props}>
-			{children}
-			<text x="50%" textAnchor="middle" dominantBaseline="text-before-edge" style={{font:state.font}} fill="url(#pattern)">{text}</text>
-		</svg>
-	);
+	return <svg ref={fontRef} viewBox={`0 0 ${state.width} ${state.height}`} transform={`rotate(${orientation??0} 0 0)`} {...props}>
+		{children}
+		<text x="50%" textAnchor="middle" dominantBaseline="text-before-edge" style={{font:state.font}} fill="url(#pattern)">{text}</text>
+	</svg>;
 }
 
 /** taken from https://stackoverflow.com/a/44134328/9614726 */
@@ -67,7 +64,7 @@ function hslToHex(h:number, s:number, l:number) {
 	return `#${f(0)}${f(8)}${f(4)}`;
 }
 
-const RainbowTextConfig = {
+export const RainbowTextConfig = {
 	/** Duration of animation in seconds */
 	duration:20,
 	/** Number of color stops in rainbow gradient, increase to make more accurate gradient */
@@ -105,57 +102,53 @@ export function RainbowText({children,config,...props}:RainbowTextProps){
 	const {duration, numStops:N, saturation:S, luminosity:L, bgWidth, bgHeight, pattern, pHeight, pWidth, pSize, pFill} = conf;
 	const text = children.toString();
 
-	return (
-		<BaseTextWithEffect {...props} text={text} styleStateHook={[state,setState]}>
-			{state&&
-				<defs>
-					<linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-						{Array.from(Array(N).keys()).map(n => <stop offset={`${100*n/(N-1)}%`} stopColor={hslToHex(360*n/(N-1),S,L)} key={n}/>)}
-					</linearGradient>
-					<pattern id="hex" width={`${(state.height*bgHeight)/(state.width*bgWidth)*pWidth/pHeight*pSize}%`} height={`${pSize}%`} viewBox={`0 0 ${pWidth} ${pHeight}`}>
-						<path fill={pFill} d={pattern}/>
-					</pattern>
-					
-					<pattern id="pattern" x="0" y="0" width={`${bgWidth*2}%`} height={`${bgHeight}%`} patternUnits="userSpaceOnUse">
-						<rect x="0" y="0" width={`${bgWidth}%`} height="100%" fill="url(#gradient)">
-							<animate
-								attributeType="XML"
-								attributeName="x"
-								from="0" to={`${bgWidth}%`}
-								dur={duration}
-								repeatCount="indefinite"
-							/>
-						</rect>
-						<rect x={`${-bgWidth}%`} y="0" width={`${bgWidth}%`} height="100%" fill="url(#gradient)">
-							<animate
-								attributeType="XML"
-								attributeName="x"
-								from={`${-bgWidth}%`} to="0"
-								dur={duration}
-								repeatCount="indefinite"
-							/>
-						</rect>	
-						<rect x="0" y="0" width={`${bgWidth}%`} height="100%" fill="url(#hex)">
-							<animate
-								attributeType="XML"
-								attributeName="x"
-								from="0" to={`${bgWidth}%`}
-								dur={duration*2/3}
-								repeatCount="indefinite"
-							/>
-						</rect>
-						<rect x={`${-bgWidth}%`} y="0" width={`${bgWidth}%`} height="100%" fill="url(#hex)">
-							<animate
-								attributeType="XML"
-								attributeName="x"
-								from={`${-bgWidth}%`} to="0"
-								dur={duration*2/3}
-								repeatCount="indefinite"
-							/>
-						</rect>	
-					</pattern>
-				</defs>
-			}
-		</BaseTextWithEffect>
-	);
+	return <BaseTextWithEffect text={text} styleStateHook={[state,setState]} {...props}>
+		{state&&<defs>
+			<linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+				{Array.from(Array(N).keys()).map(n => <stop offset={`${100*n/(N-1)}%`} stopColor={hslToHex(360*n/(N-1),S,L)} key={n}/>)}
+			</linearGradient>
+			<pattern id="hex" viewBox={`0 0 ${pWidth} ${pHeight}`} width={`${(state.height*bgHeight)/(state.width*bgWidth)*pWidth/pHeight*pSize}%`} height={`${pSize}%`}>
+				<path fill={pFill} d={pattern}/>
+			</pattern>
+			
+			<pattern id="pattern" x="0" y="0" width={`${bgWidth*2}%`} height={`${bgHeight}%`} patternUnits="userSpaceOnUse">
+				<rect x="0" y="0" width={`${bgWidth}%`} height="100%" fill="url(#gradient)">
+					<animate
+						attributeType="XML"
+						attributeName="x"
+						from="0" to={`${bgWidth}%`}
+						dur={duration}
+						repeatCount="indefinite"
+					/>
+				</rect>
+				<rect x={`${-bgWidth}%`} y="0" width={`${bgWidth}%`} height="100%" fill="url(#gradient)">
+					<animate
+						attributeType="XML"
+						attributeName="x"
+						from={`${-bgWidth}%`} to="0"
+						dur={duration}
+						repeatCount="indefinite"
+					/>
+				</rect>	
+				<rect x="0" y="0" width={`${bgWidth}%`} height="100%" fill="url(#hex)">
+					<animate
+						attributeType="XML"
+						attributeName="x"
+						from="0" to={`${bgWidth}%`}
+						dur={duration*2/3}
+						repeatCount="indefinite"
+					/>
+				</rect>
+				<rect x={`${-bgWidth}%`} y="0" width={`${bgWidth}%`} height="100%" fill="url(#hex)">
+					<animate
+						attributeType="XML"
+						attributeName="x"
+						from={`${-bgWidth}%`} to="0"
+						dur={duration*2/3}
+						repeatCount="indefinite"
+					/>
+				</rect>	
+			</pattern>
+		</defs>}
+	</BaseTextWithEffect>;
 }

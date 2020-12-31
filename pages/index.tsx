@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Link from 'next/link';
 
-import Counter from "../components/Counter";
 import { CardData, CardFlex } from "../components/Card";
 import { DarkThemeWrapper, DarkToggle } from "../components/DarkTheme";
 import { Orientation, IsogridBackground, ScrollHint, RainbowText, Icon } from "../components/Aesthetic";
@@ -9,6 +8,8 @@ import { hideMobileLandscape } from "../components/DeviceOrientationCSS";
 import tw, { css, styled } from "twin.macro";
 
 /*
+import { useState } from "react";
+import { Toggle } from "../components/Toggle";
 function UpdatePropagationTest(){
 	const [test,setTest] = useState(false);
 	return (<>
@@ -20,7 +21,7 @@ function UpdatePropagationTest(){
 
 function Banner(){
 	return (<>
-		<div tw="h-screen w-full -z-10 bg-yellow-200"><IsogridBackground rows={6} cols={6}/></div>
+		<div tw="h-screen w-full -z-25 bg-yellow-200"><IsogridBackground rows={6} cols={6}/></div>
 		<header tw="absolute flex flex-col top-1/4 inset-x-2 p-1 lg:(top-auto right-auto bottom-1/4 ml-5) rounded-lg bg-white bg-opacity-70" css={css`backdrop-filter: blur(0.25rem)`}>
 			<h1 tw="text-5xl rounded px-1 lg:(text-9xl)"><b>J</b>ohn-<b>H</b>enry <b>L</b>im</h1>
 			<span tw="text-2xl lg:text-5xl">
@@ -38,17 +39,17 @@ function Banner(){
 
 const cards:CardData[] = [
 	{
-		link:"https://github.com/Interpause/interpause-dev",
+		href:"https://github.com/Interpause/interpause-dev",
 		title:"Repository",
 		body:"See the code for this website by clicking on this card."
 	},
 	{
-		link:"https://github.com/Interpause",
+		href:"https://github.com/Interpause",
 		title:"Github",
 		body:"Look at my crappy past projects here."
 	},
 	{
-		link:"https://linkedin.com/in/interpause",
+		href:"https://linkedin.com/in/interpause",
 		title:"LinkedIn",
 		body:"Please do not follow me on LinkedIn."
 	},
@@ -57,7 +58,7 @@ const cards:CardData[] = [
 		body:(<>Email me at <a tw="text-blue-400" href="mailto:hyphen@interpause.dev">hyphen@interpause.dev</a></>)
 	},
 	{
-		link:"https://youtube.com/c/Interpause",
+		href:"https://youtube.com/c/Interpause",
 		title:"Youtube",
 		body:"Don't watch my Youtube channel. TODO: add stream scheldule to site."
 	},
@@ -74,7 +75,6 @@ function Main(){
 				<Test>UNDER CONSTRUCTION</Test>
 				<DarkToggle/>
 				<CardFlex cards={cards} tw="font-mono inset-x-0 m-auto"/>
-				<Counter/>
 			</section>
 		</DarkThemeWrapper>
 	);

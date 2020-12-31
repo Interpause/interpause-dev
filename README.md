@@ -73,3 +73,7 @@ I have decided to split into 3 branches, diy-tailwind (make components myself), 
 On Further thought, none of these tailwind component libraries are developed in the least. I might as well continue developing components myself. Will do react-bootstrap if I give up.
 
 I was looking at Vuejs' approach for styling components, then realised I probably should use styled-components (I used emotion instead actually). And then I found tailwind.macro. I think I am satisified with this setup for component styling.
+
+### On twin.macro & tailwind
+
+After thinking about it a bit, I guess in the context of twin.macro, TailwindCSS should be used as nothing more than a set of utility classes, with the componentization of styles done using styled components rather than CSS styles added as plugins to Tailwind. Also means I will refrain from adding Tailwind plugins if it does not fit into the theme of utility only.

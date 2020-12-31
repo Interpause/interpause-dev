@@ -1,52 +1,48 @@
 /**
- * @file ReactJS + TailwindCSS customizable toggle. Did not use twin.macro here due to some design conflicts causing huge render time.
+ * @file ReactJS + twin.macro customizable toggle. 
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
-import "tailwindcss/tailwind.css";
-import { Dispatch, SetStateAction, CSSProperties, useMemo, HTMLProps } from "react";
-import { DefaultLayeredConfig, LayeredConfig, mergeConfigs } from "./LayeredConfig";
+import { Dispatch, SetStateAction, HTMLProps, useRef, useEffect } from "react";
+import tw, { css, styled } from "twin.macro";
+import { StyledComponent } from "@emotion/styled";
 
-export type StyleKeys = "slider"|"bg"|"others";
-export type StateKeys = "on"|"off";
-export type ToggleStyle = LayeredConfig<StyleKeys,StateKeys,string>;
-export const defaultStyle:DefaultLayeredConfig<StyleKeys,StateKeys,string> = {
-	on:{
-		slider:"bg-white",
-		bg:"bg-blue-400",
-		others:"rounded"
-	},
-	off:{
-		slider:"bg-white",
-		bg:"bg-gray-400",
-		others:"rounded"
+export const defaultStyle = css`
+	.slider,.bg{ ${tw`rounded`} }
+	.slider{ ${tw`bg-white`} }
+	.bg{ ${tw`bg-gray-400`} }
+	&.on .bg{ ${tw`bg-blue-400`} }
+`;
+
+export const ToggleWrapper = styled.label`
+	${({height}:{height:number}) => css`--toggle-height:${height}rem`}
+	${tw`select-none`}
+
+	>input[type="checkbox"]{ ${tw`opacity-0 h-0 w-0`} }
+	>.label{
+		${tw`align-middle inline`}
+		font-size:calc(var(--toggle-height)*3/4);
 	}
-};
-export const mergeStyles = (customStyle?:ToggleStyle) => mergeConfigs<StyleKeys,StateKeys,string>(defaultStyle,customStyle);
+	>.wrapper{
+		${tw`relative inline-block align-middle transition-colors`}
+		height:var(--toggle-height);
+		width:calc(var(--toggle-height)*2);
 
-/**
- * calculates the sizes for toggle components using the height of the toggle.
- * @param height height in rem to calculate sizes for toggle components.
- */
-function calculateSizes(height:number){
-	return {
-		slider:{
-			height:`${3/4*height}rem`,
-			width:`${3/4*height}rem`,
-			left:`${1/8*height}rem`,
-			bottom:`${1/8*height}rem`,
-			"--tw-translate-x":`${height}rem`
-		} as CSSProperties,
-		wrapper:{
-			height:`${height}rem`,
-			width:`${2*height}rem`,
-		},
-		label:{
-			fontSize:`${3/4*height}rem`
+		>.slider{
+			${tw`absolute transition-transform`}
+			height:calc(var(--toggle-height)*3/4);
+			width:calc(var(--toggle-height)*3/4);
+			left:calc(var(--toggle-height)*1/8);
+			bottom:calc(var(--toggle-height)*1/8);
 		}
-	};
-}
+		>.bg{ ${tw`absolute inset-0`}	}
+	}
+	&.on .slider{
+		${tw`transform-gpu`}
+		--tw-translate-x:var(--toggle-height);
+	}
+	&:hover .bg{ ${css`box-shadow:inset 0 0 0.5em 0 rgba(0, 0, 0, 0.2)`} }
+`;
 
-// for tw & emotion css to work, at least needs className to be forwarded
 export interface ToggleProps extends HTMLProps<HTMLLabelElement> {
 	/** array returned by React.useState\<boolean\> */
 	toggleHook:[boolean,Dispatch<SetStateAction<boolean>>];
@@ -54,26 +50,17 @@ export interface ToggleProps extends HTMLProps<HTMLLabelElement> {
 	label?:string;
 	/** height of component in rem used for scaling */
 	height?:number;
-	/** custom style classes to apply to toggle. 
-	 * @example {bg:"bg-gray-400",slider:{on:"bg-green-400"}} 
-	 */
-	customStyle?:ToggleStyle;
 }
-
-/** Creates an inline customisable toggle. */
-export function Toggle({toggleHook:[isOn,setOn],label,height=2,customStyle,...props}:ToggleProps){
-	let s = useMemo(() => calculateSizes(height),[height]);
-	let mc = useMemo(() => mergeStyles(customStyle),[mergeStyles,JSON.stringify(customStyle)]); //bug where object dependencies trigger false positives so stringify first
-	let c = mc[isOn?"on":"off"];
-
-	return (
-		<label className={`group select-none`} style={s.label} {...props}>
-			<p className={`align-middle inline`}>{label??""} </p>
-			<input className={`opacity-0 h-0 w-0`} type="checkbox" checked={isOn} onClick={() => setOn(!isOn)} readOnly></input>
-			<div className={`relative inline-block transition-colors align-middle`} style={s.wrapper}>
-				<span className={`absolute inset-0 group-hover:shadow-inner-btn ${c.bg} ${c.others}`}></span>
-				<span className={`absolute transition-transform ${isOn&&"transform-gpu"} ${c.slider} ${c.others}`} style={s.slider}></span>
-			</div>
-		</label>
-	);
+/** Look at defaultStyle for how to customize the toggle. */
+export function Toggle({toggleHook:[isOn,setOn],label,height=2,...props}:ToggleProps){
+	const tRef = useRef<HTMLLabelElement>(null);
+	useEffect(() => tRef.current?.classList[isOn?"add":"remove"]("on"), [isOn]);
+	return <ToggleWrapper ref={tRef} height={height} css={defaultStyle} {...props as StyledComponent<HTMLLabelElement>}>
+		<p className="label">{label??""} </p>
+		<input type="checkbox" checked={isOn} onClick={() => setOn(!isOn)} readOnly></input>
+		<div className="wrapper">
+			<span className="bg"/>
+			<span className="slider"/>
+		</div>
+	</ToggleWrapper>;
 }

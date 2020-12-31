@@ -5,22 +5,22 @@ import { CardData,CardFlex } from "../components/Card";
 export default function Home(){
 	let cards:CardData[] = [
 		{
-			link:"https://nextjs.org/docs",
+			href:"https://nextjs.org/docs",
 			title:"Documentation →",
 			body:"Find in-depth information about Next.js features and API."
 		},
 		{
-			link:"https://nextjs.org/learn",
+			href:"https://nextjs.org/learn",
 			title:"Learn →",
 			body:"Learn about Next.js in an interactive course with quizzes!"
 		},
 		{
-			link:"https://github.com/vercel/next.js/tree/master/examples",
+			href:"https://github.com/vercel/next.js/tree/master/examples",
 			title:"Examples →",
 			body:"Discover and deploy boilerplate example Next.js projects."
 		},
 		{
-			link:"https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app",
+			href:"https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app",
 			title:"Deploy →",
 			body:"Instantly deploy your Next.js site to a public URL with Vercel."
 		}

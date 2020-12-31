@@ -3,7 +3,7 @@
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
 import {useContext, useState, createContext, ReactNode, Dispatch, SetStateAction} from 'react';
-
+import tw, { css } from 'twin.macro';
 import { Toggle, ToggleProps } from "./Toggle";
 
 /* 
@@ -18,7 +18,6 @@ interface darkHook{
 }
 
 export const DarkThemeContext = createContext({} as darkHook);
-
 /** Wrap this around element tree to localize dark theme. */
 export function DarkThemeWrapper({children,darkDefault}:{children:ReactNode,darkDefault?:boolean}){
 	const [isDark,setDark] = useState(darkDefault??false);
@@ -28,7 +27,11 @@ export function DarkThemeWrapper({children,darkDefault}:{children:ReactNode,dark
 		</DarkThemeContext.Provider>
 	);
 }
-
+export const defaultDarkToggleStyle = css`
+	.slider,.bg{ ${tw`rounded-full`} }
+	&.on .slider{ ${tw`bg-green-400`} }
+	&.on .bg{ ${tw`bg-green-200`} }
+`;
 /** Place this as descendant to DarkThemeWrapper to toggle localized dark theme. */
 export function DarkToggle(props:Partial<ToggleProps>){
 	const {isDark,setDark} = useContext(DarkThemeContext);
@@ -37,11 +40,5 @@ export function DarkToggle(props:Partial<ToggleProps>){
 		return <span>DarkToggle failed to load.</span>;
 	}
 	
-	return (
-		<Toggle label="Dark Mode" toggleHook={[isDark,setDark]} height={1.5} customStyle={{
-			others:"rounded-full",
-			slider:{on:"bg-green-400"},
-			bg:{on:"bg-green-200"}
-		}} {...props}/>
-	);
+	return <Toggle label="Dark Mode" toggleHook={[isDark,setDark]} height={1.5} css={defaultDarkToggleStyle} {...props}/>;
 }

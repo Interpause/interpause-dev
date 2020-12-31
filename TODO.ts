@@ -34,7 +34,6 @@
 
 /*
 DarkThemeWrapper should read default from browser preference
-Other things based on NavItem would be dropdown, Navbar needs to be collapsable. 
 BaseCard has a logo, header, badges? and wraps content (til nested JSX)
 
 https://nextjs.org/docs/api-reference/next/amp

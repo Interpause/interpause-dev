@@ -20,7 +20,7 @@ function UpdatePropagationTest(){
 
 function Banner(){
 	return (<>
-		<div tw="h-screen w-full -z-25 bg-yellow-200"><IsogridBackground rows={6} cols={6}/></div>
+		<div tw="h-screen w-full -z-25"><IsogridBackground rows={6} cols={6} gap_ratio={0.025}/></div>
 		<header tw="absolute flex flex-col top-1/4 inset-x-2 p-1 lg:(top-auto right-auto bottom-1/4 ml-5) rounded-lg bg-white bg-opacity-70" css={css`backdrop-filter: blur(0.25rem)`}>
 			<h1 tw="text-5xl rounded px-1 lg:(text-9xl)"><b>J</b>ohn-<b>H</b>enry <b>L</b>im</h1>
 			<span tw="text-2xl lg:text-5xl">

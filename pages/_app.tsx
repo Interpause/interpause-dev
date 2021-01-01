@@ -1,7 +1,9 @@
 import { GlobalStyles } from 'twin.macro';
+import { Global } from '@emotion/react';
 import Head from "next/head";
 import { AppProps } from 'next/app';
 import { Navbar } from "../components/layout";
+import { baseStyle, themeColor } from "../components/theme";
 
 // https://nextjs.org/docs/advanced-features/custom-app
 
@@ -19,15 +21,16 @@ function App({ Component, pageProps }:AppProps) {
 			<link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/>
 			<link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/>
 			<link rel="manifest" href="/favicon/site.webmanifest"/>
-			<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#fde68a"/>
+			<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color={themeColor}/>
 			<link rel="shortcut icon" href="/favicon/favicon.ico"/>
 			<meta name="apple-mobile-web-app-title" content="Interpause.Dev"/>
 			<meta name="application-name" content="Interpause.Dev"/>
-			<meta name="msapplication-TileColor" content="#ffc40d"/>
+			<meta name="msapplication-TileColor" content={themeColor}/>
 			<meta name="msapplication-config" content="/favicon/browserconfig.xml"/>
-			<meta name="theme-color" content="#fde68a"/>
+			<meta name="theme-color" content={themeColor}/>
 		</Head>
 		<GlobalStyles/>
+		<Global styles={baseStyle}/>
 		<Navbar routes = {routes}/>
 		<Component {...pageProps} />
 	</>);

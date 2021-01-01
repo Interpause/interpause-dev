@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { CardData, CardFlex } from "../components/Card";
 import { DarkThemeWrapper, DarkToggle } from "../components/DarkTheme";
-import { Orientation, IsogridBackground, ScrollHint, RainbowText, Icon } from "../components/Aesthetic";
+import { Orientation, IsogridBackground, ScrollHint, RainbowText, Icon } from "../components/Deco";
 import { hideMobileLandscape } from "../components/DeviceOrientationCSS";
 import tw, { css, styled } from "twin.macro";
 

@@ -7,7 +7,7 @@ import tw, { css, styled } from 'twin.macro';
 import { StyledComponent } from "@emotion/styled";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Icon, ICON } from "./Aesthetic";
+import { Icon, ICON } from "./Deco";
 import { mobileScreen } from "./DeviceOrientationCSS";
 
 export const NavItem = styled.li`${tw`relative inline-flex flex-col flex-expand justify-center text-center w-32 p-1`}`;
@@ -23,16 +23,15 @@ export const CollapsableNavbar = styled(BaseNavbar)`
 	${mobileScreen}{
 		${tw`bg-transparent`}
 		>.nav-items{
-			${tw`absolute flex flex-col divide-y-2 divide-x-0 divide-gray-600 bg-black transition-transform transform-gpu top-0 -z-25 m-0`}
+			${tw`absolute flex flex-col divide-y-2 divide-x-0 divide-gray-800 bg-black transition-transform transform-gpu top-0 -z-25 m-0`}
 			padding-top: var(--nav-height);
 		}
 		&:not(.opened){
 			>.nav-items{
-				${tw`pointer-events-none`}
-				--tw-translate-y: -200%;
+				${tw`pointer-events-none -translate-y-full`}
 			}
 		}
-		${NavItem}{ ${tw`w-full text-left`} }
+		${NavItem}{ ${tw`w-full text-left py-2`} }
 	}
 `;
 

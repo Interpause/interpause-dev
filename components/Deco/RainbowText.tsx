@@ -6,18 +6,6 @@
 import { ReactText, useState } from "react";
 import { BaseTextProps, styleState, BaseTextWithEffect } from "./TextEffect";
 
-/** taken from https://stackoverflow.com/a/44134328/9614726 */
-function hslToHex(h:number, s:number, l:number) {
-	l /= 100;
-	const a = s * Math.min(l, 1 - l) / 100;
-	const f = (n:number) => {
-		const k = (n + h / 30) % 12;
-		const color = l - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
-		return Math.round(255 * color).toString(16).padStart(2, '0');   // convert to Hex and prefix "0" if needed
-	};
-	return `#${f(0)}${f(8)}${f(4)}`;
-}
-
 export const RainbowTextConfig = {
 	/** Duration of animation in seconds */
 	duration:20,
@@ -59,7 +47,7 @@ export function RainbowText({children,config,...props}:RainbowTextProps){
 	return <BaseTextWithEffect text={text} styleStateHook={[state,setState]} {...props}>
 		{state&&<defs>
 			<linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-				{Array.from(Array(N).keys()).map(n => <stop offset={`${100*n/(N-1)}%`} stopColor={hslToHex(360*n/(N-1),S,L)} key={n}/>)}
+				{Array.from(Array(N).keys()).map(n => <stop offset={`${100*n/(N-1)}%`} stopColor={`hsl(${360*n/(N-1)}deg,${S}%,${L}%)`} key={n}/>)}
 			</linearGradient>
 			<pattern id="hex" viewBox={`0 0 ${pWidth} ${pHeight}`} width={`${(state.height*bgHeight)/(state.width*bgWidth)*pWidth/pHeight*pSize}%`} height={`${pSize}%`}>
 				<path fill={pFill} d={pattern}/>

@@ -31,7 +31,7 @@ function App({ Component, pageProps }:AppProps) {
 		</Head>
 		<GlobalStyles/>
 		<Global styles={baseStyle}/>
-		<DarkThemeWrapper darkDefault={true}>
+		<DarkThemeWrapper>
 			<Navbar routes={routes}/>
 			<Component {...pageProps} />
 		</DarkThemeWrapper>

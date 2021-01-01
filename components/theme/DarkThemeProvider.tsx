@@ -2,15 +2,9 @@
  * @file Localized Dark Theme using Context API
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
-import {useContext, useState, createContext, ReactNode, Dispatch, SetStateAction} from 'react';
+import {useContext, useState, createContext, ReactNode, Dispatch, SetStateAction, useEffect} from 'react';
 import tw, { css } from 'twin.macro';
 import { Toggle, ToggleProps } from "../input";
-
-/* 
- * NOTE: as there is no way to exclude elements based on whether it has a certain ancestor. 
- * Localised dark themes cannot be implemented by ignoring descendants of a div with .light class.
- * Therefore, higher up the ancestry wrappers will always override lower ones.
- */
 
 interface darkHook{
 	isDark:boolean;
@@ -21,6 +15,16 @@ export const DarkThemeContext = createContext({} as darkHook);
 /** Wrap this around element tree to localize dark theme. */
 export function DarkThemeWrapper({children,darkDefault}:{children:ReactNode,darkDefault?:boolean}){
 	const [isDark,setDark] = useState(darkDefault??false);
+	useEffect(() => {
+		let conf:string|boolean|null = window.localStorage.getItem("darkTheme");
+		if(conf === null){
+			if(typeof darkDefault === "undefined") conf = window.matchMedia('(prefers-color-scheme: dark)').matches;
+			else conf = false;
+		}else conf = conf === "true";
+		setDark(conf);
+	},[darkDefault]);
+	useEffect(() => window.localStorage.setItem("darkTheme",`${isDark}`),[isDark]);
+
 	return <DarkThemeContext.Provider value={{isDark,setDark}}>
 		<div className={isDark?"dark":"light"}>{children}</div>
 	</DarkThemeContext.Provider>;

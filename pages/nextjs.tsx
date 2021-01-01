@@ -1,6 +1,7 @@
 import 'twin.macro';
 import Head from "next/head";
 import { CardData,CardFlex } from "../components/layout";
+import { DarkToggle } from "../components/theme";
 
 export default function Home(){
 	let cards:CardData[] = [
@@ -41,9 +42,9 @@ export default function Home(){
 					<code tw="bg-normal-soft rounded text-xl p-1 font-mono">pages/index.js</code>
 				</p>
 				<CardFlex cards={cards}/>
-				
 			</main>
 
+			<DarkToggle tw="p-3"/>
 			<footer tw="flex justify-center items-center w-full h-8 border-t-2 border-gray-300">
 				<a
 					tw="flex justify-center items-center"

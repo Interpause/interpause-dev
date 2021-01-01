@@ -13,9 +13,9 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "##6d28d9",
-    "background_color": "##6d28d9",
-    "start_url": "http://interpause.dev",
+    "theme_color": "#6d28d9",
+    "background_color": "#6d28d9",
+    "start_url": "https://interpause.dev",
     "display": "browser",
     "orientation": "portrait"
 }

@@ -1,4 +1,4 @@
-import tw, { css, styled } from "twin.macro";
+import { css } from "twin.macro";
 import Head from "next/head";
 import Link from 'next/link';
 
@@ -7,6 +7,7 @@ import { DarkThemeWrapper, DarkToggle } from "../components/theme";
 import { Orientation, IsogridBackground, ScrollHint, RainbowText, Icon } from "../components/deco";
 import { hideMobileLandscape } from "../components/utils";
 
+/*
 import { useState } from "react";
 import { Toggle } from "../components/input";
 function UpdatePropagationTest(){
@@ -16,8 +17,8 @@ function UpdatePropagationTest(){
 		<Toggle toggleHook={[test,setTest]} label="Update Test"/>
 	</>;
 }
+*/
 
-//<RainbowText tw="inline h-6 lg:h-12 mb-0.5 lg:mb-1.5 font-mono font-extrabold">Hyphen Interpause</RainbowText>
 function Banner(){
 	return <>
 		<div tw="h-screen w-full -z-25"><IsogridBackground rows={6} cols={6} gap_ratio={0.025}/></div>
@@ -27,7 +28,7 @@ function Banner(){
 				<span tw="hidden lg:inline">aka </span>
 				<span tw="whitespace-nowrap">
 					<Icon src="/profilePic.svg" tw="h-4 w-4 lg:(h-8 w-8) align-baseline m-0" priority/>{' '}
-					<UpdatePropagationTest/>
+					<RainbowText tw="inline h-6 lg:h-12 mb-0.5 lg:mb-1.5 font-mono font-extrabold">Hyphen Interpause</RainbowText>
 				</span>
 			</span>
 			<h3 tw="text-2xl rounded px-1 lg:(text-5xl)">TODO: non-cringy tagline</h3>
@@ -67,7 +68,7 @@ const cards:CardData[] = [
 	}
 ];
 function Main(){
-	return <section tw="text-center min-h-screen border-t-8 border-theme">
+	return <section tw="text-center min-h-screen border-t-2 border-normal-hard">
 		<h3 tw="text-5xl py-4 font-bold font-comic overflow-hidden">UNDER CONSTRUCTION</h3>
 		<DarkToggle/>
 		<CardFlex cards={cards} tw="font-mono inset-x-0 m-auto"/>
@@ -75,17 +76,15 @@ function Main(){
 }
 
 function Footer(){
-	return <DarkThemeWrapper darkDefault={true}>
-		<footer tw="absolute w-full border-t-2 border-normal-hard bg-normal-soft">
-			<DarkToggle tw="absolute right-1 top-1"/>
-			<p tw="text-lg text-center pt-8 sm:pt-1">TODO: footer{' '}
-				<Link href="/nextjs">
-					<a tw="no-underline text-center text-link-color cursor-pointer hover:underline">Original nextjs template page remade to use tailwindCSS</a>
-				</Link>
-			</p>
-			<p tw="text-sm text-center text-trivial py-1">© {new Date().getFullYear()} Interpause</p>
-		</footer>
-	</DarkThemeWrapper>;
+	return <footer tw="absolute w-full border-t-2 border-normal-hard bg-normal-soft">
+		<DarkToggle tw="absolute right-1 top-1"/>
+		<p tw="text-lg text-center pt-8 sm:pt-1">TODO: footer{' '}
+			<Link href="/nextjs">
+				<a tw="no-underline text-center text-link-color cursor-pointer hover:underline">Original nextjs template page remade to use tailwindCSS</a>
+			</Link>
+		</p>
+		<p tw="text-sm text-center text-trivial py-1">© {new Date().getFullYear()} Interpause</p>
+	</footer>;
 }
 
 export default function Index(){

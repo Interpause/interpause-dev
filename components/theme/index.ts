@@ -1,2 +1,2 @@
-export * from "./DarkTheme";
+export * from "./DarkThemeProvider";
 export * from "./baseTheme";

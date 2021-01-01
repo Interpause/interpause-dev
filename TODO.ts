@@ -33,9 +33,7 @@
  */
 
 /*
-how to implement stuff like text-primary, secondary etc using themeprovider? replace tailwind's dark theme?
 inheritance vs composition part 2: also mention your entire website is coded without OOP at all
-THEIR THEMEPROVIDER IS NOTHING MORE THAN A USECONTEXT WITH AN ARBITRARY OBJECT ITS A SCAM
 
 DarkThemeWrapper should read default from browser preference
 BaseCard has a logo, header, badges? and wraps content (til nested JSX)

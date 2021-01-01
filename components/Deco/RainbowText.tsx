@@ -25,8 +25,8 @@ export const RainbowTextConfig = {
 	pSize:50,
 	/** Color of pattern */
 	pFill:"#fff",
-	/** width of rect used in pattern, should be larger than 100% to transition smoothly. Should use pWidth/pHeight*2 for teselating. */
-	bgWidth:100*28/49*2,
+	/** width of rect used in pattern, should be larger than 100% to transition smoothly. Default allows smooth tessellation. */
+	bgWidth:100*49/28,
 	/** Height of rect used in pattern, just leave at 100% */
 	bgHeight:100
 } as const;

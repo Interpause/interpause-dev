@@ -4,7 +4,7 @@
  */
 import {useContext, useState, createContext, ReactNode, Dispatch, SetStateAction} from 'react';
 import tw, { css } from 'twin.macro';
-import { Toggle, ToggleProps } from "./Toggle";
+import { Toggle, ToggleProps } from "../input";
 
 /* 
  * NOTE: as there is no way to exclude elements based on whether it has a certain ancestor. 

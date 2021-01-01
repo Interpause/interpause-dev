@@ -4,7 +4,7 @@
  */
 import tw, { css, styled } from 'twin.macro';
 import Image, { ImageProps } from "next/image";
-import { OrientableSVG } from "./index";
+import { OrientableSVG } from ".";
 
 export enum ICON {
 	/** https://icomoon.io/ */

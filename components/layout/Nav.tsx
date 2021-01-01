@@ -7,8 +7,8 @@ import tw, { css, styled } from 'twin.macro';
 import { StyledComponent } from "@emotion/styled";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { Icon, ICON } from "./Deco";
-import { mobileScreen } from "./DeviceOrientationCSS";
+import { Icon, ICON } from "../deco";
+import { mobileScreen } from "../utils";
 
 export const NavItem = styled.li`${tw`relative inline-flex flex-col flex-expand justify-center text-center w-32 p-1`}`;
 

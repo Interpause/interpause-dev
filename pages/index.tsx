@@ -1,12 +1,11 @@
+import tw, { css, styled } from "twin.macro";
 import Head from "next/head";
 import Link from 'next/link';
 
-import { CardData, CardFlex } from "../components/Card";
-import { DarkThemeWrapper, DarkToggle } from "../components/DarkTheme";
-import { Orientation, IsogridBackground, ScrollHint, RainbowText, Icon } from "../components/Deco";
-import { hideMobileLandscape } from "../components/DeviceOrientationCSS";
-import tw, { css, styled } from "twin.macro";
-
+import { CardData, CardFlex } from "../components/layout";
+import { DarkThemeWrapper, DarkToggle } from "../components/theme";
+import { Orientation, IsogridBackground, ScrollHint, RainbowText, Icon } from "../components/deco";
+import { hideMobileLandscape } from "../components/utils";
 /*
 import { useState } from "react";
 import { Toggle } from "../components/Toggle";

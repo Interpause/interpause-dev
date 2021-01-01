@@ -1,6 +1,6 @@
 import 'twin.macro';
 import Head from "next/head";
-import { CardData,CardFlex } from "../components/Card";
+import { CardData,CardFlex } from "../components/layout";
 
 export default function Home(){
 	let cards:CardData[] = [

@@ -1,8 +1,8 @@
 import { GlobalStyles } from 'twin.macro';
 import Head from "next/head";
 import { AppProps } from 'next/app';
+import { Navbar } from "../components/layout";
 
-import { Navbar } from "../components/Nav";
 // https://nextjs.org/docs/advanced-features/custom-app
 
 const routes = {"/":"Home","/nextjs":"Smth Else","/robots.txt":"Robots only","/sitemap.xml":"some XML"} as const;

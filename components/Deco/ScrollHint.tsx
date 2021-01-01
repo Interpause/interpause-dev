@@ -2,7 +2,7 @@
  * @file I will put more react SVGs here next time.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
-import { OrientableSVG } from "./index";
+import { OrientableSVG } from ".";
 
 export const lineStyle = {stroke:"currentColor",strokeWidth:8,strokeLinecap:"butt",fill:"none"} as const;
 

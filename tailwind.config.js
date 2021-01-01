@@ -18,7 +18,7 @@ module.exports = {
     zIndex: Object.fromEntries(['auto',100,75,50,25,0,-25,-50,-75,-100].map(n=>[n,n])),
     extend: {
       colors: {
-        'link':"var(--color-link)",
+        'link-color':"var(--color-link)",
         ...newColors
       },
       flex: {

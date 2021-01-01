@@ -14,16 +14,16 @@ export const NavItem = styled.li`${tw`relative inline-flex flex-col flex-expand 
 
 export const BaseNavbar = styled.nav`
 	${({height}:{height:number}) => css`--nav-height:${height}rem`}
-	${tw`absolute flex flex-wrap md:flex-nowrap bg-black text-white top-0 inset-x-0 z-75`}
+	${tw`absolute flex flex-wrap md:flex-nowrap bg-normal-soft md:shadow-md transition-colors top-0 inset-x-0 z-75`}
 	height: var(--nav-height);
-	>.nav-items{ ${tw`inline-flex flex-row w-full lg:w-3/5 divide-x-2 divide-white my-2 overflow-x-auto`} }
+	>.nav-items{ ${tw`inline-flex flex-row w-full lg:w-3/5 divide-x-2 my-2 overflow-x-auto`} }
 `;
 
 export const CollapsableNavbar = styled(BaseNavbar)`
 	${mobileScreen}{
 		${tw`bg-transparent`}
 		>.nav-items{
-			${tw`absolute flex flex-col divide-y-2 divide-x-0 divide-gray-800 bg-black transition-transform transform-gpu top-0 -z-25 m-0`}
+			${tw`absolute flex flex-col divide-y-2 divide-x-0 bg-normal-soft transition-transform motion-reduce:transition-none transform-gpu top-0 -z-25 m-0`}
 			padding-top: var(--nav-height);
 		}
 		&:not(.opened){
@@ -41,7 +41,7 @@ export function NavLink({route,children,...props}:NavLinkProps){
 	const router = useRouter();
 	const currentRoute = router.pathname;
 	const disabled = currentRoute === route;
-	return <NavItem css={disabled?tw`text-gray-400 cursor-not-allowed`:tw`hover:text-blue-400 focus:text-blue-900 cursor-pointer`} {...props as StyledComponent<HTMLUListElement>}>
+	return <NavItem css={disabled?tw`text-trivial cursor-not-allowed`:tw`hocus:text-link-color cursor-pointer`} {...props as StyledComponent<HTMLUListElement>}>
 		{children}
 		<Link href={route}><a tw="absolute inset-0" css={disabled&&tw`hidden`}></a></Link>
 	</NavItem>;
@@ -64,7 +64,7 @@ export function Navbar({routes,itemProps,...props}:NavbarProps){
 			as="button"
 			icon={ICON.menu}
 			onClick={navOpener}
-			tw="flex-shrink-0 md:hidden text-white ring-inset ring-2 ring-yellow-200 bg-yellow-400 rounded-lg bg-opacity-20! hocus:bg-opacity-60! m-1 p-1"
+			tw="flex-shrink-0 md:hidden text-white ring-inset ring-2 ring-theme bg-indigo-400 rounded-lg bg-opacity-20! hocus:bg-opacity-60! m-1 p-1"
 			css={css`height:${height*3/4}rem;width:${height*3/4}rem;backdrop-filter:invert(40%) hue-rotate(60deg)`}
 		/>
 		<ul className="nav-items">{Object.entries(routes).map(([route,text],i) => <NavLink route={route} {...itemProps} key={i}>{text}</NavLink>)}</ul>

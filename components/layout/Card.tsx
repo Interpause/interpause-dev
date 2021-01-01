@@ -16,14 +16,14 @@ export type CardData = HTMLProps<HTMLElement> & {
 }
 
 export const Card = styled.div`
-	${tw`flex-auto rounded border-2 text-left overflow-ellipsis overflow-hidden transition-colors m-4 p-6 w-11/12 sm:(w-5/12 h-64)`}
+	${tw`flex-auto rounded border-2 text-left overflow-hidden transition-colors m-4 p-6 w-11/12 sm:(w-5/12 h-64)`}
 	>.header{ ${tw`mb-4 text-2xl`} }
 	>.body{ ${tw`text-lg`} }
 `;
 
 export const LinkCard = styled(Card)`
-	${tw`hocus:(text-blue-400 border-blue-400)`}
-	>.header{ ${tw`text-blue-400`} }
+	${tw`hocus:(text-link-color border-link-color)`}
+	>.header{ ${tw`text-link-color`} }
 `.withComponent("a");
 
 //TODO generalize this further. Make it a wrapper. Needed for Github Card that will be created in a composition manner.

@@ -7,10 +7,10 @@ import tw, { css, styled } from "twin.macro";
 import { StyledComponent } from "@emotion/styled";
 
 export const defaultStyle = css`
-	.slider,.bg{ ${tw`rounded`} }
+	.slider,.bg{ ${tw`rounded-sm`} }
 	.slider{ ${tw`bg-white`} }
-	.bg{ ${tw`bg-gray-400`} }
-	&.on .bg{ ${tw`bg-blue-400`} }
+	.bg{ ${tw`bg-trivial`} }
+	&.on .bg{ ${tw`bg-theme`} }
 `;
 
 export const ToggleWrapper = styled.label`
@@ -40,7 +40,7 @@ export const ToggleWrapper = styled.label`
 		${tw`transform-gpu`}
 		--tw-translate-x:var(--toggle-height);
 	}
-	&:hover .bg{ ${css`box-shadow:inset 0 0 0.5em 0 rgba(0, 0, 0, 0.2)`} }
+	&:hover .bg{ ${css`box-shadow: 0 0 0.1em 0.05em rgba(0,0,0,0.2) inset`} }
 `;
 
 export interface ToggleProps extends HTMLProps<HTMLLabelElement> {

@@ -21,16 +21,16 @@ export const DarkThemeContext = createContext({} as darkHook);
 /** Wrap this around element tree to localize dark theme. */
 export function DarkThemeWrapper({children,darkDefault}:{children:ReactNode,darkDefault?:boolean}){
 	const [isDark,setDark] = useState(darkDefault??false);
-	return (
-		<DarkThemeContext.Provider value={{isDark,setDark}}>
-			<div className={isDark?"dark":"light"}>{children}</div>
-		</DarkThemeContext.Provider>
-	);
+	return <DarkThemeContext.Provider value={{isDark,setDark}}>
+		<div className={isDark?"dark":"light"}>{children}</div>
+	</DarkThemeContext.Provider>;
 }
 export const defaultDarkToggleStyle = css`
 	.slider,.bg{ ${tw`rounded-full`} }
-	&.on .slider{ ${tw`bg-green-400`} }
-	&.on .bg{ ${tw`bg-green-200`} }
+	.bg{ ${tw`bg-blue-200`} }
+	.slider{ ${tw`bg-yellow-600`} }
+	&.on .bg{ ${tw`bg-gray-900`} }
+	&.on .slider{ ${tw`bg-yellow-200`} }
 `;
 /** Place this as descendant to DarkThemeWrapper to toggle localized dark theme. */
 export function DarkToggle(props:Partial<ToggleProps>){

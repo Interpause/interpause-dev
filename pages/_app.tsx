@@ -3,13 +3,13 @@ import { Global } from '@emotion/react';
 import Head from "next/head";
 import { AppProps } from 'next/app';
 import { Navbar } from "../components/layout";
-import { baseStyle, themeColor } from "../components/theme";
+import { baseStyle, themeColor, DarkThemeWrapper } from "../components/theme";
 
 // https://nextjs.org/docs/advanced-features/custom-app
 
 const routes = {"/":"Home","/nextjs":"Smth Else","/robots.txt":"Robots only","/sitemap.xml":"some XML"} as const;
 function App({ Component, pageProps }:AppProps) {
-	return (<>
+	return <>
 		<Head>			
 			<meta name="robots" content="index, follow"/>
 			<meta httpEquiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -31,9 +31,11 @@ function App({ Component, pageProps }:AppProps) {
 		</Head>
 		<GlobalStyles/>
 		<Global styles={baseStyle}/>
-		<Navbar routes = {routes}/>
-		<Component {...pageProps} />
-	</>);
+		<DarkThemeWrapper darkDefault={true}>
+			<Navbar routes={routes}/>
+			<Component {...pageProps} />
+		</DarkThemeWrapper>
+	</>;
 }
 
 export default App;

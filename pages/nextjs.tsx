@@ -33,12 +33,12 @@ export default function Home(){
 
 			<main tw="flex flex-1 flex-col items-center justify-center py-20 px-0">
 				<h1 tw="text-6xl text-center m-0">
-					Welcome to <a tw="text-blue-500 no-underline hover:underline" href="https://nextjs.org">Next.js!</a>
+					Welcome to <a tw="text-link-color no-underline hover:underline" href="https://nextjs.org">Next.js!</a>
 				</h1>
 
 				<p tw="text-2xl text-center my-4">
 					Get started by editing{' '}
-					<code tw="bg-gray-100 rounded text-xl p-1 font-mono">pages/index.js</code>
+					<code tw="bg-normal-soft rounded text-xl p-1 font-mono">pages/index.js</code>
 				</p>
 				<CardFlex cards={cards}/>
 				

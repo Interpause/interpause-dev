@@ -1,10 +1,11 @@
+import { HTMLProps } from "react";
 import tw, { css } from "twin.macro";
 import Head from "next/head";
 
 import { CardData, CardFlex } from "../components/layout";
 import { DarkToggle } from "../components/theme";
 import { Orientation, IsogridBackground, ScrollHint, RainbowText, Icon, ICON } from "../components/deco";
-import { hideMobileLandscape } from "../components/utils";
+import { hideMobileLandscape, hideMobilePotrait } from "../components/utils";
 import { SocialsBar } from "./_app";
 
 /*
@@ -18,25 +19,72 @@ function UpdatePropagationTest(){
 	</>;
 }
 */
+function IntextImage(props:any){
+	return <a href={props.href}><img tw="inline h-full align-bottom" loading="lazy" {...props}/></a>;
+}
+function Boasting(props:HTMLProps<HTMLElement>){
+	return <section tw="text-left text-lg lg:text-3xl my-2 lg:my-4" {...props}>
+		<h2 tw="text-lg lg:(text-4xl)">Stuff I've used previously <br tw="lg:hidden"/>(+links to those projects): </h2>
+		<ul css={css`
+			li{ ${tw`h-6 lg:h-10 my-2`} }
+			h3{ ${tw`inline-block w-20 lg:w-36`} }
+			span{ ${tw`h-full`} }
+		`}>
+			<li>
+				<h3>Web Dev: </h3>
+				<span>
+					<IntextImage tw="-mx-2" src="/brand_logos/react.svg" alt="React" href="https://github.com/Interpause/interpause-dev"/>,{' '}
+					<IntextImage tw="bg-white rounded px-0.5" src="/brand_logos/nextjs.svg" alt="Nextjs" href="https://github.com/Interpause/interpause-dev"/>,{' '}
+					<IntextImage tw="bg-white rounded p-0.5" src="/brand_logos/flask.svg" alt="Flask" href="https://github.com/Interpause/trailblazers_burden_brothers"/>,{' '}
+					<IntextImage tw="bg-white rounded p-0.5" src="/brand_logos/cordova.svg" alt="Cordova" href="https://github.com/Interpause/metaTTT_App"/>
+				</span>
+			</li>
+			<li>
+				<h3>AI: </h3>
+				<span>
+					<IntextImage src="/brand_logos/pytorch.svg" alt="Pytorch" href="https://github.com/RealNiceBoat"/>,{' '}
+					<IntextImage tw="bg-white rounded" src="/brand_logos/pandas.svg" alt="Pandas" onClick={()=>alert('Turns out I never did a project with Pandas as the main focus. Of course.')}/>,{' '}
+					<IntextImage tw="bg-white rounded p-0.5" src="/brand_logos/sklearn.svg" alt="SKLearn" onClick={()=>alert(`Sorry, I haven't uploaded the RSI code yet`)}/>,{' '}
+					NLTK
+				</span>
+			</li>
+			<li>
+				<h3>CTF: </h3>
+				<span>
+					<IntextImage src="/brand_logos/ghidra.png" alt="Ghidra" onClick={()=>alert(`See Hidden TODO`)}/>,{' '}
+					<IntextImage tw="bg-white rounded p-0.5" src="/brand_logos/zap.svg" alt="ZAP Suite" onClick={()=>alert(`See Hidden TODO`)}/>
+					<span tw="hidden lg:inline-block text-trivial text-xs w-60 overflow-hidden">TODO: Consolidate knowledge from StackTheFlags and Whitehacks into writeups</span>
+				</span>
+			</li>
+			<li>
+				<h3>Robotics: </h3>
+				<span>
+					<IntextImage src="/brand_logos/microbit.png" alt="microbit" href="https://github.com/Interpause/pxt-esp8266iot"/>,{' '}
+					<IntextImage src="/brand_logos/robocup.png" alt="Robocup" onClick={()=>alert(`Will link this to a writeup, or delete.`)}/>
+				</span>
+			</li>
+		</ul>
+		<h2 tw="text-sm lg:(text-lg)">TODO in retrospect this is extremely boastful.</h2>
+	</section>;
+}
 
 function Banner(){
 	return <>
 		<div tw="h-screen w-full -z-25"><IsogridBackground rows={6} cols={6} gap_ratio={0.03}/></div>
-		<header tw="absolute text-center top-1/4 inset-x-2 p-1.5 lg:(top-auto right-auto bottom-1/4 ml-5 text-left) rounded-lg bg-white dark:bg-black bg-opacity-70!" css={css`backdrop-filter: blur(0.4rem)`}>
+		<header tw="absolute text-center top-20 inset-x-1.5 p-2 lg:(top-auto right-auto bottom-48 ml-5 text-left) rounded-lg bg-white dark:bg-black bg-opacity-70!" css={css`backdrop-filter: blur(0.4rem)`}>
 			<h1 tw="text-5xl lg:(text-9xl)"><b>J</b>ohn-<b>H</b>enry <b>L</b>im</h1>
 			<div tw="text-2xl lg:(text-5xl)">
 				<span tw="hidden lg:inline">aka </span>
 				<span tw="whitespace-nowrap">
-					<Icon src="/profilePic.svg" tw="h-4 w-4 lg:(h-8 w-8) align-baseline m-0" priority/>{' '}
+					<Icon src="/profilePic.svg" tw="h-4 w-4 lg:(h-8 w-8) align-baseline m-0"/>{' '}
 					<RainbowText tw="inline h-6 lg:h-12 mb-0.5 lg:mb-1.5 font-mono font-extrabold">Hyphen Interpause</RainbowText>
 				</span>
 			</div>
+			<h2 tw="text-lg lg:(text-4xl)">Jack of all trades cause I procrastinate</h2>
+			<Boasting tw="md:hidden lg:block" css={hideMobileLandscape}/>
 			<SocialsBar tw="mx-auto lg:(mx-0) text-special"/> {/* No idea what colour this should be. Give up. */}
-			<div tw="h-5"></div>
-			<h3 tw="text-left text-xl lg:(text-4xl)">Jack of all trades cause I procrastinate</h3>
-			<p tw="text-left">TODO competency listings</p>
 		</header>
-		<ScrollHint orientation={Orientation.up} tw="absolute bottom-2 mx-auto inset-x-0 h-20 text-white" css={hideMobileLandscape}/>
+		<ScrollHint orientation={Orientation.up} tw="absolute bottom-2 mx-auto inset-x-0 h-20 text-white pointer-events-none" css={hideMobileLandscape}/>
 	</>;
 }
 
@@ -73,6 +121,7 @@ const cards:CardData[] = [
 function Main(){
 	return <section tw="text-center min-h-screen border-t border-normal-hard">
 		<h3 tw="text-5xl py-4 font-bold font-comic overflow-hidden">UNDER CONSTRUCTION</h3>
+		<Boasting tw="pl-4 lg:hidden" css={hideMobilePotrait}/>
 		<DarkToggle/>
 		<CardFlex cards={cards} tw="font-mono m-auto"/>
 	</section>;

@@ -35,13 +35,13 @@ export const CollapsableNavbar = styled(BaseNavbar)`
 	}
 `;
 
-export interface NavLinkProps extends HTMLProps<HTMLUListElement>{ route:string }
+export interface NavLinkProps extends HTMLProps<HTMLLIElement>{ route:string }
 /** group-disabled:{class} can be used in className and children to customize */
 export function NavLink({route,children,...props}:NavLinkProps){
 	const router = useRouter();
 	const currentRoute = router.pathname;
 	const disabled = currentRoute === route;
-	return <NavItem css={disabled?tw`text-trivial cursor-not-allowed`:tw`hocus:text-link-color cursor-pointer`} {...props as StyledComponent<HTMLUListElement>}>
+	return <NavItem css={disabled?tw`text-trivial cursor-not-allowed`:tw`hocus:text-link-color cursor-pointer`} {...props as StyledComponent<HTMLLIElement>}>
 		{children}
 		<Link href={route}><a tw="absolute inset-0" css={disabled&&tw`hidden`}></a></Link>
 	</NavItem>;
@@ -49,7 +49,7 @@ export function NavLink({route,children,...props}:NavLinkProps){
 
 export interface NavbarProps extends HTMLProps<HTMLElement>{
 	routes:Record<string,string>,
-	itemProps?:HTMLProps<HTMLUListElement>
+	itemProps?:HTMLProps<HTMLLIElement>
 }
 //TODO Implement the navbar context provider for in page hiding of navbar, recustomization by page etc
 export function Navbar({routes,itemProps,...props}:NavbarProps){

@@ -23,9 +23,9 @@ export const themeVars = css`
 	--color-normal-soft: 	${theme`colors.gray.100`};
 	--color-normal-hard: 	${theme`colors.gray.400`};
 
-	--color-special: 			${theme`colors.indigo.900`};
+	--color-special: 			${theme`colors.indigo.700`};
 	--color-special-soft: ${theme`colors.indigo.200`};
-	--color-special-hard: ${theme`colors.indigo.500`};
+	--color-special-hard: ${theme`colors.indigo.400`};
 
 	--color-info: 				${theme`colors.blue.900`};
 	--color-info-soft: 		${theme`colors.blue.200`};
@@ -68,6 +68,10 @@ export const baseStyle = css`
 		--color-normal: 			${theme`colors.white`};
 		--color-normal-soft: 	${theme`colors.black`};
 		--color-normal-hard: 	${theme`colors.gray.800`};
+
+		--color-special: 			${theme`colors.indigo.900`};
+		--color-special-soft: ${theme`colors.indigo.300`};
+		--color-special-hard: ${theme`colors.indigo.500`};
 
 		${tw`bg-black text-normal`}
 	}

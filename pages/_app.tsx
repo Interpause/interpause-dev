@@ -1,14 +1,25 @@
+import { HTMLProps } from 'react';
 import { GlobalStyles } from 'twin.macro';
 import { Global } from '@emotion/react';
 import Head from "next/head";
 import { AppProps } from 'next/app';
 import { Navbar } from "../components/layout";
+import { ICON, Icon } from "../components/deco";
 import { baseStyle, themeColor, DarkThemeWrapper } from "../components/theme";
+
+export function SocialsBar(props:HTMLProps<HTMLDivElement>){
+	return <div tw="grid grid-cols-4 w-28 lg:(w-36)" {...props}>
+		<Icon as="a" tw="hocus:text-link-color" href="https://github.com/Interpause" icon={ICON.github}/>
+		<Icon as="a" tw="hocus:text-link-color" href="https://linkedin.com/in/Interpause" icon={ICON.linkedin}/>
+		<Icon as="a" tw="hocus:text-link-color" href="https://youtube.com/c/Interpause" icon={ICON.youtube}/>
+		<Icon as="a" tw="hocus:text-link-color" href="https://youtu.be/dQw4w9WgXcQ" icon={ICON.instagram}/>
+	</div>;
+}
 
 // https://nextjs.org/docs/advanced-features/custom-app
 
 const routes = {"/":"Home","/nextjs":"Smth Else","/robots.txt":"Robots only","/sitemap.xml":"some XML"} as const;
-function App({ Component, pageProps }:AppProps) {
+export default function App({ Component, pageProps }:AppProps) {
 	return <>
 		<Head>			
 			<meta name="robots" content="index, follow"/>
@@ -33,9 +44,7 @@ function App({ Component, pageProps }:AppProps) {
 		<Global styles={baseStyle}/>
 		<DarkThemeWrapper>
 			<Navbar routes={routes} className="dark"/>
-			<Component {...pageProps} />
+			<Component {...pageProps}/>
 		</DarkThemeWrapper>
 	</>;
 }
-
-export default App;

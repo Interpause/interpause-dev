@@ -1,11 +1,11 @@
-import { css } from "twin.macro";
+import tw, { css } from "twin.macro";
 import Head from "next/head";
-import Link from 'next/link';
 
 import { CardData, CardFlex } from "../components/layout";
-import { DarkThemeWrapper, DarkToggle } from "../components/theme";
+import { DarkToggle } from "../components/theme";
 import { Orientation, IsogridBackground, ScrollHint, RainbowText, Icon, ICON } from "../components/deco";
 import { hideMobileLandscape } from "../components/utils";
+import { SocialsBar } from "./_app";
 
 /*
 import { useState } from "react";
@@ -22,7 +22,7 @@ function UpdatePropagationTest(){
 function Banner(){
 	return <>
 		<div tw="h-screen w-full -z-25"><IsogridBackground rows={6} cols={6} gap_ratio={0.03}/></div>
-		<header tw="absolute text-center top-1/4 inset-x-2 p-1.5 lg:(top-auto right-auto bottom-1/4 ml-5 text-left) rounded-lg bg-white dark:bg-black bg-opacity-70!" css={css`backdrop-filter: blur(0.25rem)`}>
+		<header tw="absolute text-center top-1/4 inset-x-2 p-1.5 lg:(top-auto right-auto bottom-1/4 ml-5 text-left) rounded-lg bg-white dark:bg-black bg-opacity-70!" css={css`backdrop-filter: blur(0.4rem)`}>
 			<h1 tw="text-5xl lg:(text-9xl)"><b>J</b>ohn-<b>H</b>enry <b>L</b>im</h1>
 			<div tw="text-2xl lg:(text-5xl)">
 				<span tw="hidden lg:inline">aka </span>
@@ -31,15 +31,10 @@ function Banner(){
 					<RainbowText tw="inline h-6 lg:h-12 mb-0.5 lg:mb-1.5 font-mono font-extrabold">Hyphen Interpause</RainbowText>
 				</span>
 			</div>
-			<div tw="grid grid-cols-4 w-28 mx-auto lg:(mx-0 w-36)">
-				<Icon as="a" tw="hocus:text-link-color" href="https://github.com/Interpause" icon={ICON.github} orientation={90}/>
-				<Icon as="a" tw="hocus:text-link-color" href="https://linkedin.com/in/Interpause" icon={ICON.linkedin}/>
-				<Icon as="a" tw="hocus:text-link-color" href="https://youtube.com/c/Interpause" icon={ICON.youtube} orientation={270}/>
-				<Icon as="a" tw="hocus:text-link-color" href="https://youtu.be/dQw4w9WgXcQ" icon={ICON.instagram} orientation={45}/>
-			</div>
+			<SocialsBar tw="mx-auto lg:(mx-0) text-special"/> {/* No idea what colour this should be. Give up. */}
 			<div tw="h-5"></div>
-			<h3 tw="text-xl lg:(text-4xl)">Jack of all trades cause I like procrastinating</h3>
-			<p>TODO competency listings</p>
+			<h3 tw="text-left text-xl lg:(text-4xl)">Jack of all trades cause I procrastinate</h3>
+			<p tw="text-left">TODO competency listings</p>
 		</header>
 		<ScrollHint orientation={Orientation.up} tw="absolute bottom-2 mx-auto inset-x-0 h-20 text-white" css={hideMobileLandscape}/>
 	</>;
@@ -84,14 +79,17 @@ function Main(){
 }
 
 function Footer(){
-	return <footer tw="absolute w-full border-t border-normal-hard bg-normal-soft">
-		<DarkToggle tw="absolute right-1 top-1"/>
-		<p tw="text-lg text-center pt-8 sm:pt-1">TODO: footer{' '}
-			<Link href="/nextjs">
-				<a tw="no-underline text-center text-link-color cursor-pointer hover:underline">Original nextjs template page remade to use tailwindCSS</a>
-			</Link>
-		</p>
-		<p tw="text-sm text-center text-trivial py-1">© {new Date().getFullYear()} Interpause</p>
+	return <footer tw="absolute flex flex-col justify-end w-full h-32 lg:h-20 border-t border-normal-hard bg-normal-soft">
+		<DarkToggle height={1.2} tw="absolute right-1 top-1"/>
+		<SocialsBar tw="mx-auto mt-2 text-trivial"/>
+		<p tw="text-sm text-center text-trivial mb-2">© {new Date().getFullYear()} Interpause</p>
+		<Icon as="button"
+			onClick={() => document.documentElement.scrollTo({top:0,behavior:"smooth"})}
+			icon={ICON.arrow}
+			tw="absolute lg:hidden top-1 left-1 text-normal opacity-30 hover:opacity-100 h-10 w-10"
+			label="Scroll to top"
+			labelStyle={css`${tw`absolute text-left text-sm left-full top-0 transition-opacity w-16 pl-1`}`}
+		/>
 	</footer>;
 }
 

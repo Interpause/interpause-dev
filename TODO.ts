@@ -35,7 +35,6 @@
 /*
 inheritance vs composition part 2: also mention your entire website is coded without OOP at all
 
-DarkThemeWrapper should read default from browser preference
 BaseCard has a logo, header, badges? and wraps content (til nested JSX)
 
 https://nextjs.org/docs/api-reference/next/amp

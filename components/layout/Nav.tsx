@@ -23,7 +23,7 @@ export const CollapsableNavbar = styled(BaseNavbar)`
 	${mobileScreen}{
 		${tw`bg-transparent`}
 		>.nav-items{
-			${tw`absolute flex flex-col divide-y-2 divide-x-0 bg-normal-soft transition-transform motion-reduce:transition-none transform-gpu top-0 -z-25 m-0`}
+			${tw`absolute flex flex-col divide-y divide-x-0 bg-normal-soft transition-transform motion-reduce:transition-none transform-gpu top-0 -z-25 m-0`}
 			padding-top: var(--nav-height);
 		}
 		&:not(.opened){
@@ -58,7 +58,7 @@ export function Navbar({routes,itemProps,...props}:NavbarProps){
 	const navbar = useRef<HTMLElement>(null);
 	const navOpener = ()=>navbar.current?.classList.toggle("opened");
 	return <CollapsableNavbar ref={navbar} height={height} {...props as StyledComponent<HTMLProps<HTMLElement>>}>
-		<Icon src="/favicon/original-icon.png" tw="m-1 my-auto inset-y-0" css={css`height:${height*3/4}rem;width:${height*3/4}rem;`} priority/>
+		<Icon src="/favicon/original-icon.png" tw="m-1 my-auto" css={css`height:${height*3/4}rem;width:${height*3/4}rem;`} priority/>
 		<span tw="flex-grow md:flex-grow-0"></span>
 		<Icon
 			as="button"

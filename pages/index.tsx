@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import { CardData, CardFlex } from "../components/layout";
 import { DarkThemeWrapper, DarkToggle } from "../components/theme";
-import { Orientation, IsogridBackground, ScrollHint, RainbowText, Icon } from "../components/deco";
+import { Orientation, IsogridBackground, ScrollHint, RainbowText, Icon, ICON } from "../components/deco";
 import { hideMobileLandscape } from "../components/utils";
 
 /*
@@ -21,17 +21,25 @@ function UpdatePropagationTest(){
 
 function Banner(){
 	return <>
-		<div tw="h-screen w-full -z-25"><IsogridBackground rows={6} cols={6} gap_ratio={0.025}/></div>
-		<header tw="absolute flex flex-col top-1/4 inset-x-2 p-1 lg:(top-auto right-auto bottom-1/4 ml-5) rounded-lg bg-white dark:bg-black bg-opacity-70!" css={css`backdrop-filter: blur(0.25rem)`}>
-			<h1 tw="text-5xl rounded px-1 lg:(text-9xl)"><b>J</b>ohn-<b>H</b>enry <b>L</b>im</h1>
-			<span tw="text-2xl lg:text-5xl">
+		<div tw="h-screen w-full -z-25"><IsogridBackground rows={6} cols={6} gap_ratio={0.03}/></div>
+		<header tw="absolute text-center top-1/4 inset-x-2 p-1.5 lg:(top-auto right-auto bottom-1/4 ml-5 text-left) rounded-lg bg-white dark:bg-black bg-opacity-70!" css={css`backdrop-filter: blur(0.25rem)`}>
+			<h1 tw="text-5xl lg:(text-9xl)"><b>J</b>ohn-<b>H</b>enry <b>L</b>im</h1>
+			<div tw="text-2xl lg:(text-5xl)">
 				<span tw="hidden lg:inline">aka </span>
 				<span tw="whitespace-nowrap">
 					<Icon src="/profilePic.svg" tw="h-4 w-4 lg:(h-8 w-8) align-baseline m-0" priority/>{' '}
 					<RainbowText tw="inline h-6 lg:h-12 mb-0.5 lg:mb-1.5 font-mono font-extrabold">Hyphen Interpause</RainbowText>
 				</span>
-			</span>
-			<h3 tw="text-2xl rounded px-1 lg:(text-5xl)">TODO: non-cringy tagline</h3>
+			</div>
+			<div tw="grid grid-cols-4 w-28 mx-auto lg:(mx-0 w-36)">
+				<Icon as="a" tw="hocus:text-link-color" href="https://github.com/Interpause" icon={ICON.github} orientation={90}/>
+				<Icon as="a" tw="hocus:text-link-color" href="https://linkedin.com/in/Interpause" icon={ICON.linkedin}/>
+				<Icon as="a" tw="hocus:text-link-color" href="https://youtube.com/c/Interpause" icon={ICON.youtube} orientation={270}/>
+				<Icon as="a" tw="hocus:text-link-color" href="https://youtu.be/dQw4w9WgXcQ" icon={ICON.instagram} orientation={45}/>
+			</div>
+			<div tw="h-5"></div>
+			<h3 tw="text-xl lg:(text-4xl)">Jack of all trades cause I like procrastinating</h3>
+			<p>TODO competency listings</p>
 		</header>
 		<ScrollHint orientation={Orientation.up} tw="absolute bottom-2 mx-auto inset-x-0 h-20 text-white" css={hideMobileLandscape}/>
 	</>;
@@ -68,15 +76,15 @@ const cards:CardData[] = [
 	}
 ];
 function Main(){
-	return <section tw="text-center min-h-screen border-t-2 border-normal-hard">
+	return <section tw="text-center min-h-screen border-t border-normal-hard">
 		<h3 tw="text-5xl py-4 font-bold font-comic overflow-hidden">UNDER CONSTRUCTION</h3>
 		<DarkToggle/>
-		<CardFlex cards={cards} tw="font-mono inset-x-0 m-auto"/>
+		<CardFlex cards={cards} tw="font-mono m-auto"/>
 	</section>;
 }
 
 function Footer(){
-	return <footer tw="absolute w-full border-t-2 border-normal-hard bg-normal-soft">
+	return <footer tw="absolute w-full border-t border-normal-hard bg-normal-soft">
 		<DarkToggle tw="absolute right-1 top-1"/>
 		<p tw="text-lg text-center pt-8 sm:pt-1">TODO: footer{' '}
 			<Link href="/nextjs">

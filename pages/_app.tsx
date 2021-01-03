@@ -32,7 +32,7 @@ function App({ Component, pageProps }:AppProps) {
 		<GlobalStyles/>
 		<Global styles={baseStyle}/>
 		<DarkThemeWrapper>
-			<Navbar routes={routes}/>
+			<Navbar routes={routes} className="dark"/>
 			<Component {...pageProps} />
 		</DarkThemeWrapper>
 	</>;

@@ -3,7 +3,8 @@ import tw, { css, GlobalStyles } from 'twin.macro';
 import { Global } from '@emotion/react';
 import Head from "next/head";
 import { AppProps } from 'next/app';
-import { Navbar, ToastWrapper } from "../components/layout";
+import { Navbar } from "../components/Nav";
+import { ToastWrapper } from "../components/Toast";
 import { ICON, Icon } from "../components/deco";
 import { baseStyle, themeColor, DarkThemeWrapper } from "../components/theme";
 

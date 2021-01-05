@@ -5,7 +5,7 @@
 import { createContext, Dispatch, HTMLProps, useContext, useEffect, useReducer, useRef } from "react";
 import tw, { css, styled } from "twin.macro";
 import { StyledComponent } from "@emotion/styled";
-import { colorTypes } from "../theme/baseTheme";
+import { colorTypes } from "./theme/baseTheme";
 
 export interface ToastData{
 	text:string,

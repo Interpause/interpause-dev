@@ -2,7 +2,8 @@ import { HTMLProps } from "react";
 import tw, { css } from "twin.macro";
 import Head from "next/head";
 
-import { CardData, CardFlex, useToaster } from "../components/layout";
+import { CardData, CardFlex } from "../components/Card";
+import { useToaster } from "../components/Toast";
 import { DarkToggle } from "../components/theme";
 import { Orientation, IsogridBackground, ScrollHint, RainbowText, Icon, ICON } from "../components/deco";
 import { hideMobileLandscape, hideMobilePotrait } from "../components/utils";

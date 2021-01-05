@@ -1,6 +1,6 @@
 import 'twin.macro';
 import Head from "next/head";
-import { CardData,CardFlex } from "../components/layout";
+import { CardData,CardFlex } from "../components/Card";
 import { DarkToggle } from "../components/theme";
 
 export default function Home(){

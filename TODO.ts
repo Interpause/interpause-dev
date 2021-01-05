@@ -1,3 +1,15 @@
+/*
+finish animated toasts
+
+layout the entire site (what pages are there)
+^put placeholders for now for parts like timelines paragraphs etc
+
+finish github cards and cardgrid, then work on the blog instead
+
+rush the blog using premade stuff, write some blog posts, then finally figure out how to "embed" (restyle) them into the main site for the portfolio stuff
+
+*/
+
 /* MAIN PAGE DESIGN
  * <Banner>
  * John-Henry Lim
@@ -33,12 +45,6 @@
  */
 
 /*
-inheritance vs composition part 2: also mention your entire website is coded without OOP at all
-
-BaseCard has a logo, header, badges? and wraps content (til nested JSX)
-
-https://nextjs.org/docs/api-reference/next/amp
-^maybe look at? or nah
 
 look at graphQL api route example, look at the different CMS examples, finally consider mdx one more time
 
@@ -48,6 +54,7 @@ look at graphQL api route example, look at the different CMS examples, finally c
  * Insert three.js cube animation somewhere for fun. (inserted into LED cube read more page)
  * TODO: can a CMS like Wordpress (what cms) pipe .mdx files to the blog subdomain? MDX sounds damn cool https://mdxjs.com/ TBH: blog subdomain should be separate repo
  * TODO: Visit other .dev sites to get inspiration (much later)
+ * inheritance vs composition part 2: also mention your entire website is coded without OOP at all(maybe in the blog post after doing this site)
  */
 
  /*

@@ -3,7 +3,7 @@ import tw, { css, GlobalStyles } from 'twin.macro';
 import { Global } from '@emotion/react';
 import Head from "next/head";
 import { AppProps } from 'next/app';
-import { Navbar } from "../components/layout";
+import { Navbar, ToastWrapper } from "../components/layout";
 import { ICON, Icon } from "../components/deco";
 import { baseStyle, themeColor, DarkThemeWrapper } from "../components/theme";
 
@@ -43,8 +43,10 @@ export default function App({ Component, pageProps }:AppProps) {
 		<GlobalStyles/>
 		<Global styles={baseStyle}/>
 		<DarkThemeWrapper>
-			<Navbar routes={routes} className="dark"/>
-			<Component {...pageProps}/>
+			<ToastWrapper>
+				<Navbar routes={routes} className="dark"/>
+				<Component {...pageProps}/>
+			</ToastWrapper>
 		</DarkThemeWrapper>
 	</>;
 }

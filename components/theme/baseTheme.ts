@@ -51,6 +51,7 @@ export const themeVars = css`
 	--color-theme-soft: 	${themeColor};
 	--color-theme-hard: 	${themeColor};
 `;
+export type colorTypes = "normal"|"special"|"info"|"trivial"|"good"|"risky"|"bad"|"theme";
 
 // themeVars is put under .light again to allow .dark to be overrided
 export const baseStyle = css`

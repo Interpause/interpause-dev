@@ -2,7 +2,7 @@ import { HTMLProps } from "react";
 import tw, { css } from "twin.macro";
 import Head from "next/head";
 
-import { CardData, CardFlex } from "../components/layout";
+import { CardData, CardFlex, useToaster } from "../components/layout";
 import { DarkToggle } from "../components/theme";
 import { Orientation, IsogridBackground, ScrollHint, RainbowText, Icon, ICON } from "../components/deco";
 import { hideMobileLandscape, hideMobilePotrait } from "../components/utils";
@@ -23,6 +23,7 @@ function IntextImage(props:any){
 	return <a href={props.href}><img tw="inline h-full align-bottom" loading="lazy" {...props}/></a>;
 }
 function Boasting(props:HTMLProps<HTMLElement>){
+	const toast = useToaster();
 	return <section tw="text-left text-lg lg:text-3xl my-2 lg:my-4" {...props}>
 		<h2 tw="text-lg lg:(text-4xl)">Stuff I've used previously <br tw="lg:hidden"/>(+links to those projects): </h2>
 		<ul css={css`
@@ -43,7 +44,7 @@ function Boasting(props:HTMLProps<HTMLElement>){
 				<h3>AI: </h3>
 				<span>
 					<IntextImage src="/brand_logos/pytorch.svg" alt="Pytorch" href="https://github.com/RealNiceBoat"/>,{' '}
-					<IntextImage tw="bg-white rounded" src="/brand_logos/pandas.svg" alt="Pandas" onClick={()=>alert('Turns out I never did a project with Pandas as the main focus. Of course.')}/>,{' '}
+					<IntextImage tw="bg-white rounded" src="/brand_logos/pandas.svg" alt="Pandas" onClick={()=>toast('Turns out I never did a project with Pandas as the main focus. Of course. Turns out I never did a project with Pandas as the main focus. Of course.')}/>,{' '}
 					<IntextImage tw="bg-white rounded p-0.5" src="/brand_logos/sklearn.svg" alt="SKLearn" onClick={()=>alert(`Sorry, I haven't uploaded the RSI code yet`)}/>,{' '}
 					NLTK
 				</span>

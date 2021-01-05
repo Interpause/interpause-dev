@@ -1,5 +1,7 @@
-import { Dispatch, HTMLProps, useReducer } from "react";
+import { createRef, Dispatch, ForwardRefExoticComponent, HTMLProps, useReducer } from "react";
 import "twin.macro";
+import { SerializedStyles } from "@emotion/react";
+import { Transition, TransitionGroup } from 'react-transition-group';
 
 /** Extend this interface to add additional properties to ItemData */
 export interface ItemData extends HTMLProps<HTMLDivElement>{
@@ -36,9 +38,18 @@ export const useListReducer = <ItemType,>() => useReducer((state:ListState<ItemT
 	}
 },{});
 
+export interface animProps {
+	timeout: number | { enter?: number, exit?: number, appear?: number };
+	styles: {
+		[key:string]: SerializedStyles;
+	}
+}
+
 export interface ListProps<ItemType> extends HTMLProps<HTMLDivElement>{
 	reducerHook:[ListState<ItemType>,Dispatch<ListAction<ItemType>>],
-	ListItemComponent:(props: ListItemProps<ItemType>) => JSX.Element
+	/** (props:ListItemProps<ItemType>) => JSX.Element wrapped by React.ForwardRef */
+	listItemComponent:ForwardRefExoticComponent<any>, //I give up.
+	animProps?:animProps
 }
 
 export type ListItemProps<ItemType> = {
@@ -46,31 +57,21 @@ export type ListItemProps<ItemType> = {
 	id:string;
 } & ItemType;
 
-export function List<ItemType>({reducerHook,ListItemComponent,...props}:ListProps<ItemType>){
+export function List<ItemType>({reducerHook,listItemComponent:Item,animProps,...props}:ListProps<ItemType>){
 	const [state, dispatch] = reducerHook;
 	return <div {...props}>
-		{Object.entries(state).map(([key,item]) => <ListItemComponent dispatch={dispatch} {...item} key={key} id={key}/>)}
+		<TransitionGroup component={null}>
+			{Object.entries(state).map(([key,item]) => {
+				const itemRef = createRef<HTMLElement>();
+				return <Transition nodeRef={itemRef} key={key}
+					timeout={animProps?.timeout??0}
+				>
+					{animState => <Item ref={itemRef} dispatch={dispatch} {...item} css={animProps&&animProps.styles[animState]} id={key}/>}
+				</Transition>
+			})}
+		</TransitionGroup>
 		{props.children}
 	</div>;
 }
 
-/** Simple example of how to extend List */
-export interface TestItemData extends ItemData{
-	duration:number;
-}
-
-/** Simple example of how to extend List */
-export function TestListItem({dispatch,...props}:ListItemProps<TestItemData>){
-	const delItem = () => dispatch({type:"delItem",id:props.id});
-	return <div tw="flex-row" {...props}><span>{props.children}</span><button onClick={delItem}>X</button></div>;
-}
-
-/** Simple example of how to extend List */
-export function TestList(){
-	const [state,dispatch] = useListReducer<TestItemData>();
-	const addItem = () => dispatch({type:"addItem",id:`${Date.now()}`,data:{children:Date.now(),duration:1000}});
-	return <List<TestItemData> tw="flex flex-col" ListItemComponent={TestListItem} reducerHook={[state,dispatch]}>
-		<button onClick={addItem}>Add Item</button>
-	</List>
-}
-//see Toast.tsx for a complete example
+//see Toast.tsx for an example of how to use these

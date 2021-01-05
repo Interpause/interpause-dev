@@ -45,16 +45,16 @@ function Boasting(props:HTMLProps<HTMLElement>){
 				<h3>AI: </h3>
 				<span>
 					<IntextImage src="/brand_logos/pytorch.svg" alt="Pytorch" href="https://github.com/RealNiceBoat"/>,{' '}
-					<IntextImage tw="bg-white rounded" src="/brand_logos/pandas.svg" alt="Pandas" onClick={()=>toast('Turns out I never did a project with Pandas as the main focus. Of course. Turns out I never did a project with Pandas as the main focus. Of course.')}/>,{' '}
-					<IntextImage tw="bg-white rounded p-0.5" src="/brand_logos/sklearn.svg" alt="SKLearn" onClick={()=>alert(`Sorry, I haven't uploaded the RSI code yet`)}/>,{' '}
+					<IntextImage tw="bg-white rounded" src="/brand_logos/pandas.svg" alt="Pandas" onClick={()=>toast('Turns out I never did a project with Pandas as the main focus. Of course. Turns out I never did a project with Pandas as the main focus. Of course.',{type:"trivial"})}/>,{' '}
+					<IntextImage tw="bg-white rounded p-0.5" src="/brand_logos/sklearn.svg" alt="SKLearn" onClick={()=>toast(`Sorry, I haven't uploaded the RSI code yet`,{type:"risky"})}/>,{' '}
 					NLTK
 				</span>
 			</li>
 			<li>
 				<h3>CTF: </h3>
 				<span>
-					<IntextImage src="/brand_logos/ghidra.png" alt="Ghidra" onClick={()=>alert(`See Hidden TODO`)}/>,{' '}
-					<IntextImage tw="bg-white rounded p-0.5" src="/brand_logos/zap.svg" alt="ZAP Suite" onClick={()=>alert(`See Hidden TODO`)}/>
+					<IntextImage src="/brand_logos/ghidra.png" alt="Ghidra" onClick={()=>toast(`See Hidden TODO`,{type:"special"})}/>,{' '}
+					<IntextImage tw="bg-white rounded p-0.5" src="/brand_logos/zap.svg" alt="ZAP Suite" onClick={()=>toast(`See Hidden TODO`,{type:"special"})}/>
 					<span tw="hidden lg:inline-block text-trivial text-xs w-60 overflow-hidden">TODO: Consolidate knowledge from StackTheFlags and Whitehacks into writeups</span>
 				</span>
 			</li>
@@ -62,7 +62,7 @@ function Boasting(props:HTMLProps<HTMLElement>){
 				<h3>Robotics: </h3>
 				<span>
 					<IntextImage src="/brand_logos/microbit.png" alt="microbit" href="https://github.com/Interpause/pxt-esp8266iot"/>,{' '}
-					<IntextImage src="/brand_logos/robocup.png" alt="Robocup" onClick={()=>alert(`Will link this to a writeup, or delete.`)}/>
+					<IntextImage src="/brand_logos/robocup.png" alt="Robocup" onClick={()=>toast(`Will link this to a writeup, or delete.`,{type:"info"})}/>
 				</span>
 			</li>
 		</ul>

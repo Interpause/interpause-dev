@@ -15,7 +15,8 @@ export enum ICON {
 	youtube="M426.7 398.2l227.5 113.6l-227.5 114v-227.6zm597.3-184.9v597.3c0 117.8-95.5 213.3-213.3 213.3h-597.3c-117.8 0-213.3-95.5-213.3-213.3v-597.3c0-117.8 95.5-213.3 213.3-213.3h597.3c117.8 0 213.3 95.5 213.3 213.3zm-170.7 298.7c-.9-175.9-13.8-243.2-124.7-250.8c-102.5-7-330.8-7-433.2 0c-110.8 7.6-123.9 74.5-124.8 250.8c.9 175.9 13.8 243.2 124.7 250.8c102.4 7 330.7 7 433.2 0c110.8-7.6 123.9-74.5 124.8-250.8z",
 	/** I made these myself */
 	menu='M64 288A1 1 0 0164 224H960A1 1 0 01960 288H64ZM64 800A1 1 0 0164 736H960A1 1 0 01960 800H64ZM64 544A1 1 0 0164 480H960A1 1 0 01960 544H64Z',
-	arrow="M480 992a1 1 0 0064 0V96l384 384a1 1 0 0045.3-45.3l-384-384C544 0 480 0 434.7 50.7l-384 384A1 1 0 0096 480l384-384Z"
+	arrow="M480 992a1 1 0 0064 0V96l384 384a1 1 0 0045.3-45.3l-384-384C544 0 480 0 434.7 50.7l-384 384A1 1 0 0096 480l384-384Z",
+	cross="M128 0L0 128l384 384L0 896l128 128L512 640l384 384L1024 896L640 512L1024 128L896 0L512 384Z"
 }
 
 // TODO implement icon label as figcaption lol
@@ -30,8 +31,8 @@ export type IconProps = (
 	) &
 	{as?:keyof JSX.IntrinsicElements,href?:string,label?:string,labelStyle?:SerializedStyles};
 /** Must restyle with height and width. Either specify icon which is enum ICON or src which is path. */
-export function Icon({orientation,className,href,as,label,labelStyle,...props}:IconProps){
-	return <IconWrapper as={as} className={`${className} group`} orientation={orientation} href={href}>
+export function Icon({orientation,className,href,as,label,labelStyle,onClick,...props}:IconProps){
+	return <IconWrapper as={as} className={`${className} group`} orientation={orientation} href={href} onClick={onClick as any}>
 		{
 			("src" in props)?
 				(<Image layout="fill" {...props}/>)

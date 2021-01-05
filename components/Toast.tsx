@@ -1,78 +1,54 @@
-/**
- * @file running out of patience. expect my code quality to drop significantly.
- * @author John-Henry Lim <hyphen@interpause.dev>
- */
-import { createContext, Dispatch, HTMLProps, useContext, useEffect, useReducer, useRef } from "react";
-import tw, { css, styled } from "twin.macro";
-import { StyledComponent } from "@emotion/styled";
+import { createContext, useContext, Dispatch, useEffect } from "react";
+import tw, { css } from "twin.macro";
 import { colorTypes } from "./theme/baseTheme";
+import { ItemData, ListItemProps, useListReducer, ListAction, List, ListProps } from "./List";
+import { Icon, ICON } from "./deco";
 
-export interface ToastData{
-	text:string,
-	toastRef:symbol,
-	type:colorTypes,
-	duration:number,
-	props?:StyledComponent<HTMLDivElement>
+export interface ToastData extends ItemData{
+	type?:colorTypes;
+	duration:number;
 }
-export type ToastAction = { type:"addToast", data:Partial<ToastData> } | { type:"removeToast", data:Symbol } | {type:"removeAll"};
-function toastReducer(state:ToastData[], action:ToastAction){
-	switch(action.type){
-		case "addToast":
-			//assign defaults
-			const newdata:ToastData = {
-				text:"EMPTY",
-				toastRef:Symbol("Toast Reference"),
-				type:"normal",
-				duration:20000,
-				props:undefined,
-				...action.data
-			};
-			return [...state,newdata];
-		case "removeToast":
-			return state.filter(v => v.toastRef !== action.data);
-		case "removeAll":
-			return [];
-		default:
-			throw new Error("how did you even? THIS IS TYPESCRIPT DAMNIT");
-	}
-}
+export const DefaultToastData = {
+	type:"normal",
+	duration:1000
+} as const;
 
-export const ToastContext = createContext<Dispatch<ToastAction>|undefined>(undefined);
+export const ToastContext = createContext<Dispatch<ListAction<ToastData>>>(()=>console.error("ToastContext was not provided!"));
 
-const ToastDiv = styled.div`
-	${tw`flex flex-row rounded border-2 p-1 lg:max-w-2xl`}
-	${({type}:{type:string}) => css`
-		color:var(--color-${type??"normal"});
-		background-color:var(--color-${type??"normal"}-soft);
-		border-color:var(--color-${type??"normal"}-hard);
-	`}
+export const getToastStyle = (type:string) => css`
+	${tw`relative flex flex-row rounded border-2 lg:max-w-2xl transition-all`}
+
+	color:var(--color-${type});
+	background-color:var(--color-${type}-soft);
+	border-color:var(--color-${type}-hard);
 `;
-const ToastContainer = styled.div`
-	${tw`fixed flex flex-col justify-end inset-x-2 bottom-2 gap-2 lg:left-auto z-100`}
-`;
-function Toast({text,toastRef,type,duration,props}:ToastData){
-	const dispatch = useContext(ToastContext);
-	const closeFunc = async () => {
-		dispatch&&dispatch({type:"removeToast",data:toastRef});
-	};
-	useEffect(() => {
-		setTimeout(closeFunc,duration);
-	},[]);
-	return <ToastDiv {...props} type={type}><p>{text}</p><button tw="float-right align-middle p-1 ml-2" onClick={closeFunc}>x</button></ToastDiv>;
+
+export function Toast({type="normal",dispatch,...props}:ListItemProps<ToastData>){
+	const delToast = () => dispatch({type:"delItem",id:props.id});
+	useEffect(()=>{
+
+	},[props.duration])
+	return <div css={getToastStyle(type)} {...props}><span tw="p-1">{props.children}</span><Icon as="button" icon={ICON.cross} tw="flex-none w-4 mr-1 ml-2 self-stretch opacity-60 hocus:opacity-100" onClick={delToast}/></div>;
 }
 
-export function ToastWrapper(props:HTMLProps<HTMLDivElement>){
-	const [state, dispatch] = useReducer(toastReducer,[]);
-	const container = useRef<HTMLDivElement>(null);
+export function ToastWrapper(props:Omit<ListProps<ToastData>,"ListItemComponent"|"reducerHook">){
+	const [state, dispatch] = useListReducer<ToastData>();
 	return <ToastContext.Provider value={dispatch}>
-		<ToastContainer ref={container}>
-			{state.map((t,i) => <Toast {...t} key={i}/>)}
-		</ToastContainer>
+		<List<ToastData> 
+			tw="fixed flex flex-col justify-end inset-x-2 bottom-2 gap-2 lg:left-auto z-100"
+			ListItemComponent={Toast}
+			reducerHook={[state,dispatch]}
+			{...props}
+		>{""}</List>
 		{props.children}
 	</ToastContext.Provider>;
 }
 
 export function useToaster(){
 	const dispatch = useContext(ToastContext);
-	return (text:string,conf?:Partial<Omit<ToastData,"ref"|"text">>) => dispatch&&dispatch({type:"addToast",data:{...conf,text:text}});
+	return (text:string,conf?:Partial<ToastData>) => dispatch({
+		type:"addItem",
+		id:`${Date.now()}`,
+		data:{...DefaultToastData,...conf,children:text}
+	});
 }

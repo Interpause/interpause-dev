@@ -17,3 +17,4 @@ export * from "./IsogridBackground";
 export * from "./Icon";
 export * from "./TextEffect";
 export * from "./RainbowText";
+export * from "./LazyImage";

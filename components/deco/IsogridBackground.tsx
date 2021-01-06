@@ -1,5 +1,5 @@
 /**
- * @file Pure JS SVG generator I made long ago updated using React (refrained from renaming variables). Used in my phone game and other places I needed a background for.
+ * @file Pure JS SVG generator I made long ago updated using jsx (refrained from renaming variables). Used in my phone game and other places I needed a background for.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
 /** Very fast barely RNG random number generator */

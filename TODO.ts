@@ -1,8 +1,7 @@
 /*
-finish animated toasts
-
 layout the entire site (what pages are there)
 ^put placeholders for now for parts like timelines paragraphs etc
+^Timeline, NoteStream, Interactive Skill 2 Project circle,
 
 finish github cards and cardgrid, then work on the blog instead
 

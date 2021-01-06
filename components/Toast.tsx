@@ -1,10 +1,14 @@
-import { createContext, useContext, Dispatch, useEffect, forwardRef } from "react";
+/**
+ * @file lag issue once exceeding 10 toasts. no max toast limit/fade out effect but I don't think I will need to implement that.
+ * @author John-Henry Lim <hyphen@interpause.dev>
+ */
+import { createContext, useContext, Dispatch, useEffect, HTMLProps, ForwardedRef } from "react";
 import tw, { css } from "twin.macro";
 import { colorTypes } from "./theme/baseTheme";
-import { ItemData, ListItemProps, useListReducer, ListAction, List, ListProps } from "./List";
+import { ListItemProps, useListReducer, ListAction, List, ListProps } from "./utils";
 import { Icon, ICON } from "./deco";
 
-export interface ToastData extends ItemData{
+export interface ToastData extends HTMLProps<HTMLDivElement>{
 	type:colorTypes;
 	duration:number;
 }
@@ -40,7 +44,7 @@ export const DefaultToastAnim = {
 	}
 } as const;
 
-export const Toast = forwardRef<HTMLDivElement,ListItemProps<ToastData>>(({type,dispatch,...props},ref) => {
+export function Toast({type,dispatch,...props}:ListItemProps<ToastData>,ref:ForwardedRef<HTMLDivElement>){
 	const delToast = () => dispatch({type:"delItem",id:props.id});
 	useEffect(()=>{
 		const id = setTimeout(delToast,props.duration);
@@ -50,7 +54,7 @@ export const Toast = forwardRef<HTMLDivElement,ListItemProps<ToastData>>(({type,
 		<span tw="p-1">{props.children}</span>
 		<Icon as="button" icon={ICON.cross} tw="flex-none w-4 mr-1 ml-2 self-stretch opacity-60 hocus:opacity-100" onClick={delToast}/>
 	</div>;
-});
+}
 
 export function ToastWrapper(props:Omit<ListProps<ToastData>,"listItemComponent"|"reducerHook">){
 	const [state, dispatch] = useListReducer<ToastData>();

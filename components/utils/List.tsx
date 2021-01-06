@@ -1,12 +1,11 @@
-import { createRef, Dispatch, ForwardRefExoticComponent, HTMLProps, useReducer } from "react";
+/**
+ * @file Magic stuff to easily make animated lists of things. See Toast.tsx for example usage.
+ * @author John-Henry Lim <hyphen@interpause.dev>
+ */
+import { createRef, Dispatch, ForwardedRef, forwardRef, HTMLProps, useReducer } from "react";
 import "twin.macro";
 import { SerializedStyles } from "@emotion/react";
 import { Transition, TransitionGroup } from 'react-transition-group';
-
-/** Extend this interface to add additional properties to ItemData */
-export interface ItemData extends HTMLProps<HTMLDivElement>{
-
-}
 
 export type ListAction<ItemType> = {
 	type:"delAll";
@@ -47,8 +46,8 @@ export interface animProps {
 
 export interface ListProps<ItemType> extends HTMLProps<HTMLDivElement>{
 	reducerHook:[ListState<ItemType>,Dispatch<ListAction<ItemType>>],
-	/** (props:ListItemProps<ItemType>) => JSX.Element wrapped by React.ForwardRef */
-	listItemComponent:ForwardRefExoticComponent<any>, //I give up.
+	/** listItemComponent will be wrapped by React.ForwardRef */
+	listItemComponent:(props:ListItemProps<ItemType>,ref:ForwardedRef<HTMLDivElement>) => JSX.Element,
 	animProps?:animProps
 }
 
@@ -57,21 +56,24 @@ export type ListItemProps<ItemType> = {
 	id:string;
 } & ItemType;
 
-export function List<ItemType>({reducerHook,listItemComponent:Item,animProps,...props}:ListProps<ItemType>){
+
+export function List<ItemType>({reducerHook,listItemComponent,animProps,...props}:ListProps<ItemType>){
 	const [state, dispatch] = reducerHook;
+	const Item = forwardRef(listItemComponent);
 	return <div {...props}>
 		<TransitionGroup component={null}>
 			{Object.entries(state).map(([key,item]) => {
-				const itemRef = createRef<HTMLElement>();
+				const itemRef = createRef<HTMLDivElement>();
 				return <Transition nodeRef={itemRef} key={key}
 					timeout={animProps?.timeout??0}
 				>
-					{animState => <Item ref={itemRef} dispatch={dispatch} {...item} css={animProps&&animProps.styles[animState]} id={key}/>}
+					{animState =>
+						//@ts-ignore some type-checking bug that expectedly comes around when it gets so complex
+						<Item ref={itemRef} {...item} dispatch={dispatch} css={animProps&&animProps.styles[animState]} id={key}/>
+					}
 				</Transition>
 			})}
 		</TransitionGroup>
 		{props.children}
 	</div>;
 }
-
-//see Toast.tsx for an example of how to use these

@@ -79,7 +79,7 @@ export function Navbar({routes,itemProps,...props}:NavbarProps){
 			css={css`height:${height*3/4}rem;width:${height*3/4}rem;backdrop-filter:invert(40%) hue-rotate(60deg)`}
 		/>
 		<ul className="nav-items">
-			{Object.entries(routes).map(([route,text],i) => <NavLink route={route} {...itemProps} key={i}>{text}</NavLink>)}
+			{Object.entries(routes).map(([route,text],i) => <NavLink route={route} {...itemProps} key={i} onClick={navOpener}>{text}</NavLink>)}
 			<NavItem tw="flex-grow max-w-full hidden lg:inline-flex"></NavItem>
 			<NavItem tw="w-40 flex-none"><DarkToggle height={1.25}/></NavItem>
 		</ul>

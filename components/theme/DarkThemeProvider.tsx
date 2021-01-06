@@ -15,6 +15,7 @@ export const DarkThemeContext = createContext({} as darkHook);
 /** Wrap this around element tree to localize dark theme. */
 export function DarkThemeWrapper({children,darkDefault}:{children:ReactNode,darkDefault?:boolean}){
 	const [isDark,setDark] = useState(darkDefault??false);
+	// reads dark theme from LocalStorage then system preference
 	useEffect(() => {
 		let conf:string|boolean|null = window.localStorage.getItem("darkTheme");
 		if(conf === null){

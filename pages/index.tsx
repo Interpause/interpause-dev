@@ -1,4 +1,4 @@
-import { css } from "twin.macro";
+import tw, { css } from "twin.macro";
 import Head from "next/head";
 
 import { CardData, CardFlex } from "../components/Card";
@@ -16,7 +16,7 @@ function Banner(){
 	const d = new Date();
 	return <>
 		<div tw="h-screen w-full -z-25"><IsogridBackground rows={6} cols={6} gap_ratio={0.03} rand_seed={d.getFullYear()*(d.getDate()+Math.PI)*(d.getMonth()+Math.PI)*(d.getMinutes()+Math.PI)}/></div>
-		<header tw="absolute text-center top-20 inset-x-1.5 p-2 lg:(top-auto right-auto bottom-48 ml-5 text-left) rounded-lg bg-white dark:bg-black bg-opacity-70!" css={css`backdrop-filter: blur(0.4rem)`}>
+		<header tw="absolute text-center top-20 inset-x-1.5 p-2 lg:(top-auto right-auto bottom-48 ml-5 text-left) rounded-lg bg-opacity-70" css={css`background-color: rgba(var(--bg-color),var(--tw-bg-opacity)); backdrop-filter: blur(0.4rem)`}>
 			<h1 tw="text-5xl lg:(text-9xl) font-thin">John-Henry Lim</h1>
 			<div tw="text-2xl lg:(text-5xl)">
 				<span tw="hidden lg:inline">aka </span>

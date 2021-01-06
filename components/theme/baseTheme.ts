@@ -50,6 +50,8 @@ export const themeVars = css`
 	--color-theme: 				${themeColor};
 	--color-theme-soft: 	${themeColor};
 	--color-theme-hard: 	${themeColor};
+
+	--bg-color: 255,255,255;
 `;
 export type colorTypes = "normal"|"special"|"info"|"trivial"|"good"|"risky"|"bad"|"theme";
 
@@ -60,11 +62,11 @@ export const baseStyle = css`
 		${tw`text-normal text-center`}
 		scroll-behavior: smooth;
 		@media (prefers-reduced-motion) { scroll-behavior: auto; }
-		* { ${tw`border-normal-hard placeholder-normal-soft overflow-ellipsis`} }
 	}
 	.light{
 		${themeVars}
 		${tw`bg-white text-normal`}
+		* { ${tw`border-normal-hard placeholder-normal-soft overflow-ellipsis`} }
 	}
 	.dark{
 		${themeVars}
@@ -76,6 +78,9 @@ export const baseStyle = css`
 		--color-special-soft: ${theme`colors.indigo.300`};
 		--color-special-hard: ${theme`colors.indigo.500`};
 
+		--bg-color: 0,0,0;
+
 		${tw`bg-black text-normal`}
+		* { ${tw`border-normal-hard placeholder-normal-soft overflow-ellipsis`} }
 	}
 `;

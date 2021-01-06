@@ -57,7 +57,9 @@ export type colorTypes = "normal"|"special"|"info"|"trivial"|"good"|"risky"|"bad
 export const baseStyle = css`
 	:root{
 		${themeVars}
-		${tw`text-normal`}
+		${tw`text-normal text-center`}
+		scroll-behavior: smooth;
+		@media (prefers-reduced-motion) { scroll-behavior: auto; }
 		* { ${tw`border-normal-hard placeholder-normal-soft overflow-ellipsis`} }
 	}
 	.light{

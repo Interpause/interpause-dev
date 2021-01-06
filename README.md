@@ -8,7 +8,7 @@ That said, excessive time and effort was spent making barely decent components. 
 
 ## Description
 
-This is a [Next.js](https://nextjs.org/) project deployed on the [Vercel Platform](https://vercel.com/). While I called them "barely decent", I designed my [components](/components) with reuseability in mind, with some being relatively free of dependencies, so perhaps you could take a look at them?
+This is a [Next.js](https://nextjs.org/) project deployed on the [Vercel Platform](https://vercel.com/). While I called them "barely decent", I designed my [components](/components)(except those under /personal) with reuseability in mind, with some being relatively free of dependencies, so perhaps you could take a look at them?
 
 When completed, this website will serve several purposes:
 

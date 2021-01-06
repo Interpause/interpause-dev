@@ -1,25 +1,14 @@
-import { HTMLProps } from 'react';
-import tw, { css, GlobalStyles } from 'twin.macro';
+import { GlobalStyles } from 'twin.macro';
 import { Global } from '@emotion/react';
 import Head from "next/head";
 import { AppProps } from 'next/app';
 import { Navbar } from "../components/Nav";
 import { ToastWrapper } from "../components/Toast";
-import { ICON, Icon } from "../components/deco";
 import { baseStyle, themeColor, DarkThemeWrapper } from "../components/theme";
-
-export function SocialsBar(props:HTMLProps<HTMLDivElement>){
-	return <div tw="grid grid-cols-4 w-28 lg:(w-36)" css={css`a{ ${tw`hocus:text-link-color`} }`} {...props}>
-		<Icon as="a" href="https://github.com/Interpause" icon={ICON.github}/>
-		<Icon as="a" href="https://linkedin.com/in/Interpause" icon={ICON.linkedin}/>
-		<Icon as="a" href="https://youtube.com/c/Interpause" icon={ICON.youtube}/>
-		<Icon as="a" href="https://youtu.be/dQw4w9WgXcQ" icon={ICON.instagram}/>
-	</div>;
-}
 
 // https://nextjs.org/docs/advanced-features/custom-app
 
-const routes = {"/":"Home","/nextjs":"Smth Else","/robots.txt":"Robots only","/sitemap.xml":"some XML"} as const;
+const routes = {"/":"Home","/#main":"Projects","/#timeline":"Timeline","/#about":"About Me","/gallery":"Gallery"} as const;
 export default function App({ Component, pageProps }:AppProps) {
 	return <>
 		<Head>			

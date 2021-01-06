@@ -1,7 +1,5 @@
 /*
 layout the entire site (what pages are there)
-^put placeholders for now for parts like timelines paragraphs etc
-^Timeline, NoteStream, Interactive Skill 2 Project circle,
 
 finish github cards and cardgrid, then work on the blog instead
 
@@ -10,21 +8,6 @@ rush the blog using premade stuff, write some blog posts, then finally figure ou
 */
 
 /* MAIN PAGE DESIGN
- * <Banner>
- * John-Henry Lim
- * aka Hyphen Interpause <logo>
- * <social media icons>
- * 
- * Maker of all trades cause I like procrastinating
- * Web: NextJs, React, React-Redux, GraphQL, Typescript //hide those you dont know yet damnit
- * IoT: Microbit, ... //needs icons
- * Cybersec: ...
- * ...
- * (Links to examples of me learning above languages/frameworks)
- * 
- * Click to see code generating this background!
- * 
- * <End Banner>
  * <Section>
  * Projects: Featured Only <toggle>
  * Github card <stars, forks, watches> (active OR done)
@@ -32,9 +15,6 @@ rush the blog using premade stuff, write some blog posts, then finally figure ou
  * Preview Readme //default, opens readme in modal
  * OR See More //links to page where I elaborate on the experience
  * <End Section>
- * Who I am
- * <potrait or picture slideshow> <some paragraph spam> See more
- * //see more links to page with like My Vision, My Passion, My Skills, some cringy headers with elab + shortcut at top ofc
  */
 
 /* 
@@ -44,9 +24,8 @@ rush the blog using premade stuff, write some blog posts, then finally figure ou
  */
 
 /*
-
 look at graphQL api route example, look at the different CMS examples, finally consider mdx one more time
-
+material ui, react bootstrap, material design bootstrap
 */
 
 /*

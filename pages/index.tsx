@@ -5,10 +5,10 @@ import { CardData, CardFlex } from "../components/Card";
 import { Orientation, IsogridBackground, ScrollHint, RainbowText, Icon } from "../components/deco";
 import { hideMobileLandscape, hideMobilePotrait } from "../components/utils";
 import { Toggle } from "../components/input";
-import { SocialsBar } from "../components/personal/SocialsBar";
-import { SkillList } from "../components/personal/SkillList";
-import { Footer } from "../components/personal/Footer";
-import { Timeline } from "../components/personal/Timeline";
+import { SocialsBar } from "../src/SocialsBar";
+import { SkillList } from "../src/SkillList";
+import { Footer } from "../src/Footer";
+import { Timeline } from "../src/Timeline";
 import { Summary } from "./about";
 import { useState } from "react";
 

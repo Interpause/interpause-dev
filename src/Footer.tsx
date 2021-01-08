@@ -1,6 +1,6 @@
 import tw, { css } from "twin.macro";
 import { SocialsBar } from "./SocialsBar";
-import { Icon, ICON } from "../deco";
+import { Icon, ICON } from "../components/deco";
 
 export function Footer(){
 	return <footer tw="absolute flex flex-col justify-end w-full h-32 lg:h-20 border-t border-normal-hard bg-normal-soft">

@@ -1,5 +1,5 @@
 import "twin.macro";
-import { useToaster } from "../Toast";
+import { useToaster } from "../components/Toast";
 /**
  * placed below 1 para self-description
  * 2011 - timeline - 2020

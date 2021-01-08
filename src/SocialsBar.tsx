@@ -1,6 +1,6 @@
 import { HTMLProps } from "react";
 import tw, { css } from "twin.macro";
-import { Icon, ICON } from "../deco";
+import { Icon, ICON } from "../components/deco";
 
 export function SocialsBar(props:HTMLProps<HTMLDivElement>){
 	return <div tw="grid grid-cols-4 w-28 lg:(w-36)" css={css`a{ ${tw`hocus:text-link-color`} }`} {...props}>

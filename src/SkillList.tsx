@@ -1,7 +1,7 @@
 import { HTMLProps } from "react";
 import tw, { css } from "twin.macro";
-import { useToaster } from "../Toast";
-import { LazyImage } from "../deco";
+import { useToaster } from "../components/Toast";
+import { LazyImage } from "../components/deco";
 
 
 export function SkillList(props:HTMLProps<HTMLElement>){

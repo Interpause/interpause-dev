@@ -48,5 +48,6 @@ export function SkillList(props:HTMLProps<HTMLElement>){
 			</li>
 		</ul>
 		<h2 tw="text-sm lg:(text-lg)">TODO: Make this less boastful</h2>
+		<h2 tw="text-sm lg:(text-lg)"><a tw="text-link-color hover:underline" href="https://storybook.interpause.dev">interpause-components</a>: my own component library spun off from this site</h2>
 	</section>;
 }

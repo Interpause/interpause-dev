@@ -1,5 +1,5 @@
 import "twin.macro";
-import { useToaster } from "../components/Toast";
+import { useToaster } from "../components";
 /**
  * placed below 1 para self-description
  * 2011 - timeline - 2020
@@ -8,7 +8,7 @@ import { useToaster } from "../components/Toast";
  */
 export function Timeline(){
 	const toast = useToaster();
-	return <section id="timeline" tw="w-full h-64 text-center bg-special">
+	return <section id="timeline" tw="w-full h-64 text-center bg-secondary">
 		<p>Timeline component</p>
 		<p>TODO: make this component</p>
 		<label>2013<input type="range" onChange={()=>toast("stop touching me",{duration:200,type:"bad"})}/>2021</label>

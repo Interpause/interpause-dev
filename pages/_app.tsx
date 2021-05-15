@@ -1,14 +1,17 @@
-import { GlobalStyles } from 'twin.macro';
+import { GlobalStyles, theme } from 'twin.macro';
 import { Global } from '@emotion/react';
 import Head from "next/head";
+import Link from "next/link";
 import { AppProps } from 'next/app';
-import { Navbar } from "../components/Nav";
-import { ToastWrapper } from "../components/Toast";
-import { baseStyle, themeColor, DarkThemeWrapper } from "../components/theme";
+import { Navbar } from "../components";
+import { ToastWrapper } from "../components";
+import { baseStyle, DarkThemeWrapper } from "../components";
 
 // https://nextjs.org/docs/advanced-features/custom-app
 
-const routes = {"/":"Home","/#main":"Projects","/#timeline":"Timeline","/#about":"About Me","/gallery":"Gallery"} as const;
+const themeColor = theme`colors.purple.700`;
+
+const routes = {"Home":"/","Projects":"/#main","Timeline":"/#timeline","About Me":"/#about","Gallery":"/gallery"} as const;
 export default function App({ Component, pageProps }:AppProps) {
 	return <>
 		<Head>			
@@ -34,7 +37,7 @@ export default function App({ Component, pageProps }:AppProps) {
 		<Global styles={baseStyle}/>
 		<DarkThemeWrapper>
 			<ToastWrapper>
-				<Navbar routes={routes} className="dark"/>
+				<Navbar routes={routes} RouterWrapper={Link} height={3}>test if this appears</Navbar>
 				<Component {...pageProps}/>
 			</ToastWrapper>
 		</DarkThemeWrapper>

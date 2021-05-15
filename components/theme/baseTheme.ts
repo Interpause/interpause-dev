@@ -1,86 +1,143 @@
-import tw, { css, theme } from "twin.macro";
-/*
-- DEFAULT (for text, button fill, etc)
-- soft (for background, divides, placeholders, etc)
-- hard (for borders, rings, hard lines, etc)
-*/
-export const themeColor = theme`colors.purple.700`;
+import tw, { css, theme } from 'twin.macro';
+import Color from 'color';
+/** Used to convert hex to `${r},${g},${b}`. */
+export const rgb = (c: string) => Color(c).array().join(',');
 
+export const accents = ['primary', 'secondary', 'info', 'trivial', 'good', 'risky', 'bad', 'normal'] as const;
 /**
- * Some examples of how to use them
- * - normal: text
- * - special: emphasis, important
+ * Different color accents to theme components with.
+ * 
+ * @example
+ * - primary: emphasis, important
+ * - secondary: contrasting primary
  * - info: notifications, loading alerts, updates
  * - trivial: disabled, unimportant, extraneous
  * - good: success, logged in, purchases, loading complete
- * - risky: warnings
+ * - risky: warnings, confirmations
  * - bad: errors, wrong password, serious warnings
+ * - normal: text
  */
+export type accentTypes = typeof accents[number];
+// prettier-ignore
+/** SerializedStyles containing default values for CSS vars. */
 export const themeVars = css`
-	--color-link: 				${theme`colors.blue.400`};
+  --hi-color-primary:   ${rgb('#0288d1')};
+  --hi-color-secondary: ${rgb('#311b92')};
+  --hi-color-info:      ${rgb('#0288d1')};
+  --hi-color-trivial:   ${rgb('#9e9e9e')};
+  --hi-color-good:      ${rgb('#4caf50')};
+  --hi-color-risky:     ${rgb('#fbc02d')};
+  --hi-color-bad:       ${rgb('#d50000')};
+  --hi-color-normal:    ${rgb('#000')};
+  --hi-color-normalbg:  ${rgb('#fff')};
 
-	--color-normal: 			${theme`colors.black`};
-	--color-normal-soft: 	${theme`colors.gray.100`};
-	--color-normal-hard: 	${theme`colors.gray.400`};
-
-	--color-special: 			${theme`colors.indigo.700`};
-	--color-special-soft: ${theme`colors.indigo.200`};
-	--color-special-hard: ${theme`colors.indigo.400`};
-
-	--color-info: 				${theme`colors.blue.900`};
-	--color-info-soft: 		${theme`colors.blue.200`};
-	--color-info-hard: 		${theme`colors.blue.500`};
-
-	--color-trivial: 			${theme`colors.gray.500`};
-	--color-trivial-soft: ${theme`colors.gray.200`};
-	--color-trivial-hard: ${theme`colors.gray.300`};
-
-	--color-good: 				${theme`colors.green.900`};
-	--color-good-soft: 		${theme`colors.green.200`};
-	--color-good-hard: 		${theme`colors.green.500`};
-
-	--color-risky: 				${theme`colors.yellow.600`};
-	--color-risky-soft: 	${theme`colors.yellow.100`};
-	--color-risky-hard: 	${theme`colors.yellow.400`};
-
-	--color-bad: 					${theme`colors.red.900`};
-	--color-bad-soft: 		${theme`colors.red.300`};
-	--color-bad-hard: 		${theme`colors.red.600`};
-
-	--color-theme: 				${themeColor};
-	--color-theme-soft: 	${themeColor};
-	--color-theme-hard: 	${themeColor};
-
-	--bg-color: 255,255,255;
+  --tw-text-opacity:        1;
+  --tw-placeholder-opacity: 0.65;
+  --tw-bg-opacity:          0.3;
+  --tw-border-opacity:      1;
+  --tw-divide-opacity:      0.2;
+  --tw-ring-opacity:        0.2;
 `;
-export type colorTypes = "normal"|"special"|"info"|"trivial"|"good"|"risky"|"bad"|"theme";
 
-// themeVars is put under .light again to allow .dark to be overrided
+/** Creates a SerializedStyles that sets all colors to that of the accent given. */
+export const getAccent = (accent: accentTypes) => css`
+  color: rgba(var(--hi-color-${accent}), var(--tw-text-opacity));
+  background-color: rgba(var(--hi-color-${accent}), var(--tw-bg-opacity));
+  border-color: rgba(var(--hi-color-${accent}), var(--tw-border-opacity));
+
+  --tw-ring-color: rgba(var(--hi-color-${accent}), var(--tw-ring-opacity));
+  --tw-ring-offset-color: rgba(var(--hi-color-${accent}), 1);
+
+  --tw-text-opacity:        1;
+  --tw-placeholder-opacity: 0.65;
+  --tw-bg-opacity:          0.3;
+  --tw-border-opacity:      1;
+  --tw-divide-opacity:      0.2;
+  --tw-ring-opacity:        0.2;
+
+  & > * + * {
+    border-color: rgba(var(--hi-color-${accent}), var(--tw-divide-opacity));
+  }
+  &::placeholder {
+    color: rgba(var(--hi-color-${accent}), var(--tw-placeholder-opacity));
+  }
+`;
+
+/** Default font size for various heading tags. To override in component, have to do `& h1` for example to be more specific. */
+export const typographyStyle = css`
+  body {
+    ${tw`text-lg`}
+    h1 {
+      ${tw`text-6xl`}
+    }
+    h2 {
+      ${tw`text-5xl`}
+    }
+    h3 {
+      ${tw`text-4xl`}
+    }
+    h4 {
+      ${tw`text-3xl`}
+    }
+    h5 {
+      ${tw`text-2xl`}
+    }
+    h6 {
+      ${tw`text-xl`}
+    }
+
+    @media screen and (max-width: ${theme`screens.md`}) {
+      ${tw`text-base`}
+      h1 {
+        ${tw`text-5xl`}
+      }
+      h2 {
+        ${tw`text-4xl`}
+      }
+      h3 {
+        ${tw`text-3xl`}
+      }
+      h4 {
+        ${tw`text-2xl`}
+      }
+      h5 {
+        ${tw`text-xl`}
+      }
+      h6 {
+        ${tw`text-lg`}
+      }
+    }
+  }
+`;
+
+/** 
+ * Default baseStyle that should be injected globally.
+ * @note themeVars is put under .light again to allow .dark to be overrided.
+ */ 
 export const baseStyle = css`
-	:root{
-		${themeVars}
-		${tw`text-normal text-center`}
+  ${typographyStyle}
+  *, ::before, ::after {
+    border-color: rgba(var(--hi-color-trivial), 0.4);
+  }
+  :root {
+    ${themeVars}
+    ${tw`text-normal text-center`}
+
 		scroll-behavior: smooth;
-		@media (prefers-reduced-motion) { scroll-behavior: auto; }
-	}
-	.light{
-		${themeVars}
-		${tw`bg-white text-normal`}
-		* { ${tw`border-normal-hard placeholder-normal-soft overflow-ellipsis`} }
-	}
-	.dark{
-		${themeVars}
-		--color-normal: 			${theme`colors.white`};
-		--color-normal-soft: 	${theme`colors.black`};
-		--color-normal-hard: 	${theme`colors.gray.800`};
+    @media (prefers-reduced-motion) {
+      scroll-behavior: auto;
+    }
+  }
+  .light {
+    ${themeVars}
+    ${tw`bg-white text-normal`}
+  }
+  .dark {
+    ${themeVars}
+    --hi-color-normal: ${rgb('#fff')};
+    --hi-color-normalbg:  ${rgb('#000')};
+    --hi-color-secondary: ${rgb('#614bc2')};
 
-		--color-special: 			${theme`colors.indigo.900`};
-		--color-special-soft: ${theme`colors.indigo.300`};
-		--color-special-hard: ${theme`colors.indigo.500`};
-
-		--bg-color: 0,0,0;
-
-		${tw`bg-black text-normal`}
-		* { ${tw`border-normal-hard placeholder-normal-soft overflow-ellipsis`} }
-	}
+    ${tw`bg-black text-normal`}
+  }
 `;

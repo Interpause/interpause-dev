@@ -1,7 +1,7 @@
 import { css } from "twin.macro";
 import Head from "next/head";
 import Link from "next/link";
-import { Icon } from "../components/deco";
+import { LazyImage } from "../components";
 /**
  * Summary: <potrait or picture slideshow> <some paragraph spam> See more
  * My Vision, My Passion, My Skills, some cringy headers with elab + shortcut at top ofc
@@ -29,7 +29,7 @@ export default function About(){
 
 export function Summary(){
 	return <section id="about" tw="md:(inline-grid grid-cols-12 gap-2) py-2">
-		<Icon src="/face.jpg" tw="col-span-4 w-full max-w-sm my-auto rounded-full overflow-hidden" css={css`
+		<LazyImage src="/face.jpg" height={1} width={1} tw="col-span-4 w-full max-w-sm my-auto rounded-full overflow-hidden" css={css`
 			&::before {
 				content: "";
 				display: inline-block;
@@ -50,7 +50,7 @@ export function Summary(){
 				interdum ut neque. Nullam lectus lectus, luctus non cursus at, facilisis nec sapien. Nunc mollis lacus sed posuere tempor. 
 				Nunc laoreet neque sit amet augue feugiat, in lacinia nisl pharetra.
 			</p>
-			<Link href="/about"><a tw="inline-block text-white hocus:bg-info bg-info-hard py-1 px-4 rounded my-2 cursor-pointer">See more...</a></Link>
+			<Link href="/about"><a tw="inline-block text-white hocus:bg-info bg-info py-1 px-4 rounded my-2 cursor-pointer">See more...</a></Link>
 		</div>
 	</section>
 }

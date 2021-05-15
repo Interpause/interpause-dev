@@ -37,39 +37,30 @@ function Banner(){
 const cards:CardData[] = [
 	{
 		href:"https://github.com/Interpause/interpause-dev",
-		title:"Repository",
-		body:"See the code for this website by clicking on this card."
+		title:"Source Code",
+		body:"See the code for this site.",
 	},
 	{
-		href:"https://github.com/Interpause",
-		title:"Github",
-		body:"Look at my crappy past projects here."
+		href:"https://storybook.interpause.dev",
+		title:"Component Library",
+		body:"The component library I spun off from this site.",
 	},
 	{
-		href:"https://linkedin.com/in/interpause",
-		title:"LinkedIn",
-		body:"Please do not follow me on LinkedIn."
+		href:"https://metattt.interpause.dev",
+		title:"Phone Game",
+		body:"MetaTTT in a browser form.",
 	},
 	{
-		title:"Test",
+		title:"Domain Email",
 		body:(<>Email me at <a tw="text-link-color" href="mailto:hyphen@interpause.dev">hyphen@interpause.dev</a></>)
 	},
-	{
-		href:"https://youtube.com/c/Interpause",
-		title:"Youtube",
-		body:"Don't watch my Youtube channel. TODO: add stream scheldule to site."
-	},
-	{
-		title:"TODO",
-		body:"Gotta learn GraphQL & create a general library for retrieving repo data before I even start making project cards."
-	}
 ];
 function Main(){
 	const [test,setTest] = useState(true);
 	return <section tw="text-center min-h-screen border-t border-normal-hard" id="main">
 		<h2 tw="text-5xl py-4 font-extralight overflow-hidden">Projects</h2>
 		<SkillList tw="pl-4 lg:hidden" css={hideMobilePotrait}/>
-		<Toggle label="Featured Only" toggleHook={[test,setTest]}/>
+		<Toggle label="TODO: Featured Only" toggleHook={[test,setTest]}/>
 		<CardFlex cards={cards} tw="font-mono font-thin m-auto"/>
 	</section>;
 }

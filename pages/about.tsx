@@ -2,6 +2,7 @@ import { css } from "twin.macro";
 import Head from "next/head";
 import Link from "next/link";
 import { Icon } from "../components/deco";
+import { Footer } from "../src/Footer";
 /**
  * Summary: <potrait or picture slideshow> <some paragraph spam> See more
  * My Vision, My Passion, My Skills, some cringy headers with elab + shortcut at top ofc
@@ -24,7 +25,7 @@ export default function About(){
 			- Headers be like: Vision, Passion, Skills <br/>
 			- remember to put shortcut card on top!
 		</p>
-		<div tw="col-span-8 text-left text-lg mx-2 max-w-prose">
+		<div tw="mx-auto text-justify text-base max-w-screen-md space-y-3">
 			<h2 tw="text-center text-3xl">A temporary collection of thoughts</h2>
 			<p>
 				What is the purpose of this site? I intended to create this as a portfolio site - a place to collate and curate achievements of the past. 
@@ -70,7 +71,9 @@ export default function About(){
 				aside from curated writeups, will actually be private too. Maybe if I am lucky someone in the future will teach me how to open up, use 
 				social media and have a sociable online presence by which to share my thoughts properly instead of spamming or keeping it to myself.
 			</p>
+			<br/>
 		</div>
+		<Footer/>
 	</div>;
 }
 
@@ -85,18 +88,27 @@ export function Summary(){
 				padding-bottom: calc(100% / (1/1));
 			}
 		`}/>
-		<div tw="col-span-8 text-left text-lg mx-2 max-w-prose">
-			<h2 tw="text-center text-3xl">TODO: sleep earlier than 3am I can feel my last few brain cells dying</h2>
+		<div tw="col-span-8 text-justify text-base mx-2 max-w-prose space-y-3">
+			<h2 tw="text-center text-2xl">TODO: Actually complete this website</h2>
 			<p>
-				What is this site meant to be? A portfolio site. What happened? I got sidetracked into working on a component library for it. 
-				What is the site right now? A incomplete hub which has links to my other portfolios (Github, LinkedIn, etc), some of my more 
-				recent projects, and many grand plans hidden in the code that I don't have time for right now. What will this site become? It 
-				will remain dormant for now, I am shifting focus away from my component library to a competition I am currently preparing for, 
-				but after that, if I have time despite serving NS, I will focus on the blog sub-site I have yet to create. I will likely 
-				continue work on it after I enter uni, so that I can put my uni portfolio on it just in time for graduation. Anything I did 
-				before uni? Unless, I change my mind, they will likely not be recorded here or anywhere else. Click see more to see how I arrived 
-				to these conclusions, but it might be cringey to some I guess.
+				<em>What is this site meant to be?</em> A portfolio site.
 			</p>
+			<p>
+				<em>What happened?</em> I got sidetracked into working on a component library for it.
+			</p>
+			<p>
+				<em>What is the site right now?</em> A incomplete hub which has links to my other portfolios (Github, LinkedIn, etc), some of my more 
+				recent projects, and many grand plans hidden in the code that I don't have time for right now.
+			</p>
+			<p>
+				<em>What will this site become?</em> It will remain dormant for now, I am shifting focus away from my component library to a competition 
+				I am currently preparing for, but after that, if I have time despite serving NS, I will focus on the blog sub-site I have yet to create.
+			</p>
+			<p>
+				Anyways, I will likely continue work on it before I enroll into university, so that I can put my uni portfolio on it just in time for 
+				graduation. Anything I did before uni? Unless, I change my mind, they will likely not be recorded here or anywhere else.
+			</p>
+			<p>Also, click see more to see how I arrived to these conclusions, but I warn in advance it is embarassing.</p>
 			<Link href="/about"><a tw="inline-block text-white hocus:bg-info bg-info-hard py-1 px-4 rounded my-2 cursor-pointer">See more...</a></Link>
 		</div>
 	</section>

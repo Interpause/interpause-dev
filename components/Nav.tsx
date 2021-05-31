@@ -15,7 +15,7 @@ export const NavItem = styled.li`${tw`relative inline-flex flex-col flex-expand 
 
 export const BaseNavbar = styled.nav`
 	${({height}:{height:number}) => css`--nav-height:${height}rem`}
-	${tw`sticky flex flex-wrap md:flex-nowrap bg-normal-soft md:shadow-md top-0 inset-x-0 z-75`}
+	${tw`fixed flex flex-wrap md:flex-nowrap bg-normal-soft md:shadow-md top-0 inset-x-0 z-75`}
 	transition: height 150ms cubic-bezier(0.4, 0, 0.2, 1);
 	height: var(--nav-height);
 	>.nav-items{ ${tw`inline-flex flex-row w-full divide-x-2 my-2 overflow-x-auto`} }

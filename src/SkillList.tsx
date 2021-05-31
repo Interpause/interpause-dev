@@ -6,10 +6,10 @@ import { LazyImage } from "../components/deco";
 
 export function SkillList(props:HTMLProps<HTMLElement>){
 	const toast = useToaster();
-	return <section tw="text-left text-lg lg:text-3xl my-2 lg:my-4" {...props}>
-		<h2 tw="text-lg lg:(text-4xl)">Stuff I've used previously <br tw="lg:hidden"/>(+links to those projects): </h2>
+	return <section tw="text-left text-lg lg:text-2xl" {...props}>
+		<h2 tw="text-lg lg:(text-3xl)">Things I've previously tried <br tw="md:hidden"/>(+links to those projects): </h2>
 		<ul css={css`
-			li{ ${tw`h-6 lg:h-10 my-2`} }
+			li{ ${tw`h-6 lg:h-8 my-2`} }
 			h3{ ${tw`inline-block w-20 lg:w-36`} }
 			span{ ${tw`h-full`} }
 		`}>
@@ -36,7 +36,7 @@ export function SkillList(props:HTMLProps<HTMLElement>){
 				<span>
 					<LazyImage src="/brand_logos/ghidra.png" aspect_ratio="1497 1015" alt="Ghidra" onClick={()=>toast(`See Hidden TODO`,{type:"special"})}/>,{' '}
 					<LazyImage tw="bg-white rounded p-0.5" src="/brand_logos/zap.svg" aspect_ratio="54.98 55" alt="ZAP Suite" onClick={()=>toast(`See Hidden TODO`,{type:"special"})}/>
-					<span tw="hidden lg:inline-block text-trivial text-xs w-60 overflow-hidden">TODO: Consolidate knowledge from StackTheFlags and Whitehacks into writeups</span>
+					<span tw="hidden lg:hidden text-trivial text-xs w-60 overflow-hidden">TODO: Consolidate knowledge from StackTheFlags and Whitehacks into writeups</span>
 				</span>
 			</li>
 			<li>
@@ -47,6 +47,6 @@ export function SkillList(props:HTMLProps<HTMLElement>){
 				</span>
 			</li>
 		</ul>
-		<h2 tw="text-sm lg:(text-lg)">TODO: Make this less boastful</h2>
+		<h2 tw="text-sm lg:(text-lg)">NOTE: humbleness is a virtue...</h2>
 	</section>;
 }

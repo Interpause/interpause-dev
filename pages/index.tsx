@@ -12,11 +12,9 @@ import { Timeline } from "../src/Timeline";
 import { Summary } from "./about";
 import { useState } from "react";
 
-function Banner(){
-	const d = new Date();
-	return <>
-		<div tw="h-screen w-full -z-25"><IsogridBackground rows={6} cols={6} gap_ratio={0.03} rand_seed={d.getFullYear()*(d.getDate()+Math.PI)*(d.getMonth()+Math.PI)*(d.getMinutes()+Math.PI)}/></div>
-		<header tw="absolute text-center top-20 inset-x-1.5 p-2 lg:(top-auto right-auto bottom-48 ml-5 text-left) rounded-lg bg-opacity-70" css={css`background-color: rgba(var(--bg-color),var(--tw-bg-opacity)); backdrop-filter: blur(0.4rem)`}>
+function Header({className}:{className?:string}){
+	return (
+		<header className={className}>
 			<h1 tw="text-5xl lg:(text-9xl) font-thin">John-Henry Lim</h1>
 			<div tw="text-2xl lg:(text-5xl)">
 				<span tw="hidden lg:inline">aka </span>
@@ -25,12 +23,32 @@ function Banner(){
 					<RainbowText tw="inline h-6 lg:h-12 mb-0.5 lg:mb-1.5 font-mono font-extrabold">Hyphen Interpause</RainbowText>
 				</span>
 			</div>
-			<h2 tw="text-lg lg:(text-4xl)">Passion & ambition made me who I am</h2>
-			<SkillList tw="md:hidden lg:block" css={hideMobileLandscape}/>
+			<h2 tw="text-lg lg:(text-4xl)">"hazy dreams made clear by earnest coding"</h2>
+			<div tw="md:hidden lg:block" css={hideMobileLandscape}>
+				<hr tw="my-1 lg:my-2"/>
+				<SkillList/>
+			<hr tw="my-1 lg:my-2"/>
+			</div>
+			
+			
 			<SocialsBar tw="mx-auto lg:(mx-0) text-special"/> {/* No idea what colour this should be. Give up. */}
 		</header>
-		<ScrollHint orientation={Orientation.up} tw="absolute bottom-2 mx-auto inset-x-0 h-20 text-white pointer-events-none" css={hideMobileLandscape}/>
-		<h4 tw="absolute -bottom-10 right-2 text-lg bg-normal-soft rounded p-1"><a tw="hocus:text-link-color" href="https://github.com/Interpause/interpause-dev/blob/main/components/deco/IsogridBackground.tsx">How is this background generated?</a></h4>
+	);
+}
+
+function Banner(){
+	const d = new Date();
+	return <>
+		<div tw="relative h-screen w-full">
+			<IsogridBackground rows={6} cols={6} gap_ratio={0.03} rand_seed={d.getFullYear()*(d.getDate()+Math.PI)*(d.getMonth()+Math.PI)*(d.getMinutes()+Math.PI)}/>
+			<h4 tw="hidden md:block absolute z-25 bottom-4 right-2 text-lg bg-normal-soft rounded p-1"><a tw="hocus:text-link-color" href="https://github.com/Interpause/interpause-dev/blob/main/components/deco/IsogridBackground.tsx">How is this background generated?</a></h4>
+			<ScrollHint orientation={Orientation.up} tw="absolute bottom-2 mx-auto inset-x-0 h-20 text-white pointer-events-none" css={hideMobileLandscape}/>
+		</div>
+		<div tw="absolute inset-0 flex flex-col justify-evenly">
+			<div tw="h-20 flex-auto"></div>
+			<Header tw="flex-none text-center mx-1.5 p-2 rounded-lg lg:(ml-5 mr-auto text-left)" css={css`background-color: rgba(var(--bg-color), 70%); backdrop-filter: blur(0.4rem)`}/>
+			<div tw="h-10 flex-auto"></div>
+		</div>
 	</>;
 }
 
@@ -51,15 +69,20 @@ const cards:CardData[] = [
 		body:"MetaTTT in a browser form.",
 	},
 	{
-		title:"Domain Email",
-		body:(<>Email me at <a tw="text-link-color" href="mailto:hyphen@interpause.dev">hyphen@interpause.dev</a></>)
+		title:"Links",
+		body:(
+			<div tw="text-base">
+				<p>Email:<br/><a tw="text-link-color" href="mailto:hyphen@interpause.dev">hyphen@interpause.dev</a></p>
+				<p>Github:<br/><a tw="text-link-color" href="https://github.com/interpause">github.com/interpause</a></p>
+				<p>LinkedIn:<br/><a tw="text-link-color" href="https://linkedin.com/in/interpause">linkedin.com/in/interpause</a></p>
+			</div>
+		)
 	},
 ];
 function Main(){
 	const [test,setTest] = useState(true);
 	return <section tw="text-center min-h-screen border-t border-normal-hard" id="main">
 		<h2 tw="text-5xl py-4 font-extralight overflow-hidden">Projects</h2>
-		<SkillList tw="pl-4 lg:hidden" css={hideMobilePotrait}/>
 		<Toggle label="TODO: Featured Only" toggleHook={[test,setTest]}/>
 		<CardFlex cards={cards} tw="font-mono font-thin m-auto"/>
 	</section>;
@@ -74,6 +97,10 @@ export default function Index(){
 			<meta name="keywords" content="interpause, developer, maker"/>
 		</Head>
 		<Banner/>
+		<div tw="mb-4 lg:hidden" css={hideMobilePotrait}>
+			<h2 tw="text-5xl py-4 font-extralight overflow-hidden">Brief Overview</h2>
+			<SkillList tw="mx-auto w-max"/>
+		</div>
 		<Main/>
 		<Timeline/>
 		<Summary/>

@@ -23,7 +23,7 @@ export function SkillList(props:HTMLProps<HTMLElement>){
 				</span>
 			</li>
 			<li>
-				<h3>AI: </h3>
+				<h3>AI & NLP: </h3>
 				<span>
 					<LazyImage src="/brand_logos/pytorch.svg" aspect_ratio="90.3 109.1" alt="Pytorch" href="https://github.com/RealNiceBoat"/>,{' '}
 					<LazyImage tw="bg-white rounded" src="/brand_logos/pandas.svg" aspect_ratio="210.21 280.43" alt="Pandas" onClick={()=>toast('Turns out I never did a project with Pandas as the main focus. Of course. Turns out I never did a project with Pandas as the main focus. Of course.',{type:"trivial"})}/>,{' '}
@@ -32,7 +32,7 @@ export function SkillList(props:HTMLProps<HTMLElement>){
 				</span>
 			</li>
 			<li>
-				<h3>CTF: </h3>
+				<h3>Cybersec: </h3>
 				<span>
 					<LazyImage src="/brand_logos/ghidra.png" aspect_ratio="1497 1015" alt="Ghidra" onClick={()=>toast(`See Hidden TODO`,{type:"special"})}/>,{' '}
 					<LazyImage tw="bg-white rounded p-0.5" src="/brand_logos/zap.svg" aspect_ratio="54.98 55" alt="ZAP Suite" onClick={()=>toast(`See Hidden TODO`,{type:"special"})}/>

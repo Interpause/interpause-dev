@@ -106,9 +106,9 @@ export function Summary(){
 			</p>
 			<p>
 				Anyways, I will likely continue work on it before I enroll into university, so that I can put my uni portfolio on it just in time for 
-				graduation. Anything I did before uni? Unless, I change my mind, they will likely not be recorded here or anywhere else.
+				graduation. <span tw="hidden">Anything I did before uni? Unless, I change my mind, they will likely not be recorded here or anywhere else.</span>
 			</p>
-			<p>Also, click see more to see how I arrived to these conclusions, but I warn in advance it is embarassing.</p>
+			<p tw="hidden">Also, click see more to see how I arrived to these conclusions, but I warn in advance it is embarassing.</p>
 			<Link href="/about"><a tw="inline-block text-white hocus:bg-info bg-info-hard py-1 px-4 rounded my-2 cursor-pointer">See more...</a></Link>
 		</div>
 	</section>

@@ -25,7 +25,7 @@ function Banner(){
 					<RainbowText tw="inline h-6 lg:h-12 mb-0.5 lg:mb-1.5 font-mono font-extrabold">Hyphen Interpause</RainbowText>
 				</span>
 			</div>
-			<h2 tw="text-lg lg:(text-4xl)">Jack of all trades cause I procrastinate</h2>
+			<h2 tw="text-lg lg:(text-4xl)">Passion & ambition made me who I am</h2>
 			<SkillList tw="md:hidden lg:block" css={hideMobileLandscape}/>
 			<SocialsBar tw="mx-auto lg:(mx-0) text-special"/> {/* No idea what colour this should be. Give up. */}
 		</header>

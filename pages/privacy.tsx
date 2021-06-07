@@ -2,10 +2,10 @@ import 'twin.macro';
 import { useEffect } from 'react';
 export default function Privacy() {
 	useEffect(()=>{
-		const navbar: HTMLElement = document.querySelector('nav');
+		const navbar: HTMLElement|null = document.querySelector('nav');
 		if(navbar == undefined) return;
 		navbar.style.display = 'none';
-		return () => navbar.style.display = 'block';
+		return () => {navbar.style.display = 'block'};
 	})
 	return (
 		<div className="light" tw="flex justify-center">

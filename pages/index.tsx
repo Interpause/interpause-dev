@@ -8,7 +8,7 @@ import { Toggle } from "../components/input";
 import { SocialsBar } from "../src/SocialsBar";
 import { SkillList } from "../src/SkillList";
 import { Footer } from "../src/Footer";
-import { Timeline } from "../src/Timeline";
+import { Milestone } from "../src/Milestone";
 import { Summary } from "./about";
 import { useState } from "react";
 
@@ -102,7 +102,7 @@ export default function Index(){
 			<SkillList tw="mx-auto w-max"/>
 		</div>
 		<Main/>
-		<Timeline/>
+		<Milestone/>
 		<Summary/>
 		<Footer/>
 	</>;

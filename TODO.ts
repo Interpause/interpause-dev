@@ -33,6 +33,7 @@ material ui, react bootstrap, material design bootstrap
  * TODO: can a CMS like Wordpress (what cms) pipe .mdx files to the blog subdomain? MDX sounds damn cool https://mdxjs.com/ TBH: blog subdomain should be separate repo
  * TODO: Visit other .dev sites to get inspiration (much later)
  * inheritance vs composition part 2: also mention your entire website is coded without OOP at all(maybe in the blog post after doing this site)
+ * use webpack bundle analyzer (see metaTTT-react version) for optimization
  */
 
  /*

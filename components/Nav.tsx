@@ -18,7 +18,7 @@ export const BaseNavbar = styled.nav`
 	${tw`fixed flex flex-wrap md:flex-nowrap bg-normal-soft md:shadow-md top-0 inset-x-0 z-75`}
 	transition: height 150ms cubic-bezier(0.4, 0, 0.2, 1);
 	height: var(--nav-height);
-	>.nav-items{ ${tw`inline-flex flex-row w-full divide-x-2 my-2 overflow-x-auto`} }
+	>.nav-items{ ${tw`inline-flex flex-row w-full divide-x-2 my-2 overflow-hidden`} }
 `;
 
 export const CollapsableNavbar = styled(BaseNavbar)`
@@ -80,7 +80,7 @@ export function Navbar({routes,itemProps,...props}:NavbarProps){
 		/>
 		<ul className="nav-items">
 			{Object.entries(routes).map(([route,text],i) => <NavLink route={route} {...itemProps} key={i} onClick={navOpener}>{text}</NavLink>)}
-			<NavItem tw="flex-grow max-w-full hidden lg:inline-flex"></NavItem>
+			<NavItem tw="flex-grow max-w-full hidden xl:inline-flex"></NavItem>
 			<NavItem tw="w-40 flex-none"><DarkToggle height={1.25}/></NavItem>
 		</ul>
 	</CollapsableNavbar>;

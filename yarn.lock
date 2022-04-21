@@ -2918,6 +2918,7 @@ fsevents@~2.3.1:
     postcss: ^8.2.15
     postcss-flexbugs-fixes: ^5.0.2
     postcss-preset-env: ^6.7.0
+    prettier: ^2.6.2
     react: ^17.0.2
     react-dom: ^17.0.2
     react-transition-group: ^4.4.1
@@ -4627,6 +4628,15 @@ fsevents@~2.3.1:
     nanoid: ^3.1.23
     source-map: ^0.6.1
   checksum: 2d26bc29dedd7656d1f53fa002374a014a8c2c7b9f1538d0fafadb9eae2494f5b037c87de4390d620f622b31d7f15c8c8d88de2bd682e206104fb44e781737df
+  languageName: node
+  linkType: hard
+
+"prettier@npm:^2.6.2":
+  version: 2.6.2
+  resolution: "prettier@npm:2.6.2"
+  bin:
+    prettier: bin-prettier.js
+  checksum: 10af3147eeb6e7038d6bb4cab48bace7095c4f35e9da45215a8fd3aa8785b4ca6e6cc2cc2fee073a19e230ec0271bae0660031b9252c5263eae7c08113aa8f50
   languageName: node
   linkType: hard
 

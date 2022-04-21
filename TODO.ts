@@ -17,8 +17,8 @@ rush the blog using premade stuff, write some blog posts, then finally figure ou
  * <End Section>
  */
 
-/* 
- * Who I am, and project elab pages could be hosted by CMS shared with blog. 
+/*
+ * Who I am, and project elab pages could be hosted by CMS shared with blog.
  * ^Argument against having blog as separate project in subdomain
  * Jamstack, Serverless
  */
@@ -36,7 +36,7 @@ material ui, react bootstrap, material design bootstrap
  * use webpack bundle analyzer (see metaTTT-react version) for optimization
  */
 
- /*
+/*
 TODO: Report glitch in typescript linter.
 
 REPRODUCE:

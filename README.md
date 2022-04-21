@@ -1,5 +1,7 @@
 # My Personal Site
 
+NOTICE: code here is quite outdated compared to my current style. A rewrite is overdue.
+
 ## Overview
 
 I wanted this to be a monorepo, site-focused project, hence I went with [Next.js](https://nextjs.org/). Being built on [ReactJS](https://reactjs.org/), it was a good opportunity for me to learn to use a modern web development framework. I also wanted to experience developing the components myself, hence I used [TailwindCSS](https://tailwindcss.com/) — no premade CSS components, just utility classes. Later, I discovered [twin.macro](https://github.com/ben-rogerson/twin.macro), designed to integrate CSS-in-JS libraries like [Emotion](https://emotion.sh/) with Tailwind. The resulting setup is quite comfortable for me, and I will probably use it as a template for future non-website projects like [Redux-Saga](https://redux-saga.js.org/) games or [React Native](https://reactnative.dev/) apps (like my planned [MetaTTT](https://github.com/Interpause/metaTTT_App) rewrite).

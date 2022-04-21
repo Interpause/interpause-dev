@@ -27,7 +27,7 @@ function Header({ className }: { className?: string }) {
         <span tw='whitespace-nowrap'>
           <Icon
             src='/profilePic.svg'
-            tw='h-4 w-4 lg:(h-8 w-8) align-baseline m-0'
+            tw='h-4 w-4 lg:(h-8 w-8) align-baseline m-0 relative bottom-0.5'
           />{' '}
           <RainbowText tw='inline h-6 lg:h-12 mb-0.5 lg:mb-1.5 font-mono font-extrabold'>
             Hyphen Interpause

@@ -38,7 +38,7 @@ export function BaseTextWithEffect({
     measureSpan.style.font = getComputedStyle(fontElem).font
     // ensure span never get clipped by being small, reset some parts of style to be consistent
     measureSpan.style.lineHeight = 'normal'
-    measureSpan.style.fontSize = '1px'
+    measureSpan.style.fontSize = '12px'
     measureSpan.style.position = 'fixed'
     const font = measureSpan.style.font
     measureSpan.innerText = text

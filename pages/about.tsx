@@ -17,93 +17,62 @@ export default function About() {
         <meta name='keywords' content='interpause, developer, maker' />
       </Head>
       <div tw='h-20'></div>
-      <h1 tw='text-4xl'>WHERE IS THE PAGE???</h1>
-      <h3 tw='text-xl'>under construction duh</h3>
-      <p>
-        TODO:
-        <br />
-        - 1500 word essay
-        <br />
-        - Get someone else to write it for me so it's not considered boasting
-        <br />
-        - Headers be like: Vision, Passion, Skills <br />- remember to put
-        shortcut card on top!
-      </p>
       <div tw='mx-auto text-justify text-base max-w-screen-md space-y-3'>
-        <h2 tw='text-center text-3xl'>A temporary collection of thoughts</h2>
-        <p>
-          What is the purpose of this site? I intended to create this as a
-          portfolio site - a place to collate and curate achievements of the
-          past. However, while normally such portfolios should highlight only
-          the most eminent of achievements, in my heart, I also treated this as
-          sort of an autobiography. And while writing this biography, I wanted
-          to reflect upon all I had done, capture every single moment I could
-          recover from memory, so that it would never be forgotten.
-        </p>
-        <p>
-          However, being as proactive as I was, I had done and experienced an
-          insane amount of things for someone as young, making this quite the
-          daunting task to say the least. Then, while watching documentary that
-          mentioned a similar sort of journaling, I was reminded of something.
-          While I was unfortunately not committed enough to ever get into the
-          habit of keeping dairies, back in secondary school, there was a period
-          of time where I was obssessed with recording any "interesting" detail
-          I chanced upon, so that I would never forget them. This ended up
-          consuming me, distracting me, with most of my time during lessons and
-          breaks spent thinking of things, trying to keep them in memory
-          efficiently, before eventually finding time to write them out onto
-          private collections on the now defunct Google Plus.
-        </p>
-        <p>
-          Nonetheless, if I were to try and reconstruct every year of my life,
-          the data from doing the above is helpful, even if quite unrefined. But
-          the years before then are lost, and the years after are lost too, as I
-          only lurk on social media, never having managed to figure out how to
-          maintain a proper online presence.
-        </p>
-        <p>
-          Either ways, before I get too carried away, I decided that it was not
-          so important to record everything. Details can be lost, but they have
-          already played an irrevocable part in making you who you were. So as
-          long as I stay true to myself, perhaps the past is not too important.
-          One of the purposes of this portfolio site was to aid me in University
-          admissions. Well, I did not managed to finish it in time before
-          getting utterly distracted on creating a component library... But now
-          that I have secured a path to the future, it is not really necessary.
-        </p>
-        <p>
-          So perhaps instead of focusing on documenting all the details of a
-          nolstagic past, giving I am still young and the future is bright, I
-          should focus on documenting the most important moments of a bright
-          future. Maybe I am just too lazy to follow my initial plans of making
-          reflection write ups for all my past significant achievements, but I
-          am sure I will go on to do many great new things anyways.
-        </p>
-        <p>
-          So going back to the start, what is the purpose of this site now?
-          Currently, it is an incomplete hub of who I am, with some links to
-          some more recent projects, and many grand plans hidden in code that I
-          don't have time for right now. I will try to shift my focus away from
-          my component library (well after adding more missing core components
-          but being less perfectionist this time), and focus on creating my
-          blog. After all, its not very feasible to be editing a webpage each
-          time I have a thought or something. Also I will probably create a
-          mobile app for it. It might end up like back in secondary school where
-          I document everything, but it will probably go better this time.
-          Anyways, it is easier to type digital documents that are digitally
-          sortable than to write an actual physical diary, though I guess the
-          limitations of paper is what forces you to select what is most
-          important and be concise. But I digress.
-        </p>
-        <p>
-          Anyways, this short few paragraphs will probably serve as the only
-          public evidence of how I feel. Most of it is private, the blog itself,
-          aside from curated writeups, will actually be private too. Maybe if I
-          am lucky someone in the future will teach me how to open up, use
-          social media and have a sociable online presence by which to share my
-          thoughts properly instead of spamming or keeping it to myself.
-        </p>
+        <h2 tw='text-center text-3xl'>I can die of cringe now</h2>
+        <div tw='text-center text-xl'>
+          <p>
+            I am the <b tw='text-gray-400'>Framework</b> of my{' '}
+            <span tw='text-yellow-400 font-mono'>Code</span>
+          </p>
+          <p>
+            <u tw='text-yellow-800'>Structs</u> are my Body and{' '}
+            <i tw='text-pink-400'>Syntax</i> is my Blood
+          </p>
+          <p>
+            I have written over a <i>thousand</i>{' '}
+            <span tw='font-mono text-blue-400'>Functions</span>
+          </p>
+          <p>
+            <i tw='bg-gray-700 text-gray-300'>Unknown</i> to{' '}
+            <b tw='text-red-600'>Bugs</b>
+          </p>
+          <p>
+            Nor <i tw='bg-gray-700 text-gray-900'>known</i> to{' '}
+            <u tw='text-green-400'>Tests</u>
+          </p>
+          <p>
+            Have{' '}
+            <span tw='text-decoration[line-through]'>
+              withstood <i tw='text-red-400 text-lg'>pain</i>
+            </span>{' '}
+            to <b tw='text-purple-500'>Commit</b> many times
+          </p>
+          <p>
+            Yet, those hands will{' '}
+            <u>
+              never <i tw='text-yellow-600'>Compile</i> anything
+            </u>
+          </p>
+          <p>
+            So as I pray,{' '}
+            <span tw='font-mono text-3xl text-yellow-400'>
+              Unlimited Code Works
+            </span>
+          </p>
+        </div>
         <br />
+        <h1 tw='text-4xl'>WHERE IS THE PAGE???</h1>
+        <h3 tw='text-xl'>under construction duh</h3>
+        <p>
+          TODO:
+          <br />
+          - 1500 word essay
+          <br />
+          - Get someone else to write it for me so it's not considered boasting
+          <br />
+          - Headers be like: Vision, Passion, Skills <br />- remember to put
+          shortcut card on top!
+        </p>
       </div>
       <Footer />
     </div>

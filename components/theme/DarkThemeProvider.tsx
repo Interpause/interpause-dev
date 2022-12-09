@@ -35,7 +35,7 @@ export function DarkThemeWrapper({
     if (conf === null) {
       if (typeof darkDefault === 'undefined')
         conf = window.matchMedia('(prefers-color-scheme: dark)').matches
-      else conf = false
+      else conf = isDark
     } else conf = conf === 'true'
     setDark(conf)
   }, [darkDefault])

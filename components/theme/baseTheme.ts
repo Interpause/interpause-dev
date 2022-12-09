@@ -4,7 +4,7 @@ import tw, { css, theme } from 'twin.macro'
 - soft (for background, divides, placeholders, etc)
 - hard (for borders, rings, hard lines, etc)
 */
-export const themeColor = theme`colors.purple.700`
+export const themeColor = theme`colors.orange.400`
 
 /**
  * Some examples of how to use them

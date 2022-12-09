@@ -37,7 +37,10 @@ module.exports = {
     if (isServer) {
       generateSitemap()
     } else {
-      config.node = { fs: 'empty' }
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+      }
     }
     return config
   },

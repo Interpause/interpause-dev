@@ -10,9 +10,9 @@ import { baseStyle, themeColor, DarkThemeWrapper } from '../components/theme'
 
 const routes = {
   '/old': 'Home',
-  '/#main': 'Projects',
-  '/#timeline': 'Timeline',
-  '/#about': 'About Me',
+  '/old/#main': 'Projects',
+  '/old/#timeline': 'Timeline',
+  '/old/#about': 'About Me',
   '/gallery': 'Gallery',
 } as const
 export default function App({ Component, pageProps }: AppProps) {

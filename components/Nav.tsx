@@ -97,15 +97,17 @@ export function Navbar({ routes, itemProps, ...props }: NavbarProps) {
       height={height}
       {...(props as StyledComponent<HTMLProps<HTMLElement>>)}
     >
-      <Icon
-        src='/favicon/original-icon.png'
-        tw='m-1 my-auto'
-        css={css`
-          height: ${(height * 3) / 4}rem;
-          width: ${(height * 3) / 4}rem;
-        `}
-        priority
-      />
+      {/*
+        <Icon
+          src='/favicon/original-icon.png'
+          tw='m-1 my-auto'
+          css={css`
+            height: ${(height * 3) / 4}rem;
+            width: ${(height * 3) / 4}rem;
+          `}
+          priority
+        />
+      */}
       <span tw='flex-grow md:flex-grow-0'></span>
       <Icon
         as='button'
@@ -131,4 +133,16 @@ export function Navbar({ routes, itemProps, ...props }: NavbarProps) {
       </ul>
     </CollapsableNavbar>
   )
+}
+
+export function useHideHavbar(){
+  useEffect(() => {
+    const navbar: HTMLElement | null = document.querySelector('nav')
+    if (navbar == undefined) return
+    let initial = navbar.style.display
+    navbar.style.display = 'none'
+    return () => {
+      navbar.style.display = initial
+    }
+  })
 }

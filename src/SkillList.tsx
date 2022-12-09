@@ -143,7 +143,6 @@ export function SkillList(props: HTMLProps<HTMLElement>) {
           </span>
         </li>
       </ul>
-      <h2 tw='text-sm lg:(text-lg)'>NOTE: humbleness is a virtue...</h2>
     </section>
   )
 }

@@ -13,6 +13,10 @@
 		<changefreq>hourly</changefreq>
 	</url>
 	<url>
+		<loc>undefined/old</loc>
+		<changefreq>hourly</changefreq>
+	</url>
+	<url>
 		<loc>undefined/privacy</loc>
 		<changefreq>hourly</changefreq>
 	</url>

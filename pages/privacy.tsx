@@ -1,14 +1,7 @@
 import 'twin.macro'
-import { useEffect } from 'react'
+import { useHideHavbar } from '../components/Nav'
 export default function Privacy() {
-  useEffect(() => {
-    const navbar: HTMLElement | null = document.querySelector('nav')
-    if (navbar == undefined) return
-    navbar.style.display = 'none'
-    return () => {
-      navbar.style.display = 'block'
-    }
-  })
+  useHideHavbar()
   return (
     <div className='light' tw='flex justify-center'>
       <div tw='prose text-left'>

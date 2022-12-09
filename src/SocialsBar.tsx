@@ -5,7 +5,7 @@ import { Icon, ICON } from '../components/deco'
 export function SocialsBar(props: HTMLProps<HTMLDivElement>) {
   return (
     <div
-      tw='grid grid-cols-4 w-28 lg:(w-36)'
+      tw='grid grid-cols-3 w-20 lg:(w-28)'
       css={css`
         a {
           ${tw`hocus:text-link-color`}
@@ -21,10 +21,9 @@ export function SocialsBar(props: HTMLProps<HTMLDivElement>) {
       />
       <Icon
         as='a'
-        href='https://youtube.com/c/Interpause'
+        href='https://www.youtube.com/@Interpause'
         icon={ICON.youtube}
       />
-      <Icon as='a' href='https://youtu.be/dQw4w9WgXcQ' icon={ICON.instagram} />
     </div>
   )
 }

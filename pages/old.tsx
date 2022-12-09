@@ -152,7 +152,7 @@ function Main() {
   )
 }
 
-export default function Index() {
+export default function OldIndex() {
   return (
     <>
       <Head>

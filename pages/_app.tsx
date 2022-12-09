@@ -9,7 +9,7 @@ import { baseStyle, themeColor, DarkThemeWrapper } from '../components/theme'
 // https://nextjs.org/docs/advanced-features/custom-app
 
 const routes = {
-  '/': 'Home',
+  '/old': 'Home',
   '/#main': 'Projects',
   '/#timeline': 'Timeline',
   '/#about': 'About Me',

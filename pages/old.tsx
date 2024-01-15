@@ -1,26 +1,29 @@
-import tw, { css } from 'twin.macro'
 import Head from 'next/head'
+import { css } from 'twin.macro'
 
+import { ComponentPropsWithRef, useState } from 'react'
 import { CardData, CardFlex } from '../components/Card'
 import {
-  Orientation,
-  IsogridBackground,
-  ScrollHint,
-  RainbowText,
   Icon,
+  IsogridBackground,
+  Orientation,
+  RainbowText,
+  ScrollHint,
 } from '../components/deco'
-import { hideMobileLandscape, hideMobilePotrait } from '../components/utils'
 import { Toggle } from '../components/input'
-import { SocialsBar } from '../src/SocialsBar'
-import { SkillList } from '../src/SkillList'
+import { hideMobileLandscape, hideMobilePotrait } from '../components/utils'
 import { Footer } from '../src/Footer'
 import { Milestone } from '../src/Milestone'
+import { SkillList } from '../src/SkillList'
+import { SocialsBar } from '../src/SocialsBar'
 import { Summary } from './about'
-import { useState } from 'react'
 
-function Header({ className }: { className?: string }) {
+function Header({
+  className,
+  ...props
+}: { className?: string } & ComponentPropsWithRef<'header'>) {
   return (
-    <header className={className}>
+    <header {...props} className={className}>
       <h1 tw='text-5xl lg:(text-9xl) font-thin'>John-Henry Lim</h1>
       <div tw='text-2xl lg:(text-5xl)'>
         <span tw='hidden lg:inline'>aka </span>

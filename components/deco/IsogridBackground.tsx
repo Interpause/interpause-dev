@@ -2,6 +2,7 @@
  * @file Pure JS SVG generator I made long ago updated using jsx (refrained from renaming variables). Used in my phone game and other places I needed a background for.
  * @author John-Henry Lim <hyphen@interpause.dev>
  */
+import React from 'react'
 /** Very fast barely RNG random number generator */
 const detRNG = (s: number) => () =>
   ((2 ** 31 - 1) & (s = Math.imul(48271, s))) / 2 ** 31
@@ -30,7 +31,7 @@ export interface IsogridConfig {
 export type IsogridKeys = keyof IsogridConfig
 
 /** properties each animated triangle has */
-export interface TriangleProps {
+export interface TriangleProps extends React.ComponentProps<'polygon'> {
   /** sequence of colors triangle animates through */
   color_seq: HexColor[]
   /** duration of animation in seconds */
@@ -109,9 +110,9 @@ function gen_tri(conf: IsogridConfig, above?: HexColor, left?: HexColor) {
 }
 
 /** Makes triangle */
-function Triangle({ color_seq, speed, points }: TriangleProps) {
+function Triangle({ color_seq, speed, points, ...props }: TriangleProps) {
   return (
-    <polygon fill={color_seq[0]} points={points}>
+    <polygon {...props} fill={color_seq[0]} points={points}>
       <animate
         attributeName='fill'
         values={`${color_seq.join(';')}`}
@@ -122,7 +123,6 @@ function Triangle({ color_seq, speed, points }: TriangleProps) {
   )
 }
 
-import React from 'react'
 /** Generates SVG background. */
 export const IsogridBackground = React.memo(
   (props?: Partial<IsogridConfig>) => {
@@ -159,7 +159,7 @@ export const IsogridBackground = React.memo(
     let isUpright = false
 
     /** polygons */
-    let triangles: JSX.Element[] = []
+    let triangles: TriangleProps[] = []
     for (let y = 0; y < conf.rows * 2; y++) {
       isUpright = y % 2 == 0
 
@@ -177,7 +177,7 @@ export const IsogridBackground = React.memo(
       let p3x1 = tlen / 2 - lglen
       let p3y1 = isUpright ? y * thgt + hglen / 2 : (y + 1) * thgt - hglen / 2
       tri1.points = `${p1x1},${p1y1} ${p2x1},${p2y1} ${p3x1},${p3y1}`
-      triangles.push(<Triangle {...tri1} key={triangles.length} />)
+      triangles.push(tri1)
 
       //Calculation for triangle 2
       let p1x2 = width
@@ -187,7 +187,7 @@ export const IsogridBackground = React.memo(
       let p3x2 = width - tlen / 2 + lglen
       let p3y2 = p3y1
       tri2.points = `${p1x2},${p1y2} ${p2x2},${p2y2} ${p3x2},${p3y2}`
-      triangles.push(<Triangle {...tri2} key={triangles.length} />)
+      triangles.push(tri2)
 
       //For rest of triangles in row
       for (let x = 1; x < conf.cols * 2; x++) {
@@ -203,7 +203,7 @@ export const IsogridBackground = React.memo(
         let p3x = (x * tlen) / 2
         let p3y = isUpright ? y * thgt + glen / 2 : (y + 1) * thgt - glen / 2
         tri.points = `${p1x},${p1y} ${p2x},${p2y} ${p3x},${p3y}`
-        triangles.push(<Triangle {...tri} key={triangles.length} />)
+        triangles.push(tri)
 
         isUpright = !isUpright
       }
@@ -219,7 +219,9 @@ export const IsogridBackground = React.memo(
         height='100%'
         width='100%'
       >
-        {triangles}
+        {triangles.map((t, i) => (
+          <Triangle {...t} key={i} />
+        ))}
       </svg>
     )
   },

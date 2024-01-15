@@ -20,4 +20,8 @@
 		<loc>undefined/privacy</loc>
 		<changefreq>hourly</changefreq>
 	</url>
+	<url>
+		<loc>undefined/resume</loc>
+		<changefreq>hourly</changefreq>
+	</url>
 </urlset>

@@ -30,7 +30,7 @@ export default function About() {
           </p>
           <p>
             I have written over a <i>thousand</i>{' '}
-            <span tw='font-mono text-blue-400'>Functions</span>
+            <span tw='font-mono text-blue-400'>Commits</span>
           </p>
           <p>
             <i tw='bg-gray-700 text-gray-300'>Unknown</i> to{' '}
@@ -45,12 +45,12 @@ export default function About() {
             <span tw='text-decoration[line-through]'>
               withstood <i tw='text-red-400 text-lg'>pain</i>
             </span>{' '}
-            to <b tw='text-purple-500'>Commit</b> many times
+            to <b tw='text-purple-500'>Rebase</b> many times
           </p>
           <p>
             Yet, those hands will{' '}
             <u>
-              never <i tw='text-yellow-600'>Compile</i> anything
+              never <i tw='text-yellow-600'>Publish</i> anything
             </u>
           </p>
           <p>
